@@ -3,5 +3,4 @@ class PostSerializer < ActiveModel::Serializer
   
   belongs_to :country
   has_many :comments
-
 end
