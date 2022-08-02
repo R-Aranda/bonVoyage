@@ -5,25 +5,27 @@ class Api::V1::PostsController < ApiController
   end
 
   def show
-    # render json: post
+    post = Post.find_by(id: params[:id])  
+    render json: post
   end
 
   def create 
+    post = country.posts.new(post_params)
     
-    post = Post.new(post_params)
-    country = Country.find(params[:country_id])
-    post.country = country
-
     if post.save 
       render json: post
       
     else 
-      render json: { error: post.errors.full_messages }, status: "400"
+      render json: { error: post.errors.messages }, status: "400"
       
     end
   end
 
   def post_params 
     params.permit(:title, :body)
+  end
+
+  def country
+    @country ||= Country.find(params[:country_id])
   end
 end
