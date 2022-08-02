@@ -7,6 +7,7 @@ const CountryShowContainer = (props) => {
   const [country, setCountry] = useState([]);
   // const [loaded, setLoaded] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [errorsList, setErrorsList] = useState([]);
   const [postInputs, setPostInputs] = useState({
     title: "",
     body: "",
@@ -41,9 +42,17 @@ const CountryShowContainer = (props) => {
       setPostInputs({
         title: "",
         body: "",
-      }).catch((resp) => {
-        console.log(resp.message);
-      });
+      })
+        // .then((productBody) => {
+        //   if (productBody.product) {
+        //     setRedirect(productBody.product.id);
+        //   } else if (productBody.error) {
+        //     setErrorList(productBody.error);
+        //   }
+        // })
+        .catch((resp) => {
+          console.log(resp.message);
+        });
     });
   };
 
