@@ -47,3 +47,8 @@
   z-index: 1;
   transition: all 0.15s ease-in;
 }
+
+.suggested-country {
+  border: 1px rgb(109, 108, 108) solid;
+  background-color: #dcd5d5;
+}

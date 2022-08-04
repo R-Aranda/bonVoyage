@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import axios from "axios";
 
 const CountrySearch = (props) => {
@@ -46,7 +47,11 @@ const CountrySearch = (props) => {
       {suggestions &&
         suggestions.map((suggestion, i) => {
           return (
-            <div key={i} onClick={() => handleSuggest(suggestion)}>
+            <div
+              key={i}
+              onClick={() => handleSuggest(suggestion)}
+              className="suggested-country"
+            >
               {suggestion}
             </div>
           );
