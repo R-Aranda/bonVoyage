@@ -1,4 +1,6 @@
 class Api::V1::PostsController < ApiController
+  before_action :authorize_user, except: [:index, :show]
+
   def index
     posts = Post.all 
     render json: posts
@@ -27,5 +29,17 @@ class Api::V1::PostsController < ApiController
 
   def country
     @country ||= Country.find(params[:country_id])
+  end
+
+  def authorize_user
+    if !user_signed_in? || !current_user.admin?
+      render json: {error: ["Only admins have access to this feature"]}
+    end
+  end
+
+  def authenticate_user
+    if !user_signed_in?
+      render json: {error: ["You need to be signed in first"]}
+    end
   end
 end

@@ -1,4 +1,5 @@
 class Api::V1::CountriesController < ApiController
+  before_action :authorize_user, except: [:index, :show]
 
   def index
     countries = Country.all
@@ -28,5 +29,12 @@ class Api::V1::CountriesController < ApiController
 
   def country_params
     params.permit(:name)
+  end
+
+  def authorize_user
+    if !user_signed_in? || !current_user.admin?
+      rails ActionController::RoutingError.new("Not Found")
+      flash[:notice] = "You do not have access to this page"
+    end
   end
 end
