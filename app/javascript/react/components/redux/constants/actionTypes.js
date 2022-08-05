@@ -1,3 +1,5 @@
 export const ActionTypes = {
   SET_COUNTRIES: "SET_COUNTRIES",
+  SET_COUNTRY: "SET_COUNTRY",
+  SET_POSTS: "SET_POSTS",
 };

@@ -11,17 +11,20 @@ const PostIndexContainer = ({
   countrySlug,
 }) => {
   let postsList;
+  // debugger;
 
-  postsList = posts.map((post) => {
-    return (
-      <div key={post.id} className="callout primary">
-        <h4>{post.title}</h4>
-        <p>{post.body}</p>
-        <p>Posted on: {moment(post.created_at).format("LL")}</p>
-        <Link to={`${countrySlug}/posts/${post.id}`}>Visit Post</Link>
-      </div>
-    );
-  });
+  if (posts) {
+    postsList = posts.map((post) => {
+      return (
+        <div key={post.id} className="callout primary">
+          <h4>{post.title}</h4>
+          <p>{post.body}</p>
+          <p>Posted on: {moment(post.created_at).format("LL")}</p>
+          <Link to={`${countrySlug}/posts/${post.id}`}>Visit Post</Link>
+        </div>
+      );
+    });
+  }
 
   return (
     <div>
