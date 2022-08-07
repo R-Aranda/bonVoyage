@@ -52,3 +52,13 @@
   border: 1px rgb(109, 108, 108) solid;
   background-color: #dcd5d5;
 }
+
+.world-map {
+  width: 60%;
+  border: 1px black solid;
+}
+
+/* svg {
+  display: inline-block;
+  vertical-align: middle;
+} */

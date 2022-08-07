@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setCountries } from "../redux/actions/countryActions";
 import CountryItem from "./CountryItem";
+import MapContainer from "../Map/MapContainer";
 
 const CountryContainer = (props) => {
   const countries = useSelector((state) => state);
@@ -27,7 +28,8 @@ const CountryContainer = (props) => {
 
   return (
     <div className="grid-container">
-      <div className="grid-x grid-margin-x small-up-2 medium-up-3">
+      <div className="row">
+        <MapContainer />
         {countryList}
       </div>
     </div>

@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import PostIndexContainer from "../Post/PostIndexContainer";
+import slugify from "react-slugify";
 
 const CountryShowContainer = (props) => {
-  let slug = props.match.params.slug;
+  let { slug } = useParams();
   const [country, setCountry] = useState([]);
-  // const [loaded, setLoaded] = useState(false);
+  // debugger;
+  const [loaded, setLoaded] = useState(false);
   const [posts, setPosts] = useState([]);
   const [errorsList, setErrorsList] = useState([]);
   const [postInputs, setPostInputs] = useState({
@@ -15,14 +18,14 @@ const CountryShowContainer = (props) => {
 
   useEffect(() => {
     axios
-      .get(`/api/v1/countries/${slug}.json`)
+      .get(`/api/v1/countries/${slugify(slug)}.json`)
       .then((resp) => {
         setCountry(resp.data);
-        // setLoaded(true);
+        setLoaded(true);
         setPosts(resp.data.posts);
       })
       .catch((resp) => console.log(resp));
-  }, [country.length]);
+  }, [country]);
 
   const handleChange = (event) => {
     setPostInputs({
@@ -58,14 +61,18 @@ const CountryShowContainer = (props) => {
 
   return (
     <div>
-      <h2>{country.name}</h2>
-      <PostIndexContainer
-        posts={posts}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        postInputs={postInputs}
-        countrySlug={slug}
-      />
+      {loaded && (
+        <Fragment>
+          <h2>{country.name}</h2>
+          <PostIndexContainer
+            posts={posts}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            postInputs={postInputs}
+            countrySlug={slug}
+          />
+        </Fragment>
+      )}
     </div>
   );
 };
