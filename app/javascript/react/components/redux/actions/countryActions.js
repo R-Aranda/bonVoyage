@@ -6,3 +6,10 @@ export const setCountries = (countries) => {
     payload: countries,
   };
 };
+
+export const setCountry = (country) => {
+  return {
+    type: ActionTypes.SET_COUNTRY,
+    payload: country,
+  };
+};

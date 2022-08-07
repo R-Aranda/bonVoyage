@@ -1,37 +1,41 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setCountry } from "../redux/actions/countryActions";
+import { setPosts } from "../redux/actions/postActions";
 import PostIndexContainer from "../Post/PostIndexContainer";
 import slugify from "react-slugify";
 
 const CountryShowContainer = (props) => {
   let { slug } = useParams();
-  const [country, setCountry] = useState([]);
-  // debugger;
-  const [loaded, setLoaded] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const [errorsList, setErrorsList] = useState([]);
-  const [postInputs, setPostInputs] = useState({
-    title: "",
-    body: "",
-  });
+  const country = useSelector((state) => state.country);
+  debugger;
+  const posts = useSelector((state) => state.posts);
+  const postInputs = useSelector((state) => state.postInputs);
 
+  const dispatch = useDispatch();
+
+  const [errorsList, setErrorsList] = useState([]);
   useEffect(() => {
     axios
       .get(`/api/v1/countries/${slugify(slug)}.json`)
       .then((resp) => {
-        setCountry(resp.data);
-        setLoaded(true);
-        setPosts(resp.data.posts);
+        dispatch(setCountry(resp.data));
+        // setLoaded(true);
+        // debugger;
+        dispatch(setPosts(resp.data.posts));
       })
       .catch((resp) => console.log(resp));
   }, [country]);
 
   const handleChange = (event) => {
-    setPostInputs({
-      ...postInputs,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
+    dispatch(
+      setPostInputs({
+        ...postInputs,
+        [event.currentTarget.name]: event.currentTarget.value,
+      })
+    );
   };
 
   const handleSubmit = (event) => {
@@ -41,11 +45,13 @@ const CountryShowContainer = (props) => {
     postInputs["country_id"] = country_id;
     postInputs["countryName"] = countryName;
     axios.post("/api/v1/posts", { ...postInputs }).then((resp) => {
-      setPosts(posts.concat(resp.data));
-      setPostInputs({
-        title: "",
-        body: "",
-      })
+      dispatch(setPosts(posts.concat(resp.data)));
+      dispatch(
+        setPostInputs({
+          title: "",
+          body: "",
+        })
+      )
         // .then((productBody) => {
         //   if (productBody.product) {
         //     setRedirect(productBody.product.id);
