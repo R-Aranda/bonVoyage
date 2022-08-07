@@ -6,3 +6,10 @@ export const setPosts = (posts) => {
     payload: posts,
   };
 };
+
+export const setPostInputs = (postInputs) => {
+  return {
+    type: ActionTypes.SET_POST_INPUTS,
+    payload: postInputs,
+  };
+};

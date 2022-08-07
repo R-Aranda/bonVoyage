@@ -9,19 +9,16 @@ const CountryShowContainer = (props) => {
   let slug = props.match.params.slug;
   const country = useSelector((state) => state.country);
   const posts = useSelector((state) => state.posts);
-  // debugger;
+  const postInputs = useSelector((state) => state.postInputs);
+
   const dispatch = useDispatch();
-  // const posts = useSelector((state) => state.posts);
 
-  // const [posts, setPosts] = useState([]);
-
-  // debugger;
   const [errorsList, setErrorsList] = useState([]);
-  const [postInputs, setPostInputs] = useState({
-    title: "",
-    body: "",
-  });
-
+  // const [postInputs, setPostInputs] = useState({
+  //   title: "",
+  //   body: "",
+  // });
+  // debugger;
   useEffect(() => {
     axios
       .get(`/api/v1/countries/${slug}.json`)
@@ -35,13 +32,13 @@ const CountryShowContainer = (props) => {
   }, [country.length]);
 
   const handleChange = (event) => {
-    setPostInputs({
-      ...postInputs,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
+    dispatch(
+      setPostInputs({
+        ...postInputs,
+        [event.currentTarget.name]: event.currentTarget.value,
+      })
+    );
   };
-
-  // debugger;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,11 +47,13 @@ const CountryShowContainer = (props) => {
     postInputs["country_id"] = country_id;
     postInputs["countryName"] = countryName;
     axios.post("/api/v1/posts", { ...postInputs }).then((resp) => {
-      setPosts(posts.concat(resp.data));
-      setPostInputs({
-        title: "",
-        body: "",
-      })
+      dispatch(setPosts(posts.concat(resp.data)));
+      dispatch(
+        setPostInputs({
+          title: "",
+          body: "",
+        })
+      )
         // .then((productBody) => {
         //   if (productBody.product) {
         //     setRedirect(productBody.product.id);
