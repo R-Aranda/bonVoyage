@@ -1,10 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import CommentForm from "./CommentForm";
 
 const PostShowContainer = (props) => {
-  let postId = props.match.params.id;
+  let { postId } = useParams();
   const [post, setPost] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [comments, setComments] = useState([]);
