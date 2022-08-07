@@ -21,7 +21,6 @@ class Api::V1::CountriesController < ApiController
       
     else 
       render json: { error: country.errors.full_messages }, status: "400"
-      
     end
   end
 
