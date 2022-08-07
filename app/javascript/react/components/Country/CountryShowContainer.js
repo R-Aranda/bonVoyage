@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setCountry } from "../redux/actions/countryActions";
 import { setPosts } from "../redux/actions/postActions";
 import PostIndexContainer from "../Post/PostIndexContainer";
+import slugify from "react-slugify";
 
 const CountryShowContainer = (props) => {
-  let slug = props.match.params.slug;
+  let { slug } = useParams();
   const country = useSelector((state) => state.country);
+  debugger;
   const posts = useSelector((state) => state.posts);
   const postInputs = useSelector((state) => state.postInputs);
 
   const dispatch = useDispatch();
 
   const [errorsList, setErrorsList] = useState([]);
-  // const [postInputs, setPostInputs] = useState({
-  //   title: "",
-  //   body: "",
-  // });
-  // debugger;
   useEffect(() => {
     axios
-      .get(`/api/v1/countries/${slug}.json`)
+      .get(`/api/v1/countries/${slugify(slug)}.json`)
       .then((resp) => {
         dispatch(setCountry(resp.data));
         // setLoaded(true);
@@ -29,7 +27,7 @@ const CountryShowContainer = (props) => {
         dispatch(setPosts(resp.data.posts));
       })
       .catch((resp) => console.log(resp));
-  }, [country.length]);
+  }, [country]);
 
   const handleChange = (event) => {
     dispatch(
@@ -69,14 +67,18 @@ const CountryShowContainer = (props) => {
 
   return (
     <div>
-      <h2>{country.name}</h2>
-      <PostIndexContainer
-        posts={posts.posts}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        postInputs={postInputs}
-        countrySlug={slug}
-      />
+      {loaded && (
+        <Fragment>
+          <h2>{country.name}</h2>
+          <PostIndexContainer
+            posts={posts}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            postInputs={postInputs}
+            countrySlug={slug}
+          />
+        </Fragment>
+      )}
     </div>
   );
 };
