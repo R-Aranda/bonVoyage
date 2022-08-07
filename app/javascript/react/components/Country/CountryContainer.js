@@ -8,16 +8,16 @@ import MapContainer from "../Map/MapContainer";
 const CountryContainer = (props) => {
   const countries = useSelector((state) => state);
   const dispatch = useDispatch();
-
-  const fetchCountries = async () => {
-    const response = await axios.get("/api/v1/countries.json").catch((err) => {
-      console.log("Err", err);
-    });
-    dispatch(setCountries(response.data));
-  };
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetchCountries();
+    axios
+      .get("/api/v1/countries.json")
+      .then((resp) => {
+        dispatch(setCountries(resp.data));
+        setLoaded(true);
+      })
+      .catch((resp) => console.log(resp));
   }, [countries.length]);
 
   let countryList;
@@ -27,15 +27,12 @@ const CountryContainer = (props) => {
         <CountryItem key={country.id} name={country.name} slug={country.slug} />
       );
     });
-    return countryList;
   }
 
   return (
     <div className="grid-container">
-      <div className="row">
-        <MapContainer />
-        {countryList}
-      </div>
+      <MapContainer />
+      <div className="row">{countryList}</div>
     </div>
   );
 };

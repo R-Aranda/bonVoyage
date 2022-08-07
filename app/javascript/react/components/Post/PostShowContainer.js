@@ -10,16 +10,6 @@ const PostShowContainer = (props) => {
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState({});
 
-  useEffect(() => {
-    axios
-      .get(`/api/v1/posts/${postId}.json`)
-      .then((resp) => {
-        setPost(resp.data);
-        setLoaded(true);
-      })
-      .catch((resp) => console.log(resp));
-  }, [post.length]);
-
   let commentsList;
   if (loaded) {
     commentsList = post.comments.map((comment) => {

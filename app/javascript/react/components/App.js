@@ -4,6 +4,7 @@ import CountryContainer from "./Country/CountryContainer";
 import CountryShowContainer from "./Country/CountryShowContainer";
 import PostShowContainer from "./Post/PostShowContainer";
 import CountrySearch from "./Search/CountrySearch";
+import Weather from "./Weather/Weather";
 
 export const App = (props) => {
   return (
@@ -22,6 +23,7 @@ export const App = (props) => {
         />
         <Route exact path="/" element={<CountryContainer />} />
         <Route exact path="/test" element={<CountrySearch />} />
+        <Route exact path="/weather" element={<Weather />} />
       </Routes>
     </Router>
   );

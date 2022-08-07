@@ -1,7 +1,21 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import "./PostForm.css";
 
-const PostForm = ({ handleChange, handleSubmit, postInputs }) => {
+const PostForm = ({ handleSubmit }) => {
+  const postInputs = useSelector((state) => state.postInputs);
+  const dispatch = useDispatch();
+
+  const handleChange = (event) => {
+    dispatch(
+      setPostInputs({
+        ...postInputs,
+        [event.currentTarget.name]: event.currentTarget.value,
+      })
+    );
+  };
+
   $(function() {
     var showClass = "show";
 

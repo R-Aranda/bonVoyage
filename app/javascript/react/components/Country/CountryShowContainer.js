@@ -3,38 +3,41 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setCountry } from "../redux/actions/countryActions";
-import { setPosts } from "../redux/actions/postActions";
+import { setPosts, setPostInputs } from "../redux/actions/postActions";
 import PostIndexContainer from "../Post/PostIndexContainer";
 import slugify from "react-slugify";
+import Weather from "../Weather/Weather";
 
 const CountryShowContainer = (props) => {
   let { slug } = useParams();
   const country = useSelector((state) => state.country);
-  debugger;
   const posts = useSelector((state) => state.posts);
   const postInputs = useSelector((state) => state.postInputs);
+  const [loaded, setLoaded] = useState(false);
 
   const dispatch = useDispatch();
 
-  const [errorsList, setErrorsList] = useState([]);
+  // const [errorsList, setErrorsList] = useState([]);
   useEffect(() => {
     axios
       .get(`/api/v1/countries/${slugify(slug)}.json`)
       .then((resp) => {
         dispatch(setCountry(resp.data));
-        // setLoaded(true);
+        setLoaded(true);
         // debugger;
         dispatch(setPosts(resp.data.posts));
       })
       .catch((resp) => console.log(resp));
-  }, [country]);
+  }, [country.length]);
 
   const handleChange = (event) => {
     dispatch(
-      setPostInputs({
-        ...postInputs,
-        [event.currentTarget.name]: event.currentTarget.value,
-      })
+      dispatch(
+        setPostInputs({
+          ...postInputs,
+          [event.currentTarget.name]: event.currentTarget.value,
+        })
+      )
     );
   };
 
@@ -64,14 +67,15 @@ const CountryShowContainer = (props) => {
         });
     });
   };
-
+  // debugger;
   return (
     <div>
       {loaded && (
         <Fragment>
-          <h2>{country.name}</h2>
+          <h2>{country.country.name}</h2>
+          <Weather country={country.country.name} />
           <PostIndexContainer
-            posts={posts}
+            posts={posts.posts}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             postInputs={postInputs}
