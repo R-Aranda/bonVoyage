@@ -1,45 +1,67 @@
+import axios from "axios";
 import React from "react";
+import { Form, Field } from "react-final-form";
+import { useDispatch, useSelector } from "react-redux";
+import "./PostForm.css";
 
-const CommentForm = ({ handleChange, handleSubmit, commentInput }) => {
-  $(function() {
-    var showClass = "show";
-
-    $("textarea")
-      .on("checkval", function() {
-        var label = $(this).prev("label");
-        if (this.value !== "") {
-          label.addClass(showClass);
-        } else {
-          label.removeClass(showClass);
-        }
-      })
-      .on("keyup", function() {
-        $(this).trigger("checkval");
+const CommentForm = ({ post_id, comments }) => {
+  const commentInputs = useSelector((state) => state.commentInputs);
+  const initialData = {
+    body: "",
+  };
+  const onSubmit = (e) => {
+    axios.post("/api/v1/comments", { ...commentInputs }).then((resp) => {
+      dispatch(setComments(comments.concat(resp.data)));
+      dispatch(
+        setCommentInputs({
+          body: "",
+        })
+      ).catch((resp) => {
+        console.log(resp.message);
       });
-  });
+    });
+  };
+
+  const validate = (e) => {
+    const errors = {};
+    if (e.body && e.body.length < 5) {
+      errors.body = "Too Short";
+    }
+    return errors;
+  };
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="callout text-center"
-      style={{ width: 700 }}
-    >
-      <h2>Reply to thread</h2>
-
-      <div className="floated-label-wrapper">
-        <label htmlFor="description">Description</label>
-        <textarea
-          type="text"
-          rows="3"
-          onChange={handleChange}
-          name="body"
-          id="body"
-          value={commentInput.body}
-          placeholder="Post Description"
-        />
-      </div>
-
-      <input type="submit" className="button" />
-    </form>
+    <div>
+      <Form
+        onSubmit={onSubmit}
+        validate={validate}
+        initialValues={initialData}
+        render={({ handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <div className="floated-label-wrapper">
+              <Field
+                name="body"
+                render={({ input, meta }) => (
+                  <div>
+                    <textarea
+                      {...input}
+                      placeholder="Your comment here..."
+                      name="title"
+                      id="title"
+                      type="text"
+                    />
+                    {meta.touched && meta.error && <div>{meta.error}</div>}
+                  </div>
+                )}
+              />
+            </div>
+            <button type="submit" className="button">
+              Submit
+            </button>
+          </form>
+        )}
+      />
+    </div>
   );
 };
 

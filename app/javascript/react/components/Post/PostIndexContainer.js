@@ -20,7 +20,9 @@ const PostIndexContainer = ({
           <h4>{post.title}</h4>
           <p>{post.body}</p>
           <p>Posted on: {moment(post.created_at).format("LL")}</p>
-          <Link to={`posts/${post.id}`}>Visit Post</Link>
+          <Link to={`posts/${post.id}`} state={{ post: post }}>
+            Visit Post
+          </Link>
         </div>
       );
     });

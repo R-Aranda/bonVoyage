@@ -11,21 +11,23 @@ class Api::V1::CommentsController < ApiController
   end
 
   def create
-    comment = Comment.new(comment_params)
-    post = Post.find(params[:post_id])
-    comment.post = post
-
+    comment = post.comments.new(comment_params)
+    
     if comment.save 
       render json: comment
       
     else 
-      render json: { error: comment.errors.full_messages }, status: "400"
+      render json: { error: comment.errors.messages }, status: "400"
       
     end
   end
 
   def comment_params
     params.permit(:body)
+  end
+
+  def post
+    @post ||= Post.find(params[:post_id])
   end
 
   def authorize_user

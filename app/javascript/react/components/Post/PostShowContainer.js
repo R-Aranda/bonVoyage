@@ -1,27 +1,25 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import CommentForm from "./CommentForm";
 
-const PostShowContainer = (props) => {
-  let { postId } = useParams();
-  const [post, setPost] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-  const [comments, setComments] = useState([]);
-  const [commentInput, setCommentInput] = useState({});
+const PostShowContainer = () => {
+  const post = useLocation();
+  const post_id = post.state.post.id;
 
-  let commentsList;
-  if (loaded) {
-    commentsList = post.comments.map((comment) => {
-      return (
-        <li key={comment.id}>
-          <p>{comment.body}</p>
-          <p>{moment(comment.created_at).format("LL")}</p>
-        </li>
-      );
-    });
-  }
+  const [commentInput, setCommentInput] = useState({});
+  // debugger;
+
+  const commentsList = post.state.post.comments.map((comment) => {
+    // debugger;
+    return (
+      <li key={comment.id}>
+        <p>{comment.body}</p>
+        <p>{moment(comment.created_at).format("LL")}</p>
+      </li>
+    );
+  });
 
   const handleChange = (event) => {
     setCommentInput({
@@ -30,43 +28,23 @@ const PostShowContainer = (props) => {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const post_id = parseInt(post.id);
-    commentInput["post_id"] = post_id;
-    axios.post("/api/v1/comments", { ...commentInput }).then((resp) => {
-      setComments(comments.concat(resp.data));
-      setCommentInput({
-        body: "",
-      }).catch((resp) => {
-        console.log(resp.message);
-      });
-    });
-  };
-
   return (
     <Fragment>
-      {loaded && (
+      <div>
         <div>
+          <h1>{post.state.post.country.name}</h1>
           <div>
-            <h1>{post.country.name}</h1>
-            <div>
-              <h2>{post.title}</h2>
-              <p>{post.body}</p>
-              <p>{moment(post.created_at).format("LL")}</p>
-            </div>
+            <h2>{post.state.post.title}</h2>
+            <p>{post.state.post.body}</p>
+            <p>{moment(post.state.post.created_at).format("LL")}</p>
           </div>
-          <div>
-            <h4>Comments:</h4>
-            <CommentForm
-              handleSubmit={handleSubmit}
-              handleChange={handleChange}
-              commentInput={commentInput}
-            />
-          </div>
-          <ul>{commentsList}</ul>
         </div>
-      )}
+        <div>
+          <h4>Comments:</h4>
+          <CommentForm post_id={post_id} comments={post.state.post.comments} />
+        </div>
+        <ul>{commentsList}</ul>
+      </div>
     </Fragment>
   );
 };
