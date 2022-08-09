@@ -8,23 +8,13 @@ const initialPostsState = {
   },
 };
 
-export const postsReducer = (
+export const postReducer = (
   state = initialPostsState.posts,
   { type, payload }
 ) => {
   switch (type) {
     case ActionTypes.SET_POSTS:
       return { ...state, posts: payload };
-    default:
-      return state;
-  }
-};
-
-export const postInputsReducer = (
-  state = initialPostsState.postInputs,
-  { type, payload }
-) => {
-  switch (type) {
     case ActionTypes.SET_POST_INPUTS:
       return { ...state, postInputs: payload };
     default:

@@ -54,7 +54,9 @@
 }
 
 .world-map {
-  width: 60%;
+  width: 800;
+  height: 600;
+  fill: transparent;
   border: 1px black solid;
 }
 
