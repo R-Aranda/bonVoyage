@@ -1,4 +1,5 @@
 import { ActionTypes } from "../constants/actionTypes";
+import axios from "axios";
 
 export const setComments = (comments) => {
   return {
@@ -8,8 +9,8 @@ export const setComments = (comments) => {
 };
 
 export const setCommentInputs = (commentInputs) => {
-  return {
-    type: ActionTypes.SET_COMMENT_INPUTS,
-    payload: commentInputs,
-  };
+  axios.post("/api/v1/comments", commentInputs).then((res) => {
+    console.log(res);
+    console.log(res.data);
+  });
 };

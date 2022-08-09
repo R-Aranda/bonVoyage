@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPostInputs } from "../redux/actions/postActions";
 import { Form, Field } from "react-final-form";
 
-import "./PostForm.css";
-
 const PostForm = () => {
   const dispatch = useDispatch();
   const country = useSelector((state) => state.country.country);

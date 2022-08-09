@@ -15,7 +15,6 @@ const CountryContainer = () => {
       .get("/api/v1/countries.json")
       .then((resp) => {
         dispatch(setCountries(resp.data));
-        setLoaded(true);
       })
       .catch((resp) => console.log(resp));
   }, [countries.length]);

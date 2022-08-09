@@ -1,6 +1,5 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import axios from "axios";
+import React, { Fragment } from "react";
+import { useLocation } from "react-router-dom";
 import moment from "moment";
 import CommentForm from "./CommentForm";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +12,7 @@ const PostShowContainer = () => {
   dispatch(setPost(currentPost.state.post));
   const post = useSelector((state) => state.post.post);
   dispatch(setComments(post.comments));
-  const comments = useSelector((state) => state.comments.comments);
+  const comments = useSelector((state) => state.comment.comments);
 
   const commentsList = comments.map((comment) => {
     return (

@@ -19,13 +19,15 @@ export const commentInputsReducer = (
   }
 };
 
-export const commentsReducer = (
+export const commentReducer = (
   state = initialCommentsState.comments,
   { type, payload }
 ) => {
   switch (type) {
     case ActionTypes.SET_COMMENTS:
       return { ...state, comments: payload };
+    case ActionTypes.SET_COMMENT_INPUTS:
+      return { ...state, commentInputs: payload };
     default:
       return state;
   }

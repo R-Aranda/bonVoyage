@@ -10,7 +10,6 @@ const CountrySearch = (props) => {
   useEffect(() => {
     const getCountries = async () => {
       const response = await axios.get("https://restcountries.com/v3.1/all");
-      console.log(response.data);
       let countryList = response.data.map((object) => {
         return object.name.common;
       });

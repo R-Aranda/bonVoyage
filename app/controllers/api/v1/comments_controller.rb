@@ -1,5 +1,5 @@
 class Api::V1::CommentsController < ApiController
-  before_action :authorize_user, except: [:index, :show]
+  # before_action :authorize_user, except: [:index, :show]
 
   def index
     comments = Comment.all
@@ -32,8 +32,9 @@ class Api::V1::CommentsController < ApiController
 
   def authorize_user
     if !user_signed_in? || !current_user.admin?
-      rails ActionController::RoutingError.new("Not Found")
-      flash[:notice] = "You do not have access to this page"
+      render json: {error: ["Only admins have access to this feature"]}
     end
   end
+
+  
 end
