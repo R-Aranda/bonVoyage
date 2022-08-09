@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApiController
-  before_action :authorize_user, except: [:index, :show]
+  # before_action :authorize_user, except: [:index, :show]
 
   def index
     posts = Post.all 
@@ -13,7 +13,6 @@ class Api::V1::PostsController < ApiController
 
   def create 
     post = country.posts.new(post_params)
-    
     if post.save 
       render json: post
       

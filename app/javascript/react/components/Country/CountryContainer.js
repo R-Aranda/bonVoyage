@@ -5,10 +5,9 @@ import { setCountries } from "../redux/actions/countryActions";
 import CountryItem from "./CountryItem";
 import MapContainer from "../Map/MapContainer";
 
-const CountryContainer = (props) => {
+const CountryContainer = () => {
   const countries = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     axios
@@ -21,14 +20,18 @@ const CountryContainer = (props) => {
   }, [countries.length]);
 
   let countryList;
-  if (countries.allCountries.countries) {
-    countryList = countries.allCountries.countries.map((country) => {
-      return (
-        <CountryItem key={country.id} name={country.name} slug={country.slug} />
-      );
-    });
+  {
+    countries.allCountries.countries &&
+      (countryList = countries.allCountries.countries.map((country) => {
+        return (
+          <CountryItem
+            key={country.id}
+            name={country.name}
+            slug={country.slug}
+          />
+        );
+      }));
   }
-
   return (
     <div className="grid-container">
       <MapContainer />
