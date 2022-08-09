@@ -30,7 +30,7 @@ const CountryShowContainer = (props) => {
       {loaded && (
         <Fragment>
           <h2>{country.country.name}</h2>
-          <Weather country={country.country.name} />
+          {/* <Weather country={country.country.name} /> */}
           <PostIndexContainer countrySlug={slug} />
         </Fragment>
       )}
