@@ -43,6 +43,8 @@ const CountrySearch = (props) => {
         type="text"
         onChange={(e) => handleChange(e.target.value)}
         value={text}
+        placeholder="Country..."
+        className="country-input"
       />
       {suggestions &&
         suggestions.map((suggestion, i) => {

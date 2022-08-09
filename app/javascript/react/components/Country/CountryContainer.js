@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCountries } from "../redux/actions/countryActions";
 import CountryItem from "./CountryItem";
 import MapContainer from "../Map/MapContainer";
+import CountrySearch from "../Search/CountrySearch";
 
 const CountryContainer = () => {
   const countries = useSelector((state) => state);
@@ -34,6 +35,8 @@ const CountryContainer = () => {
   }
   return (
     <div className="grid-container">
+      <div>Search for a Country</div>
+      <CountrySearch />
       <MapContainer />
       <div className="row">{countryList}</div>
     </div>

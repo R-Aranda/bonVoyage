@@ -8,7 +8,6 @@ export const countriesReducer = (
   state = initialState.countries,
   { type, payload }
 ) => {
-  // debugger;
   switch (type) {
     case ActionTypes.SET_COUNTRIES:
       return { ...state, countries: payload };
@@ -23,7 +22,6 @@ export const countryReducer = (
 ) => {
   switch (type) {
     case ActionTypes.SET_COUNTRY:
-      // debugger;
       return { ...state, country: payload };
     case ActionTypes.SET_POSTS:
       return { ...state, posts: payload.posts };

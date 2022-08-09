@@ -50,7 +50,12 @@
 
 .suggested-country {
   border: 1px rgb(109, 108, 108) solid;
-  background-color: #dcd5d5;
+  background-color: #f3efef;
+  margin-top: 0;
+}
+
+.country-input {
+  margin-bottom: 0;
 }
 
 .world-map {

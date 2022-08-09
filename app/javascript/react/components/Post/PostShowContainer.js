@@ -3,16 +3,19 @@ import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import CommentForm from "./CommentForm";
+import { useDispatch, useSelector } from "react-redux";
+import { setComments } from "../redux/actions/commentActions";
+import { setPost } from "../redux/actions/postActions";
 
 const PostShowContainer = () => {
-  const post = useLocation();
-  const post_id = post.state.post.id;
+  const dispatch = useDispatch();
+  const currentPost = useLocation();
+  dispatch(setPost(currentPost.state.post));
+  const post = useSelector((state) => state.post.post);
+  dispatch(setComments(post.comments));
+  const comments = useSelector((state) => state.comments.comments);
 
-  const [commentInput, setCommentInput] = useState({});
-  // debugger;
-
-  const commentsList = post.state.post.comments.map((comment) => {
-    // debugger;
+  const commentsList = comments.map((comment) => {
     return (
       <li key={comment.id}>
         <p>{comment.body}</p>
@@ -21,27 +24,20 @@ const PostShowContainer = () => {
     );
   });
 
-  const handleChange = (event) => {
-    setCommentInput({
-      ...commentInput,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
-  };
-
   return (
     <Fragment>
       <div>
         <div>
-          <h1>{post.state.post.country.name}</h1>
+          <h1>{post.country.name}</h1>
           <div>
-            <h2>{post.state.post.title}</h2>
-            <p>{post.state.post.body}</p>
-            <p>{moment(post.state.post.created_at).format("LL")}</p>
+            <h2>{post.title}</h2>
+            <p>{post.body}</p>
+            <p>{moment(post.created_at).format("LL")}</p>
           </div>
         </div>
         <div>
           <h4>Comments:</h4>
-          <CommentForm post_id={post_id} comments={post.state.post.comments} />
+          <CommentForm post_id={post.id} comments={post.comments} />
         </div>
         <ul>{commentsList}</ul>
       </div>
