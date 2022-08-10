@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const CountryItem = ({ name, slug }) => {
   return (
-    <div className="cell">
+    <div className="column">
       <div className="card" style={{ width: 300 }}>
         <h3 className="card-divider">{name}</h3>
         <img src="https://ak-d.tripcdn.com/images/01063120009ea6r6298F7_Z_640_10000_R5.jpg" />

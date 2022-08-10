@@ -59,13 +59,22 @@
 }
 
 .world-map {
-  width: 800;
-  height: 600;
+  width: 60%;
+  height: auto;
   fill: transparent;
   border: 1px black solid;
+}
+
+.map-container {
+  width: 80%;
+  align-items: center;
 }
 
 /* svg {
   display: inline-block;
   vertical-align: middle;
 } */
+
+svg .fukk {
+  fill: rebeccapurple;
+}

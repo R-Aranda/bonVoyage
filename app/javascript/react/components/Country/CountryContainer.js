@@ -37,7 +37,7 @@ const CountryContainer = () => {
       <div>Search for a Country</div>
       <CountrySearch />
       <MapContainer />
-      <div className="row">{countryList}</div>
+      <div className="row aligned-middle">{countryList}</div>
     </div>
   );
 };
