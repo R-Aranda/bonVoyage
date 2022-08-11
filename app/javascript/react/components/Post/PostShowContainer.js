@@ -7,12 +7,9 @@ import { setComments } from "../redux/actions/commentActions";
 import { setPost } from "../redux/actions/postActions";
 
 const PostShowContainer = () => {
-  const dispatch = useDispatch();
-  const currentPost = useLocation();
-  dispatch(setPost(currentPost.state.post));
   const post = useSelector((state) => state.post.post);
-  dispatch(setComments(post.comments));
   const comments = useSelector((state) => state.comment.comments);
+  const country = useSelector((state) => state.country.country);
 
   const commentsList = comments.map((comment) => {
     return (
@@ -27,7 +24,7 @@ const PostShowContainer = () => {
     <Fragment>
       <div>
         <div>
-          <h1>{post.country.name}</h1>
+          <h1>{country.name}</h1>
           <div>
             <h2>{post.title}</h2>
             <p>{post.body}</p>

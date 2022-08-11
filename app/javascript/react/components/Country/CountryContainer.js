@@ -32,6 +32,7 @@ const CountryContainer = () => {
         );
       }));
   }
+
   return (
     <div className="grid-container">
       <div>Search for a Country</div>

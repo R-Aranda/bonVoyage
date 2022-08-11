@@ -29,6 +29,7 @@
     "react-tooltip": "^4.2.21",
     "redbox-react": "1.6.0",
     "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
