@@ -9,10 +9,9 @@ const CountrySearch = (props) => {
 
   useEffect(() => {
     const getCountries = async () => {
-      const response = await axios.get("https://restcountries.com/v3.1/all");
-      console.log(response.data);
-      let countryList = response.data.map((object) => {
-        return object.name.common;
+      const response = await axios.get("/api/v1/countries");
+      const countryList = response.data.map((object) => {
+        return object.name;
       });
       setCountries(countryList);
     };
@@ -32,7 +31,7 @@ const CountrySearch = (props) => {
         return ct.match(regex);
       });
     }
-    console.log("matches", matches);
+
     setSuggestions(matches);
     setText(text);
   };
@@ -43,6 +42,8 @@ const CountrySearch = (props) => {
         type="text"
         onChange={(e) => handleChange(e.target.value)}
         value={text}
+        placeholder="Country..."
+        className="country-input"
       />
       {suggestions &&
         suggestions.map((suggestion, i) => {

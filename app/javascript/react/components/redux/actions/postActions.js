@@ -1,10 +1,17 @@
 import { ActionTypes } from "../constants/actionTypes";
 import axios from "axios";
 
-export const setPosts = (posts, country) => {
+export const setPosts = (posts) => {
   return {
     type: ActionTypes.SET_POSTS,
     payload: posts,
+  };
+};
+
+export const setPost = (post) => {
+  return {
+    type: ActionTypes.SET_POST,
+    payload: post,
   };
 };
 

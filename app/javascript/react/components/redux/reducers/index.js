@@ -1,13 +1,12 @@
 import { combineReducers } from "redux";
-import { countriesReducer, countryReducer } from "./countryReducer";
+import { countryReducer } from "./countryReducer";
 import { postReducer } from "./postReducer";
-import { commentInputsReducer } from "./commentReducer";
+import { commentReducer } from "./commentReducer";
 
 const allReducers = combineReducers({
-  allCountries: countriesReducer,
   country: countryReducer,
   post: postReducer,
-  commentInputs: commentInputsReducer,
+  comment: commentReducer,
 });
 
 export default allReducers;

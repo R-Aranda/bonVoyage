@@ -2,10 +2,6 @@ import { ActionTypes } from "../constants/actionTypes";
 
 const initialPostsState = {
   posts: [],
-  postInputs: {
-    title: "",
-    body: "",
-  },
 };
 
 export const postReducer = (
@@ -13,6 +9,8 @@ export const postReducer = (
   { type, payload }
 ) => {
   switch (type) {
+    case ActionTypes.SET_POST:
+      return { ...state, post: payload };
     case ActionTypes.SET_POSTS:
       return { ...state, posts: payload };
     case ActionTypes.SET_POST_INPUTS:

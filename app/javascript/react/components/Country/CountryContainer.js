@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCountries } from "../redux/actions/countryActions";
 import CountryItem from "./CountryItem";
 import MapContainer from "../Map/MapContainer";
+import CountrySearch from "../Search/CountrySearch";
 
 const CountryContainer = () => {
   const countries = useSelector((state) => state);
@@ -14,28 +15,22 @@ const CountryContainer = () => {
       .get("/api/v1/countries.json")
       .then((resp) => {
         dispatch(setCountries(resp.data));
-        setLoaded(true);
       })
       .catch((resp) => console.log(resp));
   }, [countries.length]);
 
-  let countryList;
-  {
-    countries.allCountries.countries &&
-      (countryList = countries.allCountries.countries.map((country) => {
-        return (
-          <CountryItem
-            key={country.id}
-            name={country.name}
-            slug={country.slug}
-          />
-        );
-      }));
-  }
+  const countryList = countries.country.countries.map((country) => {
+    return (
+      <CountryItem key={country.id} name={country.name} slug={country.slug} />
+    );
+  });
+
   return (
     <div className="grid-container">
+      <div>Search for a Country</div>
+      <CountrySearch />
       <MapContainer />
-      <div className="row">{countryList}</div>
+      <div className="row aligned-middle">{countryList}</div>
     </div>
   );
 };

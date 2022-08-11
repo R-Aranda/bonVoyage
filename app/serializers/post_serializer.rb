@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :body, :country_id, :created_at, :comments, :country
+  attributes :id, :title, :body, :country_id, :created_at, :comments
   
   belongs_to :country
   has_many :comments

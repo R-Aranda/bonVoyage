@@ -2,8 +2,9 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import App from "../react/components/App";
-import store from "../react/components/redux/store";
+import store, { Persistor } from "../react/components/redux/store";
 import RedBox from "redbox-react";
+import { PersistGate } from "redux-persist/integration/react";
 
 document.addEventListener("DOMContentLoaded", () => {
   let reactElement = document.getElementById("app");
@@ -13,7 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         render(
           <Provider store={store}>
-            <App />
+            <PersistGate loading={null} persistor={Persistor}>
+              <App />
+            </PersistGate>
           </Provider>,
           reactElement
         );
@@ -23,7 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       render(
         <Provider store={store}>
-          <App />
+          <PersistGate loading={null} persistor={Persistor}>
+            <App />
+          </PersistGate>
         </Provider>,
         reactElement
       );
