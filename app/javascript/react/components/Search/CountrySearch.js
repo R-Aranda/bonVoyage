@@ -31,7 +31,7 @@ const CountrySearch = (props) => {
         return ct.match(regex);
       });
     }
-    console.log("matches", matches);
+
     setSuggestions(matches);
     setText(text);
   };

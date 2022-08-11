@@ -1,12 +1,7 @@
 import { ActionTypes } from "../constants/actionTypes";
 
 const initialPostsState = {
-  post: [],
   posts: [],
-  postInputs: {
-    title: "",
-    body: "",
-  },
 };
 
 export const postReducer = (

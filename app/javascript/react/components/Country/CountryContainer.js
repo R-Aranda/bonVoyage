@@ -19,19 +19,11 @@ const CountryContainer = () => {
       .catch((resp) => console.log(resp));
   }, [countries.length]);
 
-  let countryList;
-  {
-    countries.allCountries.countries &&
-      (countryList = countries.allCountries.countries.map((country) => {
-        return (
-          <CountryItem
-            key={country.id}
-            name={country.name}
-            slug={country.slug}
-          />
-        );
-      }));
-  }
+  const countryList = countries.country.countries.map((country) => {
+    return (
+      <CountryItem key={country.id} name={country.name} slug={country.slug} />
+    );
+  });
 
   return (
     <div className="grid-container">

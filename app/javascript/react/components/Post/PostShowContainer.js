@@ -23,20 +23,18 @@ const PostShowContainer = () => {
   return (
     <Fragment>
       <div>
+        <h1>{country.name}</h1>
         <div>
-          <h1>{country.name}</h1>
-          <div>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-            <p>{moment(post.created_at).format("LL")}</p>
-          </div>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+          <p>{moment(post.created_at).format("LL")}</p>
         </div>
-        <div>
-          <h4>Comments:</h4>
-          <CommentForm post_id={post.id} comments={post.comments} />
-        </div>
-        <ul>{commentsList}</ul>
       </div>
+      <div>
+        <h4>Comments:</h4>
+        <CommentForm post_id={post.id} comments={post.comments} />
+      </div>
+      <ul>{commentsList}</ul>
     </Fragment>
   );
 };
