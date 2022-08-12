@@ -15,7 +15,6 @@
  *= require foundation_and_overrides
 
  */
-
 .floated-label-wrapper {
   position: relative;
 }
@@ -77,4 +76,92 @@
 
 svg .fukk {
   fill: rebeccapurple;
+}
+.world-map {
+  width: 65%;
+  height: auto;
+  fill: transparent;
+  border: 1px black solid;
+  margin: 0 auto;
+  position: relative;
+  z-index: -1;
+}
+
+.map-container {
+  width: 85%;
+  align-items: center;
+}
+
+/* svg {
+  display: inline-block;
+  vertical-align: middle;
+} */
+
+/* search */
+.search-bar-container {
+  width: 65%;
+  margin: 0 auto;
+  padding-bottom: -50px;
+  height: 50px;
+  position: relative;
+}
+
+.search-bar {
+  background: transparent;
+  border: 1px solid #f6f6f6;
+  font-size: 15px;
+  padding-left: 20px;
+  color: #4e5860;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  height: 100%;
+  margin-bottom: -200px;
+}
+
+.search-bar:focus {
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.search-bar-icon {
+  position: absolute;
+  right: 13px;
+  top: 10px;
+  font-size: 17px;
+  color: #22447e;
+}
+
+.line-height-1 {
+  line-height: 1;
+}
+
+.search-result {
+  position: absolute;
+  top: 52px;
+  width: 100%;
+  max-height: 350px;
+  overflow-y: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
+}
+
+.list-group {
+  display: grid;
+}
+
+.list-group-item {
+  cursor: pointer;
+  list-style-type: none;
+  background-color: #ffffff;
+}
+
+.list-group-item.active,
+.list-group-item:hover {
+  background-color: #e1e3e5;
+  border-color: #d3d5d7;
+}
+
+.search-region {
+}
+
+.search-capital {
 }
