@@ -5,6 +5,7 @@ import { setCountries } from "../redux/actions/countryActions";
 import CountryItem from "./CountryItem";
 import MapContainer from "../Map/MapContainer";
 import CountrySearch from "../Search/CountrySearch";
+import SearchComponent from "../Search/SearchComponent";
 
 const CountryContainer = () => {
   const countries = useSelector((state) => state);
@@ -27,9 +28,8 @@ const CountryContainer = () => {
 
   return (
     <div className="grid-container">
-      <div>Search for a Country</div>
-      <CountrySearch />
       <MapContainer />
+      {/* <SearchComponent /> */}
       <div className="row aligned-middle">{countryList}</div>
     </div>
   );

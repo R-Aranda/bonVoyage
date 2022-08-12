@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SearchAutoComplete from "./SearchAutoComplete";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import slugify from "slugify";
 
 const SearchComponent = () => {
   const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getCountries = async () => {
@@ -15,21 +17,29 @@ const SearchComponent = () => {
     getCountries();
   }, []);
 
+  const navigateCountry = (country) => {
+    {
+      country.name
+        ? navigate(`/countries/${slugify(country.name.common)}`)
+        : navigate(`/countries/${slugify(country)}`);
+    }
+  };
+
   return (
     <>
       <div className="row">
         <div className="col text-center">
-          <h2>Search for Country</h2>
-          <p>Search Country by Name</p>
-          <div className="d-flex justify-content-center">
-            <div className="search-bar-container">
-              <SearchAutoComplete
-                data={countries}
-                onSelect={(country) => setCountry(country)}
-              />
-            </div>
+          <h3>Search Country by Name</h3>
+
+          <div className="search-bar-container">
+            <SearchAutoComplete
+              data={countries}
+              onSelect={(country) => {
+                navigateCountry(country);
+              }}
+              navigateCountry={navigateCountry}
+            />
           </div>
-          {console.log(country.name)}
         </div>
       </div>
     </>

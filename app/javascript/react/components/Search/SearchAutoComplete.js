@@ -1,7 +1,13 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import SearchListItem from "./SearchListItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
-const SearchAutoComplete = ({ data, onSelect }) => {
+library.add(faMagnifyingGlass);
+
+const SearchAutoComplete = ({ data, onSelect, navigateCountry }) => {
   const [visible, setVisible] = useState(false);
   const [search, setSearch] = useState("");
   const [cursor, setCursor] = useState(-1);
@@ -34,8 +40,9 @@ const SearchAutoComplete = ({ data, onSelect }) => {
   }, [cursor]);
 
   const suggestions = useMemo(() => {
+    if (search === "") hideSuggestion();
     if (!search) return data;
-
+    showSuggestion();
     setCursor(-1);
     scrollIntoView(0);
 
@@ -56,34 +63,51 @@ const SearchAutoComplete = ({ data, onSelect }) => {
   const keyboardNav = (e) => {
     if (e.key === "ArrowDown") {
       visible
-        ? setCursor((c) => (c < suggestions.length - 1 ? c + 1 : c))
+        ? setCursor((cursor) =>
+            cursor < suggestions.length - 1 ? cursor + 1 : cursor
+          )
         : showSuggestion();
     }
     if (e.key === "ArrowUp") {
-      setCursor((c) => (c > 0 ? c - 1 : 0));
+      setCursor((cursor) => (cursor > 0 ? cursor - 1 : 0));
+    }
+    if (e.key === "Tab") {
+      setSearch(suggestions[cursor].name.common);
+      hideSuggestion();
     }
     if (e.key === "Escape") {
       hideSuggestion();
     }
-    if (e.key === "Enter" && cursor > 0) {
+    if (e.key === "Enter" && cursor > -1) {
       setSearch(suggestions[cursor].name.common);
       hideSuggestion();
       onSelect(suggestions[cursor]);
     }
   };
 
+  const handleClickSearch = () => {
+    navigateCountry(search);
+  };
+
   return (
-    <div style={{ height: "100%" }} ref={searchContainer}>
-      <input
-        type="text"
-        name="search"
-        className="search-bar"
-        autoComplete="off"
-        value={search}
-        onClick={showSuggestion}
-        onChange={(e) => setSearch(e.target.value)}
-        onKeyDown={(e) => keyboardNav(e)}
-      />
+    <div ref={searchContainer}>
+      <form action="">
+        <input
+          type="text"
+          name="search"
+          className="search-bar"
+          autoComplete="off"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={(e) => keyboardNav(e)}
+        />
+
+        <FontAwesomeIcon
+          icon="fa-solid fa-magnifying-glass"
+          className="search-bar-icon"
+          onClick={handleClickSearch}
+        />
+      </form>
       <div className={`search-result ${visible ? "visible" : "invisible"}`}>
         <ul className="list-group" ref={searchResultRef}>
           {suggestions.map((item, idx) => (

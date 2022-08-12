@@ -16,7 +16,7 @@ const SearchListItem = ({
       <div className="row">
         <div className="col text-left">
           <p>
-            {name.common} <img src={flag} alt="" style={{ width: "30px" }} />
+            {name.common} <i>{flag}</i>
           </p>
           <p className="label primary">{region}</p>
           <p className="label secondary">{capital}</p>
