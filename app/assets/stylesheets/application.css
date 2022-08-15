@@ -15,6 +15,10 @@
  *= require foundation_and_overrides
 
  */
+
+body {
+  font-family: "Roboto", sans-serif;
+}
 .floated-label-wrapper {
   position: relative;
 }
@@ -163,4 +167,98 @@ svg .fukk {
 }
 
 .search-capital {
+}
+
+/* Comments */
+
+.comment-item {
+  padding: 0.5rem;
+  border: 1px solid hsl(235, 100%, 90%);
+  border-radius: 0.5rem;
+  margin-top: 10px;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.btn {
+  padding: 0 1em;
+  height: 4.4em;
+  background: #5765ff;
+  border: none;
+  color: white;
+  border-radius: 0.5em;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 0;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: #7a85ff;
+}
+
+.comment-form-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.comment-input {
+  flex-grow: 1;
+  resize: none;
+  height: 70px;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: inherit;
+  font-family: inherit;
+  border: 2px solid #7a85ff;
+  line-height: 1.4;
+}
+
+.comment-input:focus {
+  border-color: #5765ff;
+}
+
+.comment-date {
+  color: #5765ff;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  font-size: 0.75em;
+}
+
+.comment-body {
+  white-space: pre-wrap;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.comment-date {
+  margin-left: 0.5rem;
+}
+
+.comment-footer {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.comment-icon {
+  background: none;
+  color: #5765ff;
+  padding: 0.25em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.comment-icon:hover,
+.comment-icon:focus-visible {
+  color: #7a85ff;
+}
+
+.comments-list {
+  margin: 0.5rem 0;
 }
