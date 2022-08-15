@@ -5,9 +5,5 @@ class CountrySerializer < ActiveModel::Serializer
   def countries_list
     Country.all()
   end
-
-  def photo
-    GooglePlaceClient.google_photo(object.name)
-  end
   
 end

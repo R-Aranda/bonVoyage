@@ -10,11 +10,7 @@ class GooglePlaceClient
   end
 
   def find(name)
-
     list = client.spots_by_query(name)
-    # binding.pry
-    # place = list.find { |item| item.permanently_closed.nil? && item.types.include?('establishment') }
-    # return nil unless place
     @place = list[0]
     return @place
 
@@ -23,7 +19,7 @@ class GooglePlaceClient
 
   def self.google_photo(country)
     country = find(country)
-    photo = country.photos[0].fetch_url(800)
+    photo = country.photos[0].fetch_url(400)
     return photo
   end
 

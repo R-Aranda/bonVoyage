@@ -8,6 +8,7 @@ class Api::V1::CountriesController < ApiController
 
   def show
     country = Country.find_by(slug: params[:slug])
+    # country["photo"] = photo(country.name)
     render json: country, include: ['posts', 'posts.comments']
   end
 
@@ -26,6 +27,10 @@ class Api::V1::CountriesController < ApiController
 
   def country_params
     params.permit(:name)
+  end
+
+  def photo(country)
+    GooglePlaceClient.google_photo(country)
   end
 
   def authorize_user
