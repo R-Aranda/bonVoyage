@@ -169,6 +169,90 @@ svg .fukk {
 .search-capital {
 }
 
+/* Posts */
+
+.post-form-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 6em;
+  margin-right: 6em;
+}
+
+.post-input-container {
+  width: 100%;
+}
+
+.post-input {
+  flex-grow: 1;
+  resize: none;
+  height: 70px;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: inherit;
+  font-family: inherit;
+  border: 2px solid #7a85ff;
+  line-height: 1.4;
+}
+
+.post-input-title {
+  flex-grow: 1;
+  resize: none;
+  height: 40px;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: inherit;
+  font-family: inherit;
+  border: 2px solid #7a85ff;
+  line-height: 1.4;
+}
+
+.post-input-title:focus {
+  border-color: #5765ff;
+}
+
+.post-input:focus {
+  border-color: #5765ff;
+}
+
+.post-submit-btn {
+  padding: 0 1em;
+  height: 7.8em;
+  background: #5765ff;
+  border: none;
+  color: white;
+  border-radius: 0.5em;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 0;
+}
+
+.post-item {
+  padding: 0.5rem;
+  border: 1px solid #5765ff;
+  border-radius: 0.5rem;
+  background-color: #7a85ff27;
+  margin-top: 10px;
+  margin-left: 5em;
+  margin-right: 5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+.post-header {
+}
+
+.post-body {
+}
+
+.post-date {
+}
+
+.post-footer {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+}
 /* Comments */
 
 .comment-item {
@@ -176,11 +260,11 @@ svg .fukk {
   border: 1px solid hsl(235, 100%, 90%);
   border-radius: 0.5rem;
   margin-top: 10px;
-  margin-left: 2em;
-  margin-right: 2em;
+  margin-left: 5em;
+  margin-right: 5em;
 }
 
-.btn {
+.comment-submit-btn {
   padding: 0 1em;
   height: 4.4em;
   background: #5765ff;
@@ -192,16 +276,16 @@ svg .fukk {
   margin: 0;
 }
 
-.btn:hover,
-.btn:focus-visible {
+.submit-btn:hover,
+.submit-btn:focus-visible {
   background: #7a85ff;
 }
 
 .comment-form-row {
   display: flex;
   gap: 0.5rem;
-  margin-left: 2em;
-  margin-right: 2em;
+  margin-left: 5em;
+  margin-right: 5em;
 }
 
 .comment-input {

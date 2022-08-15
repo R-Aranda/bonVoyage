@@ -1,43 +1,23 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import CountryItem from "./CountryItem";
 import MapContainer from "../Map/MapContainer";
 import SearchComponent from "../Search/SearchComponent";
+import { getCountries } from "../../services/country";
+import { useAsync } from "../../hooks/useAsync";
 
 const CountryContainer = () => {
-  const [countries, setCountries] = useState();
-  const [loaded, setLoaded] = useState(false);
+  const { loading, error, value: countries } = useAsync(getCountries);
 
-  useEffect(() => {
-    axios
-      .get("/api/v1/countries.json")
-      .then((resp) => {
-        setCountries(resp.data);
-        setLoaded(true);
-      })
-      .catch((resp) => console.log(resp));
-  }, []);
+  if (loading) return <h1>Loading</h1>;
+  if (error) return <h1>{error}</h1>;
 
-  let countryList;
-  {
-    loaded &&
-      (countryList = countries.map((country) => {
-        return (
-          <CountryItem
-            key={country.id}
-            name={country.name}
-            slug={country.slug}
-          />
-        );
-      }));
-  }
+  const countryList = countries.map((country) => {
+    return (
+      <CountryItem key={country.id} name={country.name} slug={country.slug} />
+    );
+  });
 
-  let tenCountries;
-
-  {
-    loaded &&
-      (tenCountries = countryList.sort(() => 0.5 - Math.random()).slice(0, 10));
-  }
+  const tenCountries = countryList.sort(() => 0.5 - Math.random()).slice(0, 10);
 
   return (
     <div className="grid-container">

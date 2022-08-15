@@ -6,6 +6,8 @@ import PostShowContainer from "./Post/PostShowContainer";
 import CountrySearch from "./Search/CountrySearch";
 import SearchComponent from "./Search/SearchComponent";
 import Weather from "./Weather/Weather";
+import { CountryProvider } from "../contexts/CountryContext";
+import { PostProvider } from "../contexts/PostContext";
 
 export const App = (props) => {
   return (
@@ -15,12 +17,20 @@ export const App = (props) => {
         <Route
           exact
           path="/countries/:slug"
-          element={<CountryShowContainer />}
+          element={
+            <CountryProvider>
+              <CountryShowContainer />
+            </CountryProvider>
+          }
         />
         <Route
           exact
           path="/countries/:slug/posts/:id"
-          element={<PostShowContainer />}
+          element={
+            <PostProvider>
+              <PostShowContainer />
+            </PostProvider>
+          }
         />
         <Route exact path="/" element={<CountryContainer />} />
         <Route exact path="/test" element={<SearchComponent />} />
