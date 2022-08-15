@@ -26,7 +26,7 @@ const CommentForm = ({ post_id }) => {
                 />
               )}
             </Field>
-            <button className="btn" type="submit">
+            <button className="comment-submit-btn" type="submit">
               Submit
             </button>
           </div>

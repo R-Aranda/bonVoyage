@@ -39,7 +39,7 @@ const WorldMap = ({ setTooltipContent }) => {
                       outline: "none",
                     },
                     hover: {
-                      fill: "#1473e6",
+                      fill: "#5765ff",
                       outline: "none",
                     },
                     pressed: {
