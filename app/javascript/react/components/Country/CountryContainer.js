@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import CountryItem from "./CountryItem";
 import MapContainer from "../Map/MapContainer";
 import SearchComponent from "../Search/SearchComponent";
 import { getCountries } from "../../services/country";
+import { useAsync } from "../../hooks/useAsync";
 
 const CountryContainer = () => {
-  const [countries, setCountries] = useState([]);
+  const { loading, error, value: countries } = useAsync(getCountries);
 
-  useEffect(() => {
-    getCountries().then(setCountries);
-  }, []);
-
-  // debugger;
+  if (loading) return <h1>Loading</h1>;
+  if (error) return <h1>{error}</h1>;
 
   const countryList = countries.map((country) => {
     return (
