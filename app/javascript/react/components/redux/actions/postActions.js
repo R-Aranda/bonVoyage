@@ -15,9 +15,11 @@ export const setPost = (post) => {
   };
 };
 
-export const setPostInputs = (postInputs) => {
+export const setPostInputs = (postInputs, dispatch) => {
   axios.post("/api/v1/posts", postInputs).then((res) => {
-    console.log(res);
-    console.log(res.data);
+    dispatch({
+      type: ActionTypes.SET_POST_INPUTS,
+      payload: res,
+    });
   });
 };
