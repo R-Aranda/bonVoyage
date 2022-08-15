@@ -16,12 +16,21 @@ const CommentForm = () => {
     <Form onSubmit={handleSubmit}>
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <Field name="body">
-            {({ input }) => <input placeholder="body" type="text" {...input} />}
-          </Field>
-          <button className="button" type="submit">
-            Submit
-          </button>
+          <div className="comment-form-row">
+            <Field name="body">
+              {({ input }) => (
+                <textarea
+                  className="comment-input"
+                  placeholder="Your comment..."
+                  type="text"
+                  {...input}
+                />
+              )}
+            </Field>
+            <button className="btn" type="submit">
+              Submit
+            </button>
+          </div>
         </form>
       )}
     </Form>
