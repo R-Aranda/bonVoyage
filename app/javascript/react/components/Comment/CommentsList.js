@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CommentForm from "./CommentForm";
-import { useSelector } from "react-redux";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -8,14 +7,7 @@ import { faEdit, faHeart, faReply } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faEdit, faHeart, faReply);
 
-const CommentsList = () => {
-  const post = useSelector((state) => state.post.post);
-  const comments = useSelector((state) => state.comment.comments);
-
-  useEffect(() => {
-    comments;
-  }, [comments]);
-
+const CommentsList = ({ comments, post }) => {
   const commentsList = comments.map((comment) => {
     return (
       <div key={comment.id} className="comment-item">

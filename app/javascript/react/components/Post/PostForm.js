@@ -1,14 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setPostInputs } from "../redux/actions/postActions";
 import { Form, Field } from "react-final-form";
+import axios from "axios";
 
-const PostForm = () => {
-  const dispatch = useDispatch();
-  const country = useSelector((state) => state.country.country);
+const PostForm = ({ country }) => {
   const handleSubmit = async (values) => {
     values["country_id"] = country.id;
-    setPostInputs(values, dispatch);
+    axios.post("/api/v1/posts", values).then((res) => {
+      console.log(res);
+      console.log(res.data);
+    });
   };
 
   return (

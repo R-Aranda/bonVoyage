@@ -1,15 +1,14 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
-import { useDispatch, useSelector } from "react-redux";
-import { setCommentInputs } from "../redux/actions/commentActions";
+import axios from "axios";
 
-const CommentForm = () => {
-  const dispatch = useDispatch();
-  const post = useSelector((state) => state.post.post);
-
+const CommentForm = ({ post_id }) => {
   const handleSubmit = async (values) => {
-    values["post_id"] = post.id;
-    setCommentInputs(values, dispatch);
+    values["post_id"] = post_id;
+    axios.post("/api/v1/comments", values).then((res) => {
+      console.log(res);
+      console.log(res.data);
+    });
   };
 
   return (
