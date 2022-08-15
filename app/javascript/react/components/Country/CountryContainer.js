@@ -3,41 +3,24 @@ import axios from "axios";
 import CountryItem from "./CountryItem";
 import MapContainer from "../Map/MapContainer";
 import SearchComponent from "../Search/SearchComponent";
+import { getCountries } from "../../services/country";
 
 const CountryContainer = () => {
-  const [countries, setCountries] = useState();
-  const [loaded, setLoaded] = useState(false);
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/v1/countries.json")
-      .then((resp) => {
-        setCountries(resp.data);
-        setLoaded(true);
-      })
-      .catch((resp) => console.log(resp));
+    getCountries().then(setCountries);
   }, []);
 
-  let countryList;
-  {
-    loaded &&
-      (countryList = countries.map((country) => {
-        return (
-          <CountryItem
-            key={country.id}
-            name={country.name}
-            slug={country.slug}
-          />
-        );
-      }));
-  }
+  // debugger;
 
-  let tenCountries;
+  const countryList = countries.map((country) => {
+    return (
+      <CountryItem key={country.id} name={country.name} slug={country.slug} />
+    );
+  });
 
-  {
-    loaded &&
-      (tenCountries = countryList.sort(() => 0.5 - Math.random()).slice(0, 10));
-  }
+  const tenCountries = countryList.sort(() => 0.5 - Math.random()).slice(0, 10);
 
   return (
     <div className="grid-container">
