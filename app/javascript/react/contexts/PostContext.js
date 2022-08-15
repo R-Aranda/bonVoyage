@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { getPost } from "../services/post";

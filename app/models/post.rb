@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
   belongs_to :country
-  has_many :comments
+  has_many :comments, as: :commentable
 end
