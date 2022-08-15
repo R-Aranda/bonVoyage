@@ -12,7 +12,6 @@ class Api::V1::CountriesController < ApiController
   end
 
   def create 
-    
     country = Country.new(country_params)
 
     if country.save 

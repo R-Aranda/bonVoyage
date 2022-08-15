@@ -27,6 +27,7 @@ const CountryShowContainer = (props) => {
       {loaded && (
         <Fragment>
           <h2>{country.name}</h2>
+          <img src={country.photo} />
           {/* <Weather country={country.country.name} /> */}
           <PostIndexContainer posts={posts} country={country} />
         </Fragment>
