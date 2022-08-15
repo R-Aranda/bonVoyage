@@ -26,11 +26,13 @@ const CountryContainer = () => {
     );
   });
 
+  const tenCountries = countryList.sort(() => 0.5 - Math.random()).slice(0, 10);
+
   return (
     <div className="grid-container">
       <MapContainer />
-      {/* <SearchComponent /> */}
-      <div className="row aligned-middle">{countryList}</div>
+      <SearchComponent />
+      <div className="row aligned-middle">{tenCountries}</div>
     </div>
   );
 };

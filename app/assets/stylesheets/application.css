@@ -84,7 +84,6 @@ svg .fukk {
   border: 1px black solid;
   margin: 0 auto;
   position: relative;
-  z-index: -1;
 }
 
 .map-container {

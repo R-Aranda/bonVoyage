@@ -8,7 +8,6 @@ class Api::V1::CountriesController < ApiController
 
   def show
     country = Country.find_by(slug: params[:slug])
-    # posts = country.posts
     render json: country, include: ['posts', 'posts.comments']
   end
 
