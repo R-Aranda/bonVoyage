@@ -22,18 +22,11 @@ export const CountryProvider = ({ children }) => {
     setPosts(country.posts);
   }, [country?.posts]);
 
-  const createLocalPost = (post) => {
-    setPosts((prevPosts) => {
-      return [post, ...prevPosts];
-    });
-  };
-
   return (
     <Context.Provider
       value={{
         country: { slug, ...country },
         posts: posts,
-        createLocalPost: createLocalPost,
       }}
     >
       {loading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : children}

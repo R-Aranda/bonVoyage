@@ -27,10 +27,10 @@ const useAsyncInternal = (func, dependencies, initialLoading = false) => {
         setError(undefined);
         return data;
       })
-      .catch((err) => {
-        setError(err);
+      .catch((error) => {
+        setError(error);
         setValue(undefined);
-        return Promise.reject(err);
+        return Promise.reject(error);
       })
       .finally(() => {
         setLoading(false);
