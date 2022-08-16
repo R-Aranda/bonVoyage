@@ -346,3 +346,89 @@ svg .fukk {
 .comments-list {
   margin: 0.5rem 0;
 }
+
+/* Register Form */
+
+.form-container {
+  margin-top: 9%;
+}
+
+.register-form {
+  height: 500px;
+  width: 500px;
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 40px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 9px;
+  border: 1px solid #7a85ff41;
+}
+
+.form-header {
+  text-align: center;
+  margin-top: 20px;
+  color: #5765ff;
+}
+
+.form-input-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #c1c1c1;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-input:focus {
+  border: 1px solid #5765ff9a;
+}
+
+.form-btn-container {
+  margin-left: 30%;
+}
+
+.form-btn {
+  color: #f9f9f9;
+  background-color: #5765ff;
+  padding: 7px;
+  width: 60%;
+  height: 40px;
+  border: 0px;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-size: large;
+  cursor: pointer;
+}
+
+.form-btn:hover {
+  background-color: #7a85ff;
+}
+
+.register-login-btn {
+  text-align: center;
+  margin-top: 15px;
+  margin-left: 2%;
+}
+
+/* Login Form */
+
+.login-form {
+  height: 430px;
+  width: 500px;
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 40px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 9px;
+  border: 1px solid #7a85ff41;
+}
+
+.form-alt-link {
+  text-align: center;
+  margin-top: 15px;
+  margin-left: 2%;
+}
