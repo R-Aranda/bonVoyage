@@ -4,10 +4,13 @@ import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEdit, faHeart, faReply } from "@fortawesome/free-solid-svg-icons";
+import { usePost } from "../../contexts/PostContext";
 
 library.add(faEdit, faHeart, faReply);
 
-const CommentsList = ({ comments, post }) => {
+const CommentsList = () => {
+  const { post, comments } = usePost();
+
   const commentsList = comments.map((comment) => {
     return (
       <div key={comment.id} className="comment-item">

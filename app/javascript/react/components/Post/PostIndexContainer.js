@@ -3,8 +3,11 @@ import moment from "moment";
 import PostForm from "./PostForm";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCountry } from "../../contexts/CountryContext";
 
-const PostIndexContainer = ({ posts, country, loading, error, onSubmit }) => {
+const PostIndexContainer = () => {
+  const { posts } = useCountry();
+
   const postsList = posts.map((post) => {
     return (
       <div key={post.id} className="post-item">
@@ -35,12 +38,7 @@ const PostIndexContainer = ({ posts, country, loading, error, onSubmit }) => {
   return (
     <Fragment>
       <div>
-        <PostForm
-          country={country}
-          loading={loading}
-          error={error}
-          onSubmit={onSubmit}
-        />
+        <PostForm />
       </div>
       {postsList}
     </Fragment>
