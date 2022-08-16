@@ -1,9 +1,9 @@
 class Api::V1::CountriesController < ApiController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :authorize_user, except: [:index, :show]
 
   def index
-    countries = Country.all
-    render json: countries
+    render json: Country.all
   end
 
   def show
@@ -17,7 +17,6 @@ class Api::V1::CountriesController < ApiController
 
     if country.save 
       render json: country
-      
     else 
       render json: { error: country.errors.full_messages }, status: "400"
     end
@@ -33,10 +32,10 @@ class Api::V1::CountriesController < ApiController
     GooglePlaceClient.google_photo(country)
   end
 
-  def authorize_user
-    if !user_signed_in? || !current_user.admin?
-      rails ActionController::RoutingError.new("Not Found")
-      flash[:notice] = "You do not have access to this page"
-    end
-  end
+  # def authorize_user
+  #   if !user_signed_in? || !current_user.admin?
+  #     rails ActionController::RoutingError.new("Not Found")
+  #     flash[:notice] = "You do not have access to this page"
+  #   end
+  # end
 end

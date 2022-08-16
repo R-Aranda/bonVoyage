@@ -642,4 +642,6 @@ comments = Comment.create([
   }
 ])
 
+User.create(email: "admin@admin123.com", password: "admin123", role: "admin", username: "Admin")
+
 

@@ -1,9 +1,11 @@
-import axios from "axios";
+import { makeRequest } from "./makeRequest";
 
 export const createComment = ({ message, postId }) => {
   message["post_id"] = postId;
-  return axios.post("/api/v1/comments", message).then((res) => {
-    console.log(res);
-    console.log(res.data);
+  return makeRequest("/comments", {
+    method: "POST",
+    data: message,
+  }).then((res) => {
+    if (res.error) return alert(res.error);
   });
 };
