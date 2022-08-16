@@ -4,7 +4,7 @@ import PostForm from "./PostForm";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const PostIndexContainer = ({ posts, country }) => {
+const PostIndexContainer = ({ posts, country, loading, error, onSubmit }) => {
   const postsList = posts.map((post) => {
     return (
       <div key={post.id} className="post-item">
@@ -35,7 +35,12 @@ const PostIndexContainer = ({ posts, country }) => {
   return (
     <Fragment>
       <div>
-        <PostForm country={country} />
+        <PostForm
+          country={country}
+          loading={loading}
+          error={error}
+          onSubmit={onSubmit}
+        />
       </div>
       {postsList}
     </Fragment>
