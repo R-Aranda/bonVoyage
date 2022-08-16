@@ -11,7 +11,9 @@ export const usePost = () => {
 
 export const PostProvider = ({ children }) => {
   const id = useParams();
-  const { loading, error, value: post } = useAsync(() => getPost(id.id), [id]);
+  const { loading, error, value: post } = useAsync(() => getPost(id.id), [
+    id.id,
+  ]);
 
   return (
     <Context.Provider

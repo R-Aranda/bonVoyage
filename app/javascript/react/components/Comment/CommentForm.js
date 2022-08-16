@@ -2,9 +2,9 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import axios from "axios";
 
-const CommentForm = ({ post_id }) => {
+const CommentForm = ({ postId }) => {
   const handleSubmit = async (values) => {
-    values["post_id"] = post_id;
+    values["post_id"] = postId;
     axios.post("/api/v1/comments", values).then((res) => {
       console.log(res);
       console.log(res.data);

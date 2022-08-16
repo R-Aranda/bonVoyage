@@ -1,14 +1,9 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
-import axios from "axios";
 
-const PostForm = ({ country }) => {
-  const handleSubmit = async (values) => {
-    values["country_id"] = country.id;
-    axios.post("/api/v1/posts", values).then((res) => {
-      console.log(res);
-      console.log(res.data);
-    });
+const PostForm = ({ country, loading, error, onSubmit }) => {
+  const handleSubmit = (values) => {
+    onSubmit(values);
   };
 
   return (
