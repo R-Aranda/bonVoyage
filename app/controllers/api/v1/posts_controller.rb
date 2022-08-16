@@ -1,44 +1,46 @@
 class Api::V1::PostsController < ApiController
-  # before_action :authorize_user, except: [:index, :show]
-
-  def index
-    posts = Post.all 
-    render json: posts
-  end
+  protect_from_forgery unless: -> { request.format.json? }
+  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user, except: [:show]
 
   def show
-    post = Post.find_by(id: params[:id])  
-    render json: post
+    render json: Post.find_by(id: params[:id]) 
   end
 
   def create 
     post = country.posts.new(post_params)
+    post.user = current_user
+    
     if post.save 
       render json: post
-      
     else 
-      render json: { error: post.errors.messages }, status: "400"
-      
+      render json: { error: post.errors.full_messages, status: "400" }
     end
   end
 
+  def destroy
+    post = Post.find(id: params[:id])
+
+    if post.destroy
+      render json: {status: 200}
+    else
+      render json: {error: "Unable to delete post", status: :not_implemented}
+    end
+  end
+
+  private
+
   def post_params 
-    params.permit(:title, :body)
+    params.require(:post).permit(:title, :body)
   end
 
   def country
     @country ||= Country.find(params[:country_id])
   end
 
-  def authorize_user
-    if !user_signed_in? || !current_user.admin?
-      render json: {error: ["Only admins have access to this feature"]}
-    end
-  end
-
   def authenticate_user
     if !user_signed_in?
-      render json: {error: ["You need to be signed in first"]}
+      render json: {error: ["You must be signed in"]}
     end
   end
 end
