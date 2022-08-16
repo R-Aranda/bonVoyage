@@ -16,7 +16,8 @@ const PostIndexContainer = () => {
         </Link>
         <div className="post-body">{post.body}</div>
         <div className="post-date">
-          Posted on: {moment(post.created_at).format("LL")}
+          Posted by: {post.user?.username}{" "}
+          {moment(post.created_at).format("LL")}
         </div>
         <div className="post-footer">
           <FontAwesomeIcon className="comment-icon" icon="fa-solid fa-heart" />

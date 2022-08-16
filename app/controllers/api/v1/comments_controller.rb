@@ -1,14 +1,7 @@
 class Api::V1::CommentsController < ApiController
-  # before_action :authorize_user, except: [:index, :show]
-
-  def index
-    comments = Comment.all
-  end
-
-  def show
-    comment = Comment.find(params[:id])
-    render json: comment
-  end
+  protect_from_forgery unless: -> { request.format.json? }
+  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user
 
   def create
     comment = post.comments.new(comment_params)
@@ -23,18 +16,16 @@ class Api::V1::CommentsController < ApiController
   end
 
   def comment_params
-    params.permit(:body)
+    params.require(:comment).permit(:body)
   end
 
   def post
     @post ||= Post.find(params[:post_id])
   end
 
-  def authorize_user
-    if !user_signed_in? || !current_user.admin?
-      render json: {error: ["Only admins have access to this feature"]}
+  def authenticate_user
+    if !user_signed_in?
+      render json: {error: ["You must be signed in"]}
     end
   end
-
-  
 end

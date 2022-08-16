@@ -12,7 +12,10 @@ const PostShowContainer = () => {
       <div>
         <h2>{post?.title}</h2>
         <article>{post?.body}</article>
-        <p>{moment(post?.created_at).format("LL")}</p>
+        <div>
+          Posted by: {post.user.username}{" "}
+          {moment(post?.created_at).format("LL")}
+        </div>
       </div>
       <CommentsList comments={post.comments} post={post} />
     </Fragment>
