@@ -1,9 +1,21 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
+import { useCountry } from "../../contexts/CountryContext";
+import { createPost } from "../../services/post";
+import { useAsyncFn } from "../../hooks/useAsync";
 
-const PostForm = ({ country, loading, error, onSubmit }) => {
+const PostForm = () => {
+  const { country, createLocalPost } = useCountry();
+  const { loading, error, execute: createPostFn } = useAsyncFn(createPost);
+
+  const onPostCreate = (message) => {
+    return createPostFn({ message, countryId: country.id }).then(
+      createLocalPost(message)
+    );
+  };
+
   const handleSubmit = (values) => {
-    onSubmit(values);
+    onPostCreate(values);
   };
 
   return (

@@ -1,14 +1,23 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
-import axios from "axios";
+import { usePost } from "../../contexts/PostContext";
+import { createComment } from "../../services/comment";
+import { useAsyncFn } from "../../hooks/useAsync";
 
-const CommentForm = ({ postId }) => {
-  const handleSubmit = async (values) => {
-    values["post_id"] = postId;
-    axios.post("/api/v1/comments", values).then((res) => {
-      console.log(res);
-      console.log(res.data);
-    });
+const CommentForm = () => {
+  const { post, createLocalComment } = usePost();
+  const { loading, error, execute: createCommentFn } = useAsyncFn(
+    createComment
+  );
+
+  const onCommentCreate = (message) => {
+    return createCommentFn({ message, postId: post.id }).then(
+      createLocalComment(message)
+    );
+  };
+
+  const handleSubmit = (values) => {
+    onCommentCreate(values);
   };
 
   return (

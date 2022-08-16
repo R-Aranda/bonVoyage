@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { getPost } from "../services/post";
@@ -14,11 +14,24 @@ export const PostProvider = ({ children }) => {
   const { loading, error, value: post } = useAsync(() => getPost(id.id), [
     id.id,
   ]);
+  const [comments, setComments] = useState([]);
 
+  useEffect(() => {
+    if (post?.comments == null) return;
+    setComments(post.comments);
+  }, [post?.comments]);
+
+  const createLocalComment = (comment) => {
+    setComments((prevComments) => {
+      return [comment, ...prevComments];
+    });
+  };
   return (
     <Context.Provider
       value={{
         post: { id, ...post },
+        comments: comments,
+        createLocalComment: createLocalComment,
       }}
     >
       {loading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : children}
