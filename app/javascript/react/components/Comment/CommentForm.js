@@ -11,9 +11,7 @@ const CommentForm = () => {
   );
 
   const onCommentCreate = (message) => {
-    return createCommentFn({ message, postId: post.id }).then(
-      createLocalComment(message)
-    );
+    return createCommentFn({ message, postId: post.id });
   };
 
   const handleSubmit = (values) => {

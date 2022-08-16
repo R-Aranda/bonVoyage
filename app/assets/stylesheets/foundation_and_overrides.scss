@@ -1,7 +1,7 @@
 @charset 'utf-8';
 
-@import 'settings';
-@import 'foundation';
+@import "settings";
+@import "foundation";
 
 // If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
 //
@@ -54,3 +54,5 @@
 //
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,900&display=swap");

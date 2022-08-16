@@ -21,17 +21,11 @@ export const PostProvider = ({ children }) => {
     setComments(post.comments);
   }, [post?.comments]);
 
-  const createLocalComment = (comment) => {
-    setComments((prevComments) => {
-      return [comment, ...prevComments];
-    });
-  };
   return (
     <Context.Provider
       value={{
         post: { id, ...post },
         comments: comments,
-        createLocalComment: createLocalComment,
       }}
     >
       {loading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : children}
