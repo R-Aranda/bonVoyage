@@ -7,10 +7,10 @@ const CountryShowContainer = () => {
   const { country } = useCountry();
 
   const testPhoto =
-    "https://images.unsplash.com/photo-1555862092-70470c0c8df4?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTYxODJ8MHwxfHNlYXJjaHwxfHwlMjMlM0NDb3VudHJ5JTNBMHgwMDAwMDAwMTBiNTY4M2Q4JTNFfGVufDB8fHx8MTY2MDY5NjAyNA&ixlib=rb-1.2.1&q=80&utm_source=ruperts_travel_app&utm_medium=referral&utm_campaign=api-credit";
+    "https://images.unsplash.com/photo-1488158302608-a31885ac02ff?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTYxODJ8MHwxfHNlYXJjaHwxfHxaaW1iYWJ3ZXxlbnwwfHx8fDE2NjA2OTc0NTY&ixlib=rb-1.2.1&q=80&utm_source=ruperts_travel_app&utm_medium=referral&utm_campaign=api-credit";
 
   const headerPhoto = {
-    background: "url(" + `${country.photo}` + ")",
+    background: "url(" + `${testPhoto}` + ")",
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
