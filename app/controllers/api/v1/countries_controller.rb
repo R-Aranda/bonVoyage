@@ -8,7 +8,7 @@ class Api::V1::CountriesController < ApiController
 
   def show
     country = Country.find_by(slug: params[:slug])
-    # country["photo"] = photo(country.name)
+    # country["photo"] = unsplash(country.name)
     render json: country, include: ['posts', 'posts.comments']
   end
 
@@ -28,8 +28,13 @@ class Api::V1::CountriesController < ApiController
     params.permit(:name)
   end
 
-  def photo(country)
-    GooglePlaceClient.google_photo(country)
+  # def photo(country)
+  #   GooglePlaceClient.google_photo(country)
+  # end
+
+  def unsplash(country)
+    search_results = Unsplash::Photo.search(country)
+    search_results[0].urls.full
   end
 
   # def authorize_user

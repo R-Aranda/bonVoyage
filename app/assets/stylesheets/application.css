@@ -434,6 +434,33 @@ svg .fukk {
   margin-left: 2%;
 }
 
+/* Country Header */
+
+.country-header {
+  background-size: cover;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.country-header-text {
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: 60px;
+}
+
+.country-header-credit {
+  background-color: #7a85ff;
+  color: white;
+  height: 20px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
 /* Landing Page Header */
 
 .marketing-site-hero {
