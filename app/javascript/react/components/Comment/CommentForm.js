@@ -5,7 +5,7 @@ import { createComment } from "../../services/comment";
 import { useAsyncFn } from "../../hooks/useAsync";
 
 const CommentForm = () => {
-  const { post, createLocalComment } = usePost();
+  const { post } = usePost();
   const { loading, error, execute: createCommentFn } = useAsyncFn(
     createComment
   );
