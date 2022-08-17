@@ -21,6 +21,7 @@ const CountryShowContainer = () => {
       <div className="country-header" style={headerPhoto}>
         <h2 className="country-header-text">{country.name}</h2>
       </div>
+      <div className="country-header-credit">Photo Credit: Unsplash.com</div>
       {/* <Weather country={country.country.name} /> */}
       <PostIndexContainer />
     </Fragment>
