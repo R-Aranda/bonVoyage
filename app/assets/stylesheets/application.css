@@ -433,3 +433,22 @@ svg .fukk {
   margin-top: 15px;
   margin-left: 2%;
 }
+
+/* Country Header */
+
+.country-header {
+  /* background: url("https://images.unsplash.com/photo-1555862092-70470c0c8df4?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTYxODJ8MHwxfHNlYXJjaHwxfHwlMjMlM0NDb3VudHJ5JTNBMHgwMDAwMDAwMTBiNTY4M2Q4JTNFfGVufDB8fHx8MTY2MDY5NjAyNA&ixlib=rb-1.2.1&q=80&utm_source=ruperts_travel_app&utm_medium=referral&utm_campaign=api-credit")
+    50% no-repeat; */
+  background-size: cover;
+  height: 50vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.country-header-text {
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-size: 60px;
+}
