@@ -463,11 +463,8 @@ svg .fukk {
 
 /* Landing Page Header */
 
-.marketing-site-hero {
-  background: url("https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80")
-    top right no-repeat;
-  height: 65vh;
-  background-size: cover;
+.landing-page-hero {
+  height: 50vh;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -477,35 +474,93 @@ svg .fukk {
 }
 
 @media screen and (min-width: 40em) {
-  .marketing-site-hero {
+  .landing-page-hero {
     background-position: center center;
   }
 }
 
-.marketing-site-hero-content {
+.landing-page-hero-content {
   max-width: 75rem;
   margin: 0 auto;
   padding-left: 5%;
   padding-right: 5%;
 }
 
-.marketing-site-hero-content h1 {
+.landing-page-hero-content h1 {
+  color: white;
+  text-shadow: 1px 1px 2px black;
   font-size: 50px;
 }
 
-.marketing-site-hero-content p {
+.landing-page-hero-content p {
   color: white;
+  text-shadow: 1px 1px 2px black;
 }
 
-.marketing-site-hero-content .button.round {
+.landing-page-hero-content .button.round {
   border-radius: 5000px;
   text-transform: uppercase;
   font-size: 12px;
   margin-bottom: 0;
 }
 
-@media screen and (min-width: 40em) {
-  .marketing-site-hero-content {
+@media only screen and (min-width: 40em) {
+  .landing-page-hero-content {
     padding-left: 50%;
   }
+}
+
+@media screen and (min-width: 120em) {
+  .landing-page-hero-content {
+    padding-left: 30%;
+    padding-right: 5%;
+  }
+}
+
+/* asdfasdf */
+
+.carousel {
+  margin-bottom: 30px;
+}
+
+.slide {
+  inset: 0;
+  opacity: 0;
+  transition-duration: 800ms ease;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+  transition-duration: 800ms;
+  transform: scale(1.08);
+}
+
+.carousel-button {
+  position: absolute;
+  z-index: 2;
+  background: none;
+  border: none;
+  font-size: 3rem;
+  top: 40%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.685);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 0 0.5rem;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.carousel-button:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.2);
+  outline: 1px solid black;
+}
+
+.carousel-button.prev {
+  left: 1rem;
+}
+
+.carousel-button.next {
+  right: 1rem;
 }
