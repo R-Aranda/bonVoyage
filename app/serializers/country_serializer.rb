@@ -5,5 +5,4 @@ class CountrySerializer < ActiveModel::Serializer
   def countries_list
     Country.all()
   end
-  
 end
