@@ -433,3 +433,52 @@ svg .fukk {
   margin-top: 15px;
   margin-left: 2%;
 }
+
+/* Landing Page Header */
+
+.marketing-site-hero {
+  background: url("https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80")
+    top right no-repeat;
+  height: 65vh;
+  background-size: cover;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 40em) {
+  .marketing-site-hero {
+    background-position: center center;
+  }
+}
+
+.marketing-site-hero-content {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.marketing-site-hero-content h1 {
+  font-size: 50px;
+}
+
+.marketing-site-hero-content p {
+  color: white;
+}
+
+.marketing-site-hero-content .button.round {
+  border-radius: 5000px;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 40em) {
+  .marketing-site-hero-content {
+    padding-left: 50%;
+  }
+}

@@ -21,6 +21,18 @@ const CountryContainer = () => {
 
   return (
     <div className="grid-container">
+      <div class="marketing-site-hero">
+        <div class="marketing-site-hero-content">
+          <h1>Travel App</h1>
+          <p class="subheader">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
+            omnis, maxime libero natus qui minus!
+          </p>
+          <a href="#" class="round button">
+            learn more
+          </a>
+        </div>
+      </div>
       <MapContainer />
       <SearchComponent />
       <div className="row aligned-middle">{tenCountries}</div>
