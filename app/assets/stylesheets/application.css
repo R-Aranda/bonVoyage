@@ -63,43 +63,15 @@ body {
 }
 
 .world-map {
-  width: 60%;
-  height: auto;
   fill: transparent;
   border: 1px black solid;
+  height: 500px;
 }
 
 .map-container {
-  width: 80%;
   align-items: center;
+  padding-top: 0;
 }
-
-/* svg {
-  display: inline-block;
-  vertical-align: middle;
-} */
-
-svg .fukk {
-  fill: rebeccapurple;
-}
-.world-map {
-  width: 65%;
-  height: auto;
-  fill: transparent;
-  border: 1px black solid;
-  margin: 0 auto;
-  position: relative;
-}
-
-.map-container {
-  width: 85%;
-  align-items: center;
-}
-
-/* svg {
-  display: inline-block;
-  vertical-align: middle;
-} */
 
 /* search */
 .search-bar-container {

@@ -14,7 +14,9 @@ const CountryContainer = () => {
 
   const countryList = countries.map((country) => {
     return (
-      <CountryItem key={country.id} name={country.name} slug={country.slug} />
+      <div className="cell small-6">
+        <CountryItem key={country.id} name={country.name} slug={country.slug} />
+      </div>
     );
   });
 
@@ -23,10 +25,10 @@ const CountryContainer = () => {
   return (
     <Fragment>
       <LandingHeader />
-      <div className="grid-container">
+      <SearchComponent />
+      <div className="grid-x">
         <MapContainer />
-        <SearchComponent />
-        <div className="row aligned-middle">{tenCountries}</div>
+        {tenCountries}
       </div>
     </Fragment>
   );
