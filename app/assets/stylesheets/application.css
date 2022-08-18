@@ -25,6 +25,7 @@ body {
   font-weight: 800;
   margin-left: 20%;
   margin-bottom: 10px;
+  font-family: "Eczar", serif;
 }
 /* Nav Bar */
 
@@ -338,7 +339,7 @@ body {
 /* Register Form */
 
 .form-container {
-  margin-top: 9%;
+  margin-top: 7em;
 }
 
 .register-form {
