@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import moment from "moment";
-import PostForm from "./PostForm";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCountry } from "../../contexts/CountryContext";
@@ -36,14 +35,7 @@ const PostIndexContainer = () => {
     );
   });
 
-  return (
-    <Fragment>
-      <div>
-        <PostForm />
-      </div>
-      {postsList}
-    </Fragment>
-  );
+  return <Fragment>{postsList}</Fragment>;
 };
 
 export default PostIndexContainer;

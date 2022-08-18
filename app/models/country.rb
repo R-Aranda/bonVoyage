@@ -1,4 +1,6 @@
 class Country < ApplicationRecord
+  attr_accessor :yelp
+  
   validates :name, presence: true
   
   has_many :posts
