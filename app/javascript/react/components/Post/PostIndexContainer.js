@@ -9,14 +9,7 @@ const PostIndexContainer = () => {
     return <PostItem key={post.id} post={post} currentUser={currentUser} />;
   });
 
-  return (
-    <Fragment>
-      <div>
-        <PostForm />
-      </div>
-      {postsList}
-    </Fragment>
-  );
+  return <Fragment>{postsList}</Fragment>;
 };
 
 export default PostIndexContainer;

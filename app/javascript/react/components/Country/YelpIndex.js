@@ -5,20 +5,28 @@ const YelpIndex = ({ yelpArray }) => {
   const yelpItems = data.map((item, i) => {
     // debugger;
     return (
-      <div key={i} className="card">
-        <div className="yelp-title">{item.categories[0].title}</div>
+      <div key={i} className="card align-right">
+        <h5 className="yelp-title">{item.categories[0].title}</h5>
         <img src={item.image} />
         <div className="card-section">
-          <h4>{item.name}</h4>
+          <h5>{item.name}</h5>
           <div>Located in {item.location}</div>
           <div>Rating: {item.rating}</div>
+          <div>
+            <a href={item.url} target="_blank">
+              More info...
+            </a>
+          </div>
         </div>
       </div>
     );
   });
   return (
     <Fragment>
-      <div className="cell small-2">{yelpItems}</div>
+      <div className="cell small-2">
+        <h4>Suggestions:</h4>
+        {yelpItems}
+      </div>
     </Fragment>
   );
 };
