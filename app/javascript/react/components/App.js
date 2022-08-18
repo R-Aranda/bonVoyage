@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CountryContainer from "./Country/CountryContainer";
 import CountryShowContainer from "./Country/CountryShowContainer";
 import PostShowContainer from "./Post/PostShowContainer";
-import CountrySearch from "./Search/CountrySearch";
-import SearchComponent from "./Search/SearchComponent";
 import Weather from "./Weather/Weather";
 import { CountryProvider } from "../contexts/CountryContext";
 import { PostProvider } from "../contexts/PostContext";

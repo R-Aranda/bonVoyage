@@ -16,6 +16,7 @@ const CommentsList = () => {
       <div key={comment.id} className="comment-item">
         <span className="comment-body">{comment.body}</span>
         <span className="comment-date">
+          Posted by {comment.user.username} on{" "}
           {moment(comment.created_at).format("LL")}
         </span>
         <div className="comment-footer">

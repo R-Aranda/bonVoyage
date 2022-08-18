@@ -5,11 +5,13 @@ import { createPost } from "../../services/post";
 import { useAsyncFn } from "../../hooks/useAsync";
 
 const PostForm = () => {
-  const { country } = useCountry();
+  const { country, createLocalPost } = useCountry();
   const { loading, error, execute: createPostFn } = useAsyncFn(createPost);
 
   const onPostCreate = (message) => {
-    return createPostFn({ message, countryId: country.id });
+    return createPostFn({ message, countryId: country.id }).then(
+      createLocalPost
+    );
   };
 
   const handleSubmit = (values) => {

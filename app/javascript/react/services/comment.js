@@ -5,7 +5,5 @@ export const createComment = ({ message, postId }) => {
   return makeRequest("/comments", {
     method: "POST",
     data: message,
-  }).then((res) => {
-    if (res.error) return alert(res.error);
   });
 };
