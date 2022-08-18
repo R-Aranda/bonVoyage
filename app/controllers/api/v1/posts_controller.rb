@@ -40,7 +40,7 @@ class Api::V1::PostsController < ApiController
 
   def authenticate_user
     if !user_signed_in?
-      render json: {error: ["You must be signed in"]}
+      render json: {error: ["You must be signed in to do that!"]}
     end
   end
 end

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { getCountry } from "../services/country";
 
@@ -23,6 +23,9 @@ export const CountryProvider = ({ children }) => {
   }, [country?.posts]);
 
   const createLocalPost = (post) => {
+    if (post.error) {
+      window.location.href = "/users/sign_in";
+    }
     setPosts((prevPosts) => {
       return [post, ...prevPosts];
     });

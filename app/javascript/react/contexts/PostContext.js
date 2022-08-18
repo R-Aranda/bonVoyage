@@ -22,6 +22,9 @@ export const PostProvider = ({ children }) => {
   }, [post?.comments]);
 
   const createLocalComment = (comment) => {
+    if (comment.error) {
+      window.location.href = "/users/sign_in";
+    }
     setComments((prevComments) => {
       return [comment, ...prevComments];
     });
