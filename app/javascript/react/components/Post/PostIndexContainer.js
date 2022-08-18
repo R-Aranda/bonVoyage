@@ -5,7 +5,6 @@ import PostItem from "./PostItem";
 
 const PostIndexContainer = () => {
   const { posts, currentUser } = useCountry();
-  // debugger;
   const postsList = posts.map((post) => {
     return <PostItem key={post.id} post={post} currentUser={currentUser} />;
   });
