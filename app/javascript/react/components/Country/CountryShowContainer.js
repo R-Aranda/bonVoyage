@@ -5,7 +5,6 @@ import { useCountry } from "../../contexts/CountryContext";
 
 const CountryShowContainer = () => {
   const { country } = useCountry();
-
   const testPhoto =
     "https://images.unsplash.com/photo-1488158302608-a31885ac02ff?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzNTYxODJ8MHwxfHNlYXJjaHwxfHxaaW1iYWJ3ZXxlbnwwfHx8fDE2NjA2OTc0NTY&ixlib=rb-1.2.1&q=80&utm_source=ruperts_travel_app&utm_medium=referral&utm_campaign=api-credit";
 
