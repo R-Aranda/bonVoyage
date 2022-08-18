@@ -5,29 +5,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEdit, faHeart, faReply } from "@fortawesome/free-solid-svg-icons";
 import { usePost } from "../../contexts/PostContext";
+import CommentItem from "./CommentItem";
 
 library.add(faEdit, faHeart, faReply);
 
 const CommentsList = () => {
-  const { post, comments } = usePost();
+  const { post, comments, currentUser } = usePost();
 
   const commentsList = comments.map((comment) => {
     return (
-      <div key={comment.id} className="comment-item">
-        <span className="comment-body">{comment.body}</span>
-        <span className="comment-date">
-          Posted by {comment.user.username} on{" "}
-          {moment(comment.created_at).format("LL")}
-        </span>
-        <div className="comment-footer">
-          <FontAwesomeIcon className="comment-icon" icon="fa-solid fa-heart" />
-          <FontAwesomeIcon className="comment-icon" icon="fa-solid fa-reply" />
-          <FontAwesomeIcon
-            className="comment-icon"
-            icon="fa-solid fa-pen-to-square"
-          />
-        </div>
-      </div>
+      <CommentItem
+        key={comment.id}
+        comment={comment}
+        currentUser={currentUser}
+      />
     );
   });
 
