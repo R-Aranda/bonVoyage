@@ -13,16 +13,17 @@ class YelpClient
     request["Authorization"] = ENV['YELP_API_KEY']
 
     response = https.request(request)
-    @data = JSON.parse(response.body)
+    data_array = JSON.parse(response.body)
+    data = data_array["businesses"]
     place_data = []
-    @data["businesses"].each do |bus|
+    10.times do |i|
       place_data << {
-        name: bus["name"],
-        image: bus["image_url"],
-        url: bus["url"],
-        categories: bus["categories"],
-        location: bus["location"]["city"],
-        rating: bus["rating"]
+        name: data[i]["name"],
+        image: data[i]["image_url"],
+        url: data[i]["url"],
+        categories: data[i]["categories"],
+        location: data[i]["location"]["city"],
+        rating: data[i]["rating"]
       }
     end
     return place_data

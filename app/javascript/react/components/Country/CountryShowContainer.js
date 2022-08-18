@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import PostIndexContainer from "../Post/PostIndexContainer";
 import Weather from "../Weather/Weather";
 import { useCountry } from "../../contexts/CountryContext";
+import YelpIndex from "./YelpIndex";
+import PostForm from "../Post/PostForm";
 
 const CountryShowContainer = () => {
   const { country } = useCountry();
@@ -22,7 +24,11 @@ const CountryShowContainer = () => {
       </div>
       <div className="country-header-credit">Photo Credit: Unsplash.com</div>
       {/* <Weather country={country.country.name} /> */}
-      <PostIndexContainer />
+      <PostForm />
+      <div className="grid-x">
+        <YelpIndex yelpArray={country.yelp} />
+        <PostIndexContainer />
+      </div>
     </Fragment>
   );
 };

@@ -536,3 +536,7 @@ body {
 .carousel-button.next {
   right: 1rem;
 }
+
+.yelp-title {
+  text-align: center;
+}
