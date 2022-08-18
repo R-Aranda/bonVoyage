@@ -16,7 +16,7 @@ const WorldMap = ({ setTooltipContent }) => {
   };
   return (
     <div data-tip="" className="map-container">
-      <ComposableMap center="">
+      <ComposableMap projection="geoMercator">
         <ZoomableGroup zoom={0.8} minZoom={0.7} center={[0, 40]}>
           <Geographies geography="/features.json">
             {({ geographies }) =>
@@ -24,6 +24,7 @@ const WorldMap = ({ setTooltipContent }) => {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
+                  stroke={"#7a85ff"}
                   onMouseEnter={() => {
                     setTooltipContent(`${geo.properties.name}`);
                   }}
@@ -35,7 +36,7 @@ const WorldMap = ({ setTooltipContent }) => {
                   }}
                   style={{
                     default: {
-                      fill: "#D6D6DA",
+                      fill: "#7a85ff26",
                       outline: "none",
                     },
                     hover: {
@@ -43,7 +44,6 @@ const WorldMap = ({ setTooltipContent }) => {
                       outline: "none",
                     },
                     pressed: {
-                      fill: "#E42",
                       outline: "none",
                     },
                   }}
