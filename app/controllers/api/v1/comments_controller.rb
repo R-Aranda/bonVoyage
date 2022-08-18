@@ -8,10 +8,8 @@ class Api::V1::CommentsController < ApiController
     
     if comment.save 
       render json: comment
-      
     else 
-      render json: { error: comment.errors.messages }, status: "400"
-      
+      render json: { error: comment.errors.full_messages, status: 400 }
     end
   end
 
@@ -25,7 +23,7 @@ class Api::V1::CommentsController < ApiController
 
   def authenticate_user
     if !user_signed_in?
-      render json: {error: ["You must be signed in"]}
+      render json: { error: "You must be signed in", status: 401 }
     end
   end
 end

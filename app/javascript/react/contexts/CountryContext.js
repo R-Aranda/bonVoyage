@@ -16,16 +16,19 @@ export const CountryProvider = ({ children }) => {
     [slug.slug]
   );
   const [posts, setPosts] = useState([]);
-
+  const [errors, setErrors] = useState([]);
   useEffect(() => {
     if (country?.posts == null) return;
     setPosts(country.posts);
   }, [country?.posts]);
 
   const createLocalPost = (post) => {
-    if (post.error) {
+    if (post.status === 401) {
       window.location.href = "/users/sign_in";
+    } else if (post.status === 400) {
+      return setErrors(post.error);
     }
+
     setPosts((prevPosts) => {
       return [post, ...prevPosts];
     });
@@ -37,6 +40,7 @@ export const CountryProvider = ({ children }) => {
         country: { slug, ...country },
         posts: posts,
         createLocalPost,
+        errors: errors,
       }}
     >
       {loading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : children}

@@ -14,7 +14,7 @@ class Api::V1::PostsController < ApiController
     if post.save 
       render json: post
     else 
-      render json: { error: post.errors.full_messages, status: "400" }
+      render json: { error: post.errors.full_messages, status: 400 }
     end
   end
 
@@ -24,7 +24,7 @@ class Api::V1::PostsController < ApiController
     if post.destroy
       render json: {status: 200}
     else
-      render json: {error: "Unable to delete post", status: :not_implemented}
+      render json: { error: "Unable to delete post", status: :not_implemented }
     end
   end
 
@@ -40,7 +40,7 @@ class Api::V1::PostsController < ApiController
 
   def authenticate_user
     if !user_signed_in?
-      render json: {error: ["You must be signed in to do that!"]}
+      render json: { error: "You must be signed in to do that!", status: 401 }
     end
   end
 end

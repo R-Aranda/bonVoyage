@@ -15,6 +15,7 @@ export const PostProvider = ({ children }) => {
     id.id,
   ]);
   const [comments, setComments] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     if (post?.comments == null) return;
@@ -22,9 +23,12 @@ export const PostProvider = ({ children }) => {
   }, [post?.comments]);
 
   const createLocalComment = (comment) => {
-    if (comment.error) {
+    if (comment.status === 401) {
       window.location.href = "/users/sign_in";
+    } else if (comment.status === 400) {
+      return setErrors(comment.error);
     }
+
     setComments((prevComments) => {
       return [comment, ...prevComments];
     });
@@ -36,6 +40,7 @@ export const PostProvider = ({ children }) => {
         post: { id, ...post },
         comments: comments,
         createLocalComment,
+        errors: errors,
       }}
     >
       {loading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : children}
