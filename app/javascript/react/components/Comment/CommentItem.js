@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/fontawesome-free";
 import moment from "moment";
 import { makeRequest } from "../../services/makeRequest";
 

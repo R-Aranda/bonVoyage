@@ -1,7 +1,5 @@
 import React from "react";
 import CommentForm from "./CommentForm";
-import moment from "moment";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEdit, faHeart, faReply } from "@fortawesome/free-solid-svg-icons";
 import { usePost } from "../../contexts/PostContext";
