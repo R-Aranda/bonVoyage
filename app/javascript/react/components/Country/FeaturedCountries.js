@@ -5,7 +5,7 @@ export const featuredCountries = [
     name: "Canada",
     body:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus sequi debitis, architecto eos quod praesentium sapiente tempora magnam at.",
-    link: "#",
+    link: "/countries/canada",
   },
   {
     photo:
@@ -13,7 +13,7 @@ export const featuredCountries = [
     name: "France",
     body:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus sequi debitis, architecto eos quod praesentium sapiente tempora magnam at.",
-    link: "#",
+    link: "/countries/france",
   },
   {
     photo:
@@ -21,6 +21,6 @@ export const featuredCountries = [
     name: "Thailand",
     body:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus sequi debitis, architecto eos quod praesentium sapiente tempora magnam at.",
-    link: "#",
+    link: "/countries/thailand",
   },
 ];

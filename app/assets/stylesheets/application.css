@@ -21,10 +21,19 @@ body {
   background-color: #f7f8fb;
 }
 
+.nav-logo {
+  font-weight: 800;
+  margin-left: 20%;
+  margin-bottom: 10px;
+}
 /* Nav Bar */
 
 .top-bar {
   background-color: #7a85ff36;
+}
+
+.top-bar-section ul {
+  background: none;
 }
 
 .error {
@@ -129,8 +138,8 @@ body {
 .post-form-row {
   display: flex;
   gap: 0.5rem;
-  margin-left: 6em;
-  margin-right: 6em;
+  margin-left: 7%;
+  margin-right: 7%;
 }
 
 .post-input-container {

@@ -23,7 +23,7 @@ const YelpIndex = ({ yelpArray }) => {
   });
   return (
     <Fragment>
-      <div className="cell small-2">
+      <div className="cell small-4 medium-2">
         <h4>Suggestions:</h4>
         {yelpItems}
       </div>
