@@ -9,7 +9,5 @@ export const createPost = ({ message, countryId }) => {
   return makeRequest("/posts", {
     method: "POST",
     data: message,
-  }).then((res) => {
-    if (res.error) return alert(res.error);
   });
 };

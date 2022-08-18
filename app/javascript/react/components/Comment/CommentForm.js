@@ -5,13 +5,15 @@ import { createComment } from "../../services/comment";
 import { useAsyncFn } from "../../hooks/useAsync";
 
 const CommentForm = () => {
-  const { post } = usePost();
+  const { post, createLocalComment } = usePost();
   const { loading, error, execute: createCommentFn } = useAsyncFn(
     createComment
   );
 
   const onCommentCreate = (message) => {
-    return createCommentFn({ message, postId: post.id });
+    return createCommentFn({ message, postId: post.id }).then(
+      createLocalComment
+    );
   };
 
   const handleSubmit = (values) => {
