@@ -16,10 +16,12 @@ export const PostProvider = ({ children }) => {
   ]);
   const [comments, setComments] = useState([]);
   const [errors, setErrors] = useState([]);
+  const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     if (post?.comments == null) return;
     setComments(post.comments);
+    setCurrentUser(post.current_user);
   }, [post?.comments]);
 
   const createLocalComment = (comment) => {
@@ -41,6 +43,7 @@ export const PostProvider = ({ children }) => {
         comments: comments,
         createLocalComment,
         errors: errors,
+        currentUser: currentUser,
       }}
     >
       {loading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : children}

@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { makeRequest } from "../../services/makeRequest";
 
-const PostItem = ({ post, currentUser }) => {
+const CommentItem = ({ comment, currentUser }) => {
   const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState();
+  const [likeCount, setLikeCount] = useState(0);
+
   const handleLike = () => {
     if (currentUser == null) {
       return (window.location.href = "/users/sign_in");
     }
     let message = {
       liked: true,
-      post_id: post.id,
-      user_id: post.user.id,
+      comment_id: comment.id,
+      user_id: comment.user.id,
     };
-    makeRequest("/post_likes", {
+    makeRequest("/comment_likes", {
       method: "POST",
       data: message,
     }).then((res) => {
@@ -27,8 +27,8 @@ const PostItem = ({ post, currentUser }) => {
 
   let heartColor = "heart-icon";
   const likeStatus = () => {
-    for (let i = post.post_likes.length - 1; i > -1; i--) {
-      if (post.post_likes[i].user_id === currentUser?.id) {
+    for (let i = comment.comment_likes.length - 1; i > -1; i--) {
+      if (comment.comment_likes[i].user_id === currentUser?.id) {
         setLiked(true);
       }
     }
@@ -40,28 +40,23 @@ const PostItem = ({ post, currentUser }) => {
 
   useEffect(() => {
     likeStatus();
-    setLikeCount(post.post_likes.length);
+    setLikeCount(comment.comment_likes.length);
   }, []);
-
   return (
-    <div className="post-item">
-      <Link to={`posts/${post.id}`} className="post-header">
-        <h4>{post.title}</h4>
-      </Link>
-      <div className="post-body">{post.body}</div>
-      <div className="post-date">
-        Posted by: {post.user?.username} {moment(post.created_at).format("LL")}
-      </div>
-      <div className="post-footer">
+    <div key={comment.id} className="comment-item">
+      <span className="comment-body">{comment.body}</span>
+      <span className="comment-date">
+        Posted by {comment.user.username} on{" "}
+        {moment(comment.created_at).format("LL")}
+      </span>
+      <div className="comment-footer">
         <FontAwesomeIcon
           onClick={handleLike}
           className={heartColor}
           icon="fa-solid fa-heart"
         />
         <span className="like-count">{likeCount}</span>
-        <Link to={`posts/${post.id}`}>
-          <FontAwesomeIcon className="comment-icon" icon="fa-solid fa-reply" />
-        </Link>
+        <FontAwesomeIcon className="comment-icon" icon="fa-solid fa-reply" />
         <FontAwesomeIcon
           className="comment-icon"
           icon="fa-solid fa-pen-to-square"
@@ -71,4 +66,4 @@ const PostItem = ({ post, currentUser }) => {
   );
 };
 
-export default PostItem;
+export default CommentItem;

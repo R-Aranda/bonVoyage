@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:show, :create], param: :id
       resources :comments, only: [:create]
       resources :post_likes, only: [:create]
+      resources :comment_likes, only: [:create]
     end
   end
 
