@@ -293,6 +293,24 @@ body {
   cursor: pointer;
 }
 
+.heart-icon {
+  background: none;
+  color: #5765ff;
+  padding: 0.25em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.heart-icon-liked {
+  background: none;
+  color: red;
+  padding: 0.25em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 .comment-icon:hover,
 .comment-icon:focus-visible {
   color: #7a85ff;

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :countries, only: [:index, :show, :create], param: :slug
       resources :posts, only: [:show, :create], param: :id
       resources :comments, only: [:create]
+      resources :post_likes, only: [:create]
     end
   end
 

@@ -17,9 +17,11 @@ export const CountryProvider = ({ children }) => {
   );
   const [posts, setPosts] = useState([]);
   const [errors, setErrors] = useState([]);
+  const [currentUser, setCurrentUser] = useState();
   useEffect(() => {
     if (country?.posts == null) return;
     setPosts(country.posts);
+    setCurrentUser(country.current_user);
   }, [country?.posts]);
 
   const createLocalPost = (post) => {
@@ -41,6 +43,7 @@ export const CountryProvider = ({ children }) => {
         posts: posts,
         createLocalPost,
         errors: errors,
+        currentUser: currentUser,
       }}
     >
       {loading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : children}
