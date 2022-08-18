@@ -21,6 +21,12 @@ body {
   background-color: #f7f8fb;
 }
 
+/* Nav Bar */
+
+.top-bar {
+  background-color: #7a85ff36;
+}
+
 .error {
   color: red;
   font-weight: 700;
