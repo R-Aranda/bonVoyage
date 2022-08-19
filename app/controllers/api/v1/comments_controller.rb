@@ -5,6 +5,7 @@ class Api::V1::CommentsController < ApiController
 
   def create
     comment = post.comments.new(comment_params)
+    comment.user = current_user
     
     if comment.save 
       render json: comment

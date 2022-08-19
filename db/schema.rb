@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_08_18_203023) do
     t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", default: 1
+    t.bigint "user_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_08_18_203023) do
     t.bigint "country_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", default: 1
+    t.bigint "user_id"
     t.index ["country_id"], name: "index_posts_on_country_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end

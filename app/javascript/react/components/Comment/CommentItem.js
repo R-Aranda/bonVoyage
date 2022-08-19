@@ -46,7 +46,7 @@ const CommentItem = ({ comment, currentUser }) => {
     <div key={comment.id} className="comment-item">
       <span className="comment-body">{comment.body}</span>
       <span className="comment-date">
-        Posted by {comment.user.username} on{" "}
+        Posted by {comment.user.username}{" "}
         {moment(comment.created_at)
           .local()
           .startOf("seconds")
