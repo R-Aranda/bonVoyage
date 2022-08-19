@@ -57,7 +57,7 @@ body {
 .world-map {
   fill: transparent;
   border: 1px black solid;
-  height: 500px;
+  /* height: 500px; */
 }
 
 .map-container {

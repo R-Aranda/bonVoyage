@@ -14,7 +14,7 @@ const CountryContainer = () => {
 
   const countryList = countries.map((country) => {
     return (
-      <div key={country.id} className="cell small-6">
+      <div key={country.id} className="cell small-12 medium-6">
         <CountryItem name={country.name} slug={country.slug} />
       </div>
     );
