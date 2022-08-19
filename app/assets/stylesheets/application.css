@@ -57,12 +57,21 @@ body {
 .world-map {
   fill: transparent;
   border: 1px black solid;
-  /* height: 500px; */
+  margin-bottom: 30px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .map-container {
   align-items: center;
   padding-top: 0;
+}
+
+/* Latest posts */
+.latest-posts-header {
+  color: #5765ff;
+  text-align: center;
+  font-weight: 400;
 }
 
 /* search */
@@ -136,6 +145,17 @@ body {
 
 /* Posts */
 
+.landing-page-post-link {
+  color: #5765ff;
+  text-align: center;
+}
+
+.landing-page-post-header {
+  font-weight: 600;
+  border-bottom: #7a85ff solid 1px;
+  padding-bottom: 5px;
+}
+
 .post-form-row {
   display: flex;
   gap: 0.5rem;
@@ -197,8 +217,20 @@ body {
   border-radius: 0.5rem;
   background-color: #7a85ff27;
   margin-top: 10px;
-  margin-left: 5em;
-  margin-right: 5em;
+  margin-left: 7%;
+  margin-right: 7%;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+.landing-page-post-item {
+  padding: 0.5rem;
+  border: 1px solid #5765ff;
+  border-radius: 0.5rem;
+  background-color: #7a85ff27;
+  margin-top: 10px;
+  margin-left: 2.5%;
+  margin-right: 4%;
   padding-left: 1.5em;
   padding-right: 1.5em;
 }
@@ -207,6 +239,7 @@ body {
 }
 
 .post-body {
+  margin-bottom: 10px;
 }
 
 .post-date {

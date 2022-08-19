@@ -1,7 +1,11 @@
 class Api::V1::PostsController < ApiController
   protect_from_forgery unless: -> { request.format.json? }
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user, except: [:show]
+  before_action :authenticate_user, except: [:show, :index]
+
+  def index
+    render json: Post.order('created_at DESC').last(10)
+  end
 
   def show
     render json: Post.find_by(id: params[:id]) 

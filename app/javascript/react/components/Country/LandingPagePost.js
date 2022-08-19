@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { makeRequest } from "../../services/makeRequest";
 
-const PostItem = ({ post, currentUser }) => {
+const LandingPagePost = ({ post }) => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState();
+
   const handleLike = () => {
-    if (currentUser == null) {
+    if (post.current_user == null) {
       return (window.location.href = "/users/sign_in");
     }
     let message = {
@@ -28,7 +29,7 @@ const PostItem = ({ post, currentUser }) => {
   let heartColor = "heart-icon";
   const likeStatus = () => {
     for (let i = post.post_likes.length - 1; i > -1; i--) {
-      if (post.post_likes[i].user_id === currentUser?.id) {
+      if (post.post_likes[i].user_id === post.current_user?.id) {
         setLiked(true);
       }
     }
@@ -44,8 +45,17 @@ const PostItem = ({ post, currentUser }) => {
   }, []);
 
   return (
-    <div className="post-item">
-      <Link to={`posts/${post.id}`} className="post-header">
+    <div className="landing-page-post-item">
+      <Link
+        className="landing-page-post-link"
+        to={`countries/${post.country.slug}`}
+      >
+        <h4 className="landing-page-post-header">{post.country.name}</h4>
+      </Link>
+      <Link
+        to={`countries/${post.country.slug}/posts/${post.id}`}
+        className="post-header"
+      >
         <h4>{post.title}</h4>
       </Link>
       <div className="post-body">{post.body}</div>
@@ -63,7 +73,7 @@ const PostItem = ({ post, currentUser }) => {
           icon="fa-solid fa-heart"
         />
         <span className="like-count">{likeCount}</span>
-        <Link to={`posts/${post.id}`}>
+        <Link to={`countries/${post.country.slug}/posts/${post.id}`}>
           <FontAwesomeIcon className="comment-icon" icon="fa-solid fa-reply" />
         </Link>
         <FontAwesomeIcon
@@ -75,4 +85,4 @@ const PostItem = ({ post, currentUser }) => {
   );
 };
 
-export default PostItem;
+export default LandingPagePost;

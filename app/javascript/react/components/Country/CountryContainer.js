@@ -1,26 +1,24 @@
 import React, { Fragment } from "react";
-import CountryItem from "./CountryItem";
 import MapContainer from "../Map/MapContainer";
 import SearchComponent from "../Search/SearchComponent";
-import { getCountries } from "../../services/country";
+import { getAllPosts } from "../../services/post";
 import { useAsync } from "../../hooks/useAsync";
 import LandingHeader from "./LandingHeader";
+import LandingPagePost from "./LandingPagePost";
 
 const CountryContainer = () => {
-  const { loading, error, value: countries } = useAsync(getCountries);
+  const { loading, error, value: posts } = useAsync(getAllPosts);
 
   if (loading) return <h1>Loading</h1>;
   if (error) return <h1>{error}</h1>;
 
-  const countryList = countries.map((country) => {
+  const postList = posts.map((post) => {
     return (
-      <div key={country.id} className="cell small-12 medium-6">
-        <CountryItem name={country.name} slug={country.slug} />
+      <div key={post.id}>
+        <LandingPagePost key={post.id} post={post} />
       </div>
     );
   });
-
-  const tenCountries = countryList.sort(() => 0.5 - Math.random()).slice(0, 10);
 
   return (
     <Fragment>
@@ -28,7 +26,10 @@ const CountryContainer = () => {
       <SearchComponent />
       <div className="grid-x">
         <MapContainer />
-        {tenCountries}
+        <div className="cell small-12 medium-6 large-7">
+          <h3 className="latest-posts-header">Latest Posts</h3>
+          {postList}
+        </div>
       </div>
     </Fragment>
   );

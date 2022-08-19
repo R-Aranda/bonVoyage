@@ -1,5 +1,8 @@
 import { makeRequest } from "./makeRequest";
 
+export const getAllPosts = () => {
+  return makeRequest(`/posts`);
+};
 export const getPost = (id) => {
   return makeRequest(`/posts/${id}`);
 };

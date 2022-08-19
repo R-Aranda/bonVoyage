@@ -47,7 +47,10 @@ const CommentItem = ({ comment, currentUser }) => {
       <span className="comment-body">{comment.body}</span>
       <span className="comment-date">
         Posted by {comment.user.username} on{" "}
-        {moment(comment.created_at).format("LL")}
+        {moment(comment.created_at)
+          .local()
+          .startOf("seconds")
+          .fromNow()}
       </span>
       <div className="comment-footer">
         <FontAwesomeIcon

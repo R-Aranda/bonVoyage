@@ -26,7 +26,7 @@ const CountryShowContainer = () => {
       {/* <Weather country={country.country.name} /> */}
 
       <div className="grid-x">
-        <div className="cell small-8 medium-10">
+        <div className="cell small-12 medium-8 large-10">
           <PostForm />
           <PostIndexContainer />
         </div>

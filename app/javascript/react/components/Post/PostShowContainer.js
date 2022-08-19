@@ -14,7 +14,10 @@ const PostShowContainer = () => {
         <article>{post?.body}</article>
         <div>
           Posted by: {post.user.username}{" "}
-          {moment(post?.created_at).format("LL")}
+          {moment(post?.created_at)
+            .local()
+            .startOf("seconds")
+            .fromNow()}
         </div>
       </div>
       <CommentsList comments={post.comments} post={post} />
