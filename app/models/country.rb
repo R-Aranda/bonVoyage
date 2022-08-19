@@ -1,5 +1,5 @@
 class Country < ApplicationRecord
-  attr_accessor :yelp
+  attr_accessor :yelp, :photo
   
   validates :name, presence: true
   

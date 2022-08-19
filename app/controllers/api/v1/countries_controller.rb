@@ -9,6 +9,7 @@ class Api::V1::CountriesController < ApiController
   def show
     country = Country.find_by(slug: params[:slug])
     # yelp_data = YelpClient.find(country.name)
+    country.photo = unsplash(country.name)
     # country.yelp = yelp_data
     render json: country, include: ['posts', 'posts.comments']
   end
@@ -31,7 +32,18 @@ class Api::V1::CountriesController < ApiController
 
   def unsplash(country)
     search_results = Unsplash::Photo.search(country)
-    search_results[0].urls.full
+    
+    img = search_results[0].urls.regular
+    artist_name = search_results[0].user.name
+    artist_url = search_results[0].links.html
+    unsplash_url = "https://unsplash.com/?utm_source=ruperts_travel_app&utm_medium=referral"
+
+    return photo = {
+      photo: img,
+      artist_name: artist_name,
+      artist_url: artist_url,
+      unsplash_url: unsplash_url
+    }
   end
 
   # def authorize_user

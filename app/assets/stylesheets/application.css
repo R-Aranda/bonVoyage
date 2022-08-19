@@ -474,12 +474,10 @@ body {
 }
 
 .country-header-credit {
-  background-color: #7a85ff;
-  color: white;
   height: 20px;
   font-size: 13px;
   margin-bottom: 20px;
-  padding-left: 20px;
+  text-align: center;
 }
 
 /* Landing Page Header */
