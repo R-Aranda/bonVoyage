@@ -7,6 +7,7 @@ import Weather from "./Weather/Weather";
 import { CountryProvider } from "../contexts/CountryContext";
 import { PostProvider } from "../contexts/PostContext";
 import LandingHeader from "./Country/LandingHeader";
+import SkyScanner from "./SkyScanner";
 
 export const App = (props) => {
   return (
@@ -32,7 +33,7 @@ export const App = (props) => {
           }
         />
         <Route exact path="/" element={<CountryContainer />} />
-        <Route exact path="/test" element={<LandingHeader />} />
+        <Route exact path="/test" element={<SkyScanner />} />
         <Route exact path="/weather" element={<Weather />} />
       </Routes>
     </Router>

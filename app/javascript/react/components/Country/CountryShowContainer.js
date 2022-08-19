@@ -4,6 +4,7 @@ import Weather from "../Weather/Weather";
 import { useCountry } from "../../contexts/CountryContext";
 import YelpIndex from "./YelpIndex";
 import PostForm from "../Post/PostForm";
+import SkyScanner from "../SkyScanner";
 
 const CountryShowContainer = () => {
   const { country } = useCountry();
@@ -26,9 +27,12 @@ const CountryShowContainer = () => {
       {/* <Weather country={country.country.name} /> */}
 
       <div className="grid-x">
-        <div className="cell small-12 medium-8 large-10">
+        <div className="cell small-12 medium-8 large-8">
           <PostForm />
           <PostIndexContainer />
+        </div>
+        <div className="cell small-12 medium-4 large-4">
+          <SkyScanner country={country.name} />
         </div>
         <YelpIndex yelpArray={country.yelp} />
       </div>
