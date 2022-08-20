@@ -49,6 +49,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    amadeus (5.2.1)
     arel (9.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -283,6 +284,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  amadeus (~> 5.2, >= 5.2.1)
   capybara
   database_cleaner
   devise
