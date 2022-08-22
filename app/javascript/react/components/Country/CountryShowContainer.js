@@ -5,6 +5,8 @@ import { useCountry } from "../../contexts/CountryContext";
 import YelpIndex from "./YelpIndex";
 import PostForm from "../Post/PostForm";
 import SkyScanner from "../SkyScanner/SkyScanner";
+import CityShowContainer from "../Cities/CityShowContainer";
+import CitiesIndex from "../Cities/CitiesIndex";
 
 const CountryShowContainer = () => {
   const { country } = useCountry();
@@ -39,6 +41,8 @@ const CountryShowContainer = () => {
           <PostIndexContainer />
         </div>
         <div className="cell small-12 medium-4 large-4">
+          <CityShowContainer country={country} />
+          <CitiesIndex cities={country.cities} />
           <SkyScanner country={country.name} />
         </div>
         <YelpIndex yelpArray={country.yelp} />

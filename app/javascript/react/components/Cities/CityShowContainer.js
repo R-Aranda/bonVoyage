@@ -1,28 +1,32 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { addCity } from "../../services/city";
+import { useAsyncFn } from "../../hooks/useAsync";
+import { createCity } from "../../services/city";
 
-const CityShowContainer = () => {
+const CityShowContainer = ({ country }) => {
   const [input, setInput] = useState({
     name: "",
   });
+  const { loading, error, execute: createCityFn } = useAsyncFn(createCity);
+
+  if (loading) return <h1>Loading</h1>;
+  if (error) return <h1>{error}</h1>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCity();
+    onCityCreate(input);
   };
 
-  const addCity = async () => {
-    axios
-      .post("/api/v1/cities", {
-        method: "POST",
-        name: input,
-      })
-      .then((res) => console.log(res));
+  const onCityCreate = (message) => {
+    return createCityFn({ message, countryId: country.id });
   };
 
   const handleChange = (e) => {
-    setInput(e.currentTarget.value);
+    setInput({
+      ...input,
+      [e.currentTarget.id]: e.currentTarget.value,
+    });
   };
   return (
     <div>

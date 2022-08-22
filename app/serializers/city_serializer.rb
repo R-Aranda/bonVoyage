@@ -1,9 +1,4 @@
 class CitySerializer < ActiveModel::Serializer
-  attributes :id, :name, :country_id, :city_data
-
-  def city_data
-    binding.pry
-    city = CitiesClient.request_cities(object.name)
-    return city
-  end
+  attributes :id, :name, :lon, :lat, :geo_id, :country_id, :slug, :user, :user_id, :yelp
+  
 end

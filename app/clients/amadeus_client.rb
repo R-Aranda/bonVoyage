@@ -22,5 +22,4 @@ class AmadeusClient
 
   private
 
-  
 end

@@ -8,6 +8,9 @@ import { CountryProvider } from "../contexts/CountryContext";
 import { PostProvider } from "../contexts/PostContext";
 import SkyScanner from "./SkyScanner/SkyScanner";
 import CityShowContainer from "./Cities/CityShowContainer";
+import CitiesIndex from "./Cities/CitiesIndex";
+import CityShowPage from "./Cities/CityShowPage";
+import { CityProvider } from "../contexts/CityContext";
 
 export const App = (props) => {
   return (
@@ -21,6 +24,15 @@ export const App = (props) => {
             <CountryProvider>
               <CountryShowContainer />
             </CountryProvider>
+          }
+        />
+        <Route
+          exact
+          path="/countries/:slug/cities/:city"
+          element={
+            <CityProvider>
+              <CityShowPage />
+            </CityProvider>
           }
         />
         <Route
