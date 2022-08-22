@@ -4,6 +4,7 @@ class Country < ApplicationRecord
   validates :name, presence: true
   
   has_many :posts
+  has_many :cities
   
   before_create :slugify
 

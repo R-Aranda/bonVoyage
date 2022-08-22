@@ -6,8 +6,8 @@ import PostShowContainer from "./Post/PostShowContainer";
 import Weather from "./Weather/Weather";
 import { CountryProvider } from "../contexts/CountryContext";
 import { PostProvider } from "../contexts/PostContext";
-
-import SkyScanner from "./SkyScanner";
+import SkyScanner from "./SkyScanner/SkyScanner";
+import CityShowContainer from "./Cities/CityShowContainer";
 
 export const App = (props) => {
   return (
@@ -33,7 +33,7 @@ export const App = (props) => {
           }
         />
         <Route exact path="/" element={<LandingPage />} />
-        <Route exact path="/test" element={<SkyScanner />} />
+        <Route exact path="/test" element={<CityShowContainer />} />
         <Route exact path="/weather" element={<Weather />} />
       </Routes>
     </Router>

@@ -4,7 +4,7 @@ import Weather from "../Weather/Weather";
 import { useCountry } from "../../contexts/CountryContext";
 import YelpIndex from "./YelpIndex";
 import PostForm from "../Post/PostForm";
-import SkyScanner from "../SkyScanner";
+import SkyScanner from "../SkyScanner/SkyScanner";
 
 const CountryShowContainer = () => {
   const { country } = useCountry();
