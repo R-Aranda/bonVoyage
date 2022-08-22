@@ -5,23 +5,29 @@ class Api::V1::CitiesController < ApiController
   def index
     
     # country = Country.find(params[:country_id])
-    city = CitiesClient.request_cities("ESP")
     binding.pry
-    render json: city
+    city_data = CitiesClient.request_cities(city)
+    binding.pry
+    render json: city_data
   end
 
-  def create 
-    cities = CitiesClient.request_cities("Barcelona")
+  def create
+    city = City.new(city_params)
+    city["country_id"] = 165
     binding.pry
-    render json: cities
-    
+    if city.save
+      binding.pry
+      render json: city
+    else
+      render json: { errors: city.errors.full_messages }, status: 400
+    end
   end
 
   # private
 
-  # def country_params
-  #   params.permit(:name)
-  # end
+  def city_params
+    params.permit(:name, :country_id)
+  end
 
   # def authorize_user
   #   if !user_signed_in? || !current_user.admin?

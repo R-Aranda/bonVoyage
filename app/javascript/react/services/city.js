@@ -1,10 +1,13 @@
 import { makeRequest } from "./makeRequest";
 
-export const getCities = ({ message, country }) => {
+export const addCity = (message) => {
   debugger;
-  // message["country_id"] = "ESP";
   return makeRequest("/cities", {
     method: "POST",
     data: message,
   });
+};
+
+export const getCity = (message) => {
+  return makeRequest("/cities");
 };

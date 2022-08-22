@@ -1,23 +1,40 @@
-import React from "react";
-import { useAsync, useAsyncFn } from "../../hooks/useAsync";
-import { getCities } from "../../services/city";
+import React, { useState } from "react";
+import axios from "axios";
+import { addCity } from "../../services/city";
 
 const CityShowContainer = () => {
-  // const { value: cities } = useAsync(() => getCities("England"), []);
+  const [input, setInput] = useState({
+    name: "",
+  });
 
-  const { loading, error, execute: getCityData } = useAsyncFn(
-    getCities("Barcelona")
-  );
-  debugger;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addCity();
+  };
 
-  const handleClick = (e) => {
-    e.preventDefault;
+  const addCity = async () => {
+    axios
+      .post("/api/v1/cities", {
+        method: "POST",
+        name: input,
+      })
+      .then((res) => console.log(res));
+  };
+
+  const handleChange = (e) => {
+    setInput(e.currentTarget.value);
   };
   return (
     <div>
-      <form action="">
-        <input />
-        <button className="search" />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={input.name}
+          id="name"
+          onChange={handleChange}
+          placeholder="Enter a city..."
+        />
+        <input type="submit" />
       </form>
     </div>
   );
