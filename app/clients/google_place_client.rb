@@ -19,7 +19,6 @@ class GooglePlaceClient
 
   def self.google_photo(country)
     country = find(country)
-    binding.pry
     photo = country.photos[0].fetch_url(400)
     return photo
   end

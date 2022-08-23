@@ -3,19 +3,20 @@ require "net/http"
 
 class YelpClient
   
-  def self.find(country)
-    url = URI("https://api.yelp.com/v3/businesses/search?location=#{country}")
+  def self.find(city)
+    url = URI("https://api.yelp.com/v3/businesses/search?location=#{city}")
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
+    params = {
 
+    }
     request = Net::HTTP::Get.new(url)
     request["Authorization"] = ENV['YELP_API_KEY']
 
     response = https.request(request)
 
     data_array = JSON.parse(response.body)
-
     if data_array["error"]
       return []
     elsif data_array["businesses"].length > 0

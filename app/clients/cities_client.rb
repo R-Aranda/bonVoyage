@@ -25,10 +25,10 @@ class CitiesClient
 
   def self.verify_city(city, city_params, current_user)
     if city[0] === "No City Found"
-      return {error: "That city was not found"}
+      return {error: "That city was not found", status: 400}
     elsif 
-      City.exists?(name: city_params["name"])
-      return {error: "That city already exists"}
+      City.exists?(slug: city_params["name"])
+      return {error: "That city already exists", status: 400}
     else
       new_city = City.new(city_params)
       new_city.user = current_user

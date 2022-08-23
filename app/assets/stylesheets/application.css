@@ -595,3 +595,83 @@ body {
   margin-right: 5%;
   /* padding: 10px 12px; */
 }
+
+/* City */
+
+.city-form-container {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.city-form-btn {
+  color: #f9f9f9;
+  background-color: #5765ff;
+  padding: 7px;
+  width: 60%;
+  height: 40px;
+  border: 0px;
+  border-radius: 4px;
+  font-size: large;
+  cursor: pointer;
+  margin-bottom: 1.5em;
+  margin-left: 20%;
+  margin-right: 80%;
+}
+
+.city-form-input {
+  border-radius: 0.5em;
+  font-size: inherit;
+  font-family: inherit;
+  border: 2px solid #7a85ff;
+  line-height: 1.4;
+}
+.city-form-input:focus {
+  border-color: #5765ff;
+}
+
+.city-form-header {
+  text-align: center;
+}
+
+.city-header {
+  color: #5765ff;
+  text-align: center;
+  font-weight: 400;
+}
+
+.city-index-header {
+  color: #5765ff;
+  font-weight: 700;
+}
+
+.city-index {
+  text-align: center;
+}
+
+/* Weather */
+.weather-container {
+  max-width: 600px;
+  height: 600px;
+  margin: auto;
+
+  /* position: relative; */
+
+  border: 1px solid black;
+}
+
+.weather-temp {
+  width: 100%;
+  margin: 1rem auto;
+  right: -90%;
+  text-align: center;
+}
+
+.max-temp {
+}
+.min-temp {
+}
+
+.feels-like {
+}
+
+.humidity {
+}

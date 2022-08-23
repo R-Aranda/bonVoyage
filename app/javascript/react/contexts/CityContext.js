@@ -15,15 +15,6 @@ export const CityProvider = ({ children }) => {
     name.city,
   ]);
   const [errors, setErrors] = useState([]);
-  const [currentUser, setCurrentUser] = useState();
-
-  const createLocalCity = (city) => {
-    if (city.status === 401) {
-      window.location.href = "/users/sign_in";
-    } else if (city.status === 400) {
-      return setErrors(city.error);
-    }
-  };
 
   return (
     <Context.Provider

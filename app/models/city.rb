@@ -1,5 +1,5 @@
 class City < ApplicationRecord
-  attr_accessor :yelp
+  attr_accessor :yelp, :weather
   validates :name, presence: true
   validates :country_id, numericality: true
   validates :user_id, numericality: true

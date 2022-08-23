@@ -4,9 +4,12 @@ class Api::V1::CitiesController < ApiController
   before_action :authenticate_user, except: [:show]
 
   def show
-    city = City.find_by(name: params[:id].capitalize)
+    city = City.find_by(slug: params[:id])
+    
     yelp_data = YelpClient.find(city.name)
     city.yelp = yelp_data
+    weather_data = WeatherClient.get_weather(city.name)
+    city.weather = weather_data
     render json: city
   end
 

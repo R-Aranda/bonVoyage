@@ -1,32 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const Weather = ({ country }) => {
-  const [weatherData, setWeatherData] = useState({});
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    axios
-      .get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${country}&units=imperial&appid=`
-      )
-      .then((resp) => {
-        setWeatherData(resp.data);
-        setLoaded(true);
-      })
-      .catch((resp) => console.log(resp));
-  }, [weatherData.length]);
-  console.log(weatherData);
+const Weather = ({ weather }) => {
   return (
-    <div>
-      {loaded && (
-        <div>
-          <div>Current Temperature: {parseInt(weatherData.main.temp)}°</div>
-          <div>High of: {parseInt(weatherData.main.temp_max)}°</div>
-          <div>Low of: {parseInt(weatherData.main.temp_min)}°</div>
-          <div>Feels Like: {parseInt(weatherData.main.feels_like)}°</div>
-          <div>Humidity: {weatherData.main.humidity}%</div>
+    <div className="cell small-4 medium-4 large-4">
+      <div className="weather-container">
+        <div className="weather-temp">
+          Current Temperature: {parseInt(weather.temp)}°
         </div>
-      )}
+        <div className="max-temp">High of: {parseInt(weather.max)}°</div>
+        <div className="min-temp">Low of: {parseInt(weather.min)}°</div>
+        <div className="feels-like">
+          Feels Like: {parseInt(weather.feelsLike)}°
+        </div>
+        <div className="humidity">Humidity: {weather.humidity}%</div>
+      </div>
     </div>
   );
 };

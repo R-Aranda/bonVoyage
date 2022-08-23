@@ -1,5 +1,6 @@
+import { post } from "fetch-mock";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { getCountry } from "../services/country";
 
@@ -18,9 +19,14 @@ export const CountryProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [errors, setErrors] = useState([]);
   const [currentUser, setCurrentUser] = useState();
+  const [cities, setCities] = useState([]);
+  const [cityErrors, setCityErrors] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (country?.posts == null) return;
     setPosts(country.posts);
+    setCities(country.cities);
     setCurrentUser(country.current_user);
   }, [country?.posts]);
 
@@ -36,6 +42,15 @@ export const CountryProvider = ({ children }) => {
     });
   };
 
+  const createNewCity = (city) => {
+    if (city.status === 401) {
+      window.location.href = "/users/sign_in";
+    } else if (city.status === 400) {
+      return setCityErrors(city.error);
+    }
+    navigate(`cities/${city.slug}`);
+  };
+
   return (
     <Context.Provider
       value={{
@@ -44,6 +59,9 @@ export const CountryProvider = ({ children }) => {
         createLocalPost,
         errors: errors,
         currentUser: currentUser,
+        cities: cities,
+        createNewCity,
+        cityErrors: cityErrors,
       }}
     >
       {loading ? <h1>Loading</h1> : error ? <h1>{error}</h1> : children}
