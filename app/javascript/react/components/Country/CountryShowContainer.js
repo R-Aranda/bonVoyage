@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import PostIndexContainer from "../Post/PostIndexContainer";
 import { useCountry } from "../../contexts/CountryContext";
 import PostForm from "../Post/PostForm";
-import CitySearch from "../Cities/CitySearch";
-import CitiesIndex from "../Cities/CitiesIndex";
+import CitySearch from "../City/CitySearch";
+import CitiesIndex from "../City/CitiesIndex";
 
 const CountryShowContainer = () => {
   const { country } = useCountry();

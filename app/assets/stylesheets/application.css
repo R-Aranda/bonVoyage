@@ -709,3 +709,24 @@ body {
 
 .humidity {
 }
+
+/* Footer */
+
+.footer-container {
+  background-color: #dddffc;
+  text-align: center;
+  width: 100%;
+  padding-top: 0.5rem;
+  margin-top: 60px;
+}
+
+.footer-icon {
+  font-size: 30px;
+  margin: 1rem;
+}
+
+.page-container {
+  margin-bottom: 60px;
+  position: absolute;
+  width: 100%;
+}
