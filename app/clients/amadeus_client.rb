@@ -16,8 +16,7 @@ class AmadeusClient
         rank: place["rank"]
       }
     end
-    places_array
-    binding.pry
+    places_array    
   end
 
   private
