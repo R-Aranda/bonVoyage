@@ -499,15 +499,15 @@ body {
 }
 
 .landing-page-hero-content {
-  max-width: 75rem;
+  max-width: 82rem;
   margin: 0 auto;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 7%;
+  padding-right: 7%;
 }
 
 .landing-page-hero-content h1 {
   color: white;
-  text-shadow: 2px 2px 4px black;
+  text-shadow: 1px 1px 2px black;
   font-size: 60px;
 }
 
