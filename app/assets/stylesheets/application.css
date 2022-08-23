@@ -596,8 +596,13 @@ body {
 .skyscanner-container {
   border: #7a85ff71 solid 1px;
   border-radius: 0.5rem;
-  margin-right: 5%;
-  margin-left: 5%;
+  margin-left: 2em;
+  margin-bottom: 2em;
+}
+
+.skyscanner-header {
+  text-align: center;
+  color: #5765ff;
 }
 
 /* City */
