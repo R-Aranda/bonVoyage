@@ -475,8 +475,8 @@ body {
 
 .country-header-credit {
   height: 20px;
-  font-size: 13px;
-  margin-bottom: 20px;
+  font-size: 11px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
@@ -507,13 +507,13 @@ body {
 
 .landing-page-hero-content h1 {
   color: white;
-  text-shadow: 1px 1px 2px black;
-  font-size: 50px;
+  text-shadow: 2px 2px 4px black;
+  font-size: 60px;
 }
 
 .landing-page-hero-content p {
   color: white;
-  text-shadow: 1px 1px 2px black;
+  text-shadow: 2px 2px 4px black;
 }
 
 .landing-page-hero-content .button.round {
@@ -536,7 +536,7 @@ body {
   }
 }
 
-/* asdfasdf */
+/* Carousel */
 
 .carousel {
   margin-bottom: 30px;

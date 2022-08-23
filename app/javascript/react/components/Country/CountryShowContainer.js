@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import PostIndexContainer from "../Post/PostIndexContainer";
 import { useCountry } from "../../contexts/CountryContext";
 import PostForm from "../Post/PostForm";
@@ -30,8 +30,6 @@ const CountryShowContainer = () => {
         <a href={country.photo.artist_url}>{country.photo.artist_name}</a> on{" "}
         <a href={country.photo.unsplash_url}>Unsplash</a>
       </div>
-      {/* <Weather country={country.country.name} /> */}
-
       <div className="grid-x">
         <div className="cell small-12 medium-8 large-8">
           <PostForm />
