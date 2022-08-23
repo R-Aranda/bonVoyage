@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { useCity } from "../../contexts/CityContext";
 import YelpIndex from "../Country/YelpIndex";
 import Weather from "../Weather/Weather";
@@ -10,14 +10,18 @@ const CityShowPage = () => {
 
   return (
     <Fragment>
-      <h1 className="city-header">{city.name}</h1>
+      <div className="grid-x city-header ">
+        <div className="cell small-9 city-header-name">{city.name}</div>
+        <div className="cell small-3">
+          <Weather weather={city.weather} />
+        </div>
+      </div>
       <div className="city-container grid-x">
         <YelpIndex yelpArray={city.yelp} />
-        <Weather weather={city.weather} />
-        <div className="cell small-10 medium-4 large-5">
-          <h5 className="skyscanner-header">Find a Flight</h5>
+
+        <div className="cell small-10 medium-6 large-6">
           <SkyScannerFlight city={city.name} />
-          <h5 className="skyscanner-header">Find a Hotel</h5>
+
           <SkyScannerHotel city={city.name} />
         </div>
       </div>
