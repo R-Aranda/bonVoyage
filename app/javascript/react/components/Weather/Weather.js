@@ -2,7 +2,7 @@ import React from "react";
 
 const Weather = ({ weather }) => {
   return (
-    <div className="cell small-4 medium-4 large-4">
+    <div className="cell small-5 medium-4 large-4">
       <div className="weather-container">
         <div className="weather-temp">
           Current Temperature: {parseInt(weather.temp)}°

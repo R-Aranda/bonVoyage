@@ -26,8 +26,12 @@ const YelpIndex = ({ yelpArray }) => {
   }
   return (
     <Fragment>
-      <div className="cell small-4 medium-4 large-2">{yelpItems}</div>
-      {yelpArray?.length > 0 && <h4>Suggestions:</h4>}
+      {yelpArray?.length > 0 && (
+        <div className="yelp-container cell small-6 medium-4 large-2">
+          <h4>Suggestions:</h4>
+          {yelpItems}
+        </div>
+      )}
     </Fragment>
   );
 };

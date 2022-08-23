@@ -588,16 +588,22 @@ body {
   text-align: center;
 }
 
+.yelp-container {
+  margin-left: 2em;
+}
+
 /* Skyscanner */
 .skyscanner-container {
   border: #7a85ff71 solid 1px;
   border-radius: 0.5rem;
   margin-right: 5%;
-  /* padding: 10px 12px; */
+  margin-left: 5%;
 }
 
 /* City */
 
+.city-container {
+}
 .city-form-container {
   margin-left: 1em;
   margin-right: 1em;
@@ -649,9 +655,11 @@ body {
 
 /* Weather */
 .weather-container {
-  max-width: 600px;
+  max-width: 550px;
   height: 600px;
   margin: auto;
+  margin-right: 2em;
+  margin-left: 2em;
 
   /* position: relative; */
 

@@ -15,7 +15,7 @@ const SkyScanner = ({ city }) => {
 
   useScript("https://widgets.skyscanner.net/widget-server/js/loader.js");
   return (
-    <div className="cell small-4 medium-4 large-4">
+    <div className="cell small-10 medium-4 large-5">
       <div className="skyscanner-container">
         <div
           data-skyscanner-widget="SearchWidget"

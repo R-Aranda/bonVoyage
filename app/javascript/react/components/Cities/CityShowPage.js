@@ -9,8 +9,8 @@ const CityShowPage = () => {
 
   return (
     <Fragment>
-      <h2 className="city-header">{city.name}</h2>
-      <div className="grid-x">
+      <h1 className="city-header">{city.name}</h1>
+      <div className="city-container grid-x">
         <YelpIndex yelpArray={city.yelp} />
         <Weather weather={city.weather} />
         <SkyScanner city={city.name} />
