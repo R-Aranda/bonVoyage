@@ -1,10 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import PostIndexContainer from "../Post/PostIndexContainer";
-import Weather from "../Weather/Weather";
 import { useCountry } from "../../contexts/CountryContext";
-import YelpIndex from "./YelpIndex";
 import PostForm from "../Post/PostForm";
-import SkyScanner from "../SkyScanner";
+import CitySearch from "../Cities/CitySearch";
+import CitiesIndex from "../Cities/CitiesIndex";
 
 const CountryShowContainer = () => {
   const { country } = useCountry();
@@ -39,9 +38,12 @@ const CountryShowContainer = () => {
           <PostIndexContainer />
         </div>
         <div className="cell small-12 medium-4 large-4">
-          <SkyScanner country={country.name} />
+          <CitySearch country={country} cities={country.cities} />
+          <div className="city-index">
+            <h3 className="city-index-header">Popular Cities</h3>
+            <CitiesIndex cities={country.cities} />
+          </div>
         </div>
-        <YelpIndex yelpArray={country.yelp} />
       </div>
     </Fragment>
   );

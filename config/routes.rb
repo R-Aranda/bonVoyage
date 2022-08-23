@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
       resources :post_likes, only: [:create]
       resources :comment_likes, only: [:create]
+      resources :cities, only: [:show, :index, :create]
     end
   end
 

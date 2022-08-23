@@ -8,7 +8,6 @@ class Api::V1::CountriesController < ApiController
 
   def show
     country = Country.find_by(slug: params[:slug])
-    
     yelp_data = YelpClient.find(country.name)
     country.photo = unsplash(country.name)
     country.yelp = yelp_data

@@ -2,7 +2,7 @@ class RestCountriesClient
 
   def self.request_world_countries
     url = "https://restcountries.com/v3.1/all"
-    @response = Httparty.get(url)
+    @response = HttParty.get(url)
   end
 
   def self.parse_data

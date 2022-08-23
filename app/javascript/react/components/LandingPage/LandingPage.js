@@ -6,7 +6,7 @@ import { useAsync } from "../../hooks/useAsync";
 import LandingHeader from "./LandingHeader";
 import LandingPagePost from "./LandingPagePost";
 
-const CountryContainer = () => {
+const LandingPage = () => {
   const { loading, error, value: posts } = useAsync(getAllPosts);
 
   if (loading) return <h1>Loading</h1>;
@@ -35,4 +35,4 @@ const CountryContainer = () => {
   );
 };
 
-export default CountryContainer;
+export default LandingPage;
