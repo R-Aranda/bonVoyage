@@ -4,17 +4,21 @@ require "net/http"
 class YelpClient
   
   def self.find(city)
-    url = URI("https://api.yelp.com/v3/businesses/search?location=#{city}")
-
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
-    params = {
-
+    headers = {
+      "Authorization": ENV['YELP_API_KEY']
     }
-    request = Net::HTTP::Get.new(url)
-    request["Authorization"] = ENV['YELP_API_KEY']
+    url = Addressable::URI.parse("https://api.yelp.com/v3/businesses/search?location=#{city}").display_uri.to_s
 
-    response = https.request(request)
+    # https = Net::HTTP.new(url.host, url.port)
+    # https.use_ssl = true
+    # params = {
+
+    # }
+    # request = Net::HTTP::Get.new(url)
+    # request["Authorization"] = ENV['YELP_API_KEY']
+
+    # response = https.request(request)
+    response = HTTParty.get(url, headers: headers)
 
     data_array = JSON.parse(response.body)
     if data_array["error"]
@@ -36,3 +40,4 @@ class YelpClient
     return place_data
   end
 end
+

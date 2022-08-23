@@ -1,11 +1,13 @@
+require 'uri'
+
 class CitiesClient
 
   def self.request_cities(city)
     headers = {
       "apikey": ENV['GEOGRAPHY_API_KEY']
     }
-    city_url = city.parameterize(separator: '%20')
-    url = "https://api.apilayer.com/geo/city/name/#{city_url}"
+    # city_url = city.parameterize(separator: '%20')
+    url = Addressable::URI.parse("https://api.apilayer.com/geo/city/name/#{city}").display_uri.to_s
     @response = HTTParty.get(url, headers: headers)
     cities = JSON.parse(@response.body)
   end

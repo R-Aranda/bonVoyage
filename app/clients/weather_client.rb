@@ -1,6 +1,7 @@
 class WeatherClient
   def self.get_weather(city)
-    url = "http://api.openweathermap.org/data/2.5/weather?q=#{city}&units=imperial&appid=#{ENV["OPEN_WEATHER_API_KEY"]}"
+    url = Addressable::URI.parse("http://api.openweathermap.org/data/2.5/weather?q=#{city}&units=imperial&appid=#{ENV["OPEN_WEATHER_API_KEY"]}").display_uri.to_s
+
     response = HTTParty.get(url)
     
     weather_data = JSON.parse(response.body)
