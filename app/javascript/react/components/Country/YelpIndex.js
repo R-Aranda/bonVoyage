@@ -27,8 +27,8 @@ const YelpIndex = ({ yelpArray }) => {
   return (
     <Fragment>
       {yelpArray?.length > 0 && (
-        <div className="yelp-container cell small-6 medium-4 large-2">
-          <h4>Suggestions:</h4>
+        <div className="yelp-container cell small-6 medium-6 large-4">
+          <h4 className="skyscanner-header">Suggestions</h4>
           {yelpItems}
         </div>
       )}

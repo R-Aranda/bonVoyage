@@ -589,15 +589,21 @@ body {
 }
 
 .yelp-container {
-  margin-left: 2em;
+  margin-left: 6em;
 }
 
 /* Skyscanner */
 .skyscanner-container {
   border: #7a85ff71 solid 1px;
   border-radius: 0.5rem;
-  margin-right: 5%;
-  margin-left: 5%;
+  margin-left: 8em;
+  margin-bottom: 2em;
+}
+
+.skyscanner-header {
+  text-align: center;
+  color: #5765ff;
+  margin-top: 0.3em;
 }
 
 /* City */
@@ -641,11 +647,18 @@ body {
 .city-header {
   color: #5765ff;
   text-align: center;
-  font-weight: 400;
+  font-weight: 600;
+  border-bottom: #7a85ff solid 1px;
+  margin-bottom: 40px;
+}
+
+.city-header-name {
+  margin-top: 0.4em;
+  font-size: 4vw;
 }
 
 .city-index-header {
-  color: #5765ff;
+  color: #2738fe;
   font-weight: 700;
 }
 
@@ -655,30 +668,43 @@ body {
 
 /* Weather */
 .weather-container {
-  max-width: 550px;
-  height: 600px;
-  margin: auto;
-  margin-right: 2em;
-  margin-left: 2em;
-
-  /* position: relative; */
-
-  border: 1px solid black;
+  max-width: 20em;
+  height: 8em;
+  text-align: center;
+  font-size: 1vw;
+  border: #7a85ff71 solid 1px;
+  border-radius: 0.5rem;
+  padding-right: 10px;
+  margin: 0.8em;
+  padding: -0.3em;
 }
 
 .weather-temp {
   width: 100%;
-  margin: 1rem auto;
-  right: -90%;
-  text-align: center;
+  margin: 0.5rem auto;
+  margin-top: 0;
+  padding-top: -0.7em;
 }
 
-.max-temp {
-}
-.min-temp {
+.weather-temp div {
+  color: #5765ff;
+  font-size: 1.6vw;
+  font-weight: 800;
+  margin-bottom: -0.7em;
 }
 
-.feels-like {
+.max-temp div {
+  color: #5765ff;
+  font-size: 1.3vw;
+}
+.min-temp div {
+  color: #5765ff;
+  font-size: 1.3vw;
+}
+
+.feels-like div {
+  color: #5765ff;
+  font-size: 1.3vw;
 }
 
 .humidity {

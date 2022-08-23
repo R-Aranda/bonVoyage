@@ -1,19 +1,29 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { useCity } from "../../contexts/CityContext";
 import YelpIndex from "../Country/YelpIndex";
 import Weather from "../Weather/Weather";
-import SkyScanner from "../SkyScanner/SkyScanner";
+import SkyScannerFlight from "../SkyScanner/SkyScannerFlight";
+import SkyScannerHotel from "../SkyScanner/SkyScannerHotel";
 
 const CityShowPage = () => {
   const { city } = useCity();
 
   return (
     <Fragment>
-      <h1 className="city-header">{city.name}</h1>
+      <div className="grid-x city-header ">
+        <div className="cell small-9 city-header-name">{city.name}</div>
+        <div className="cell small-3">
+          <Weather weather={city.weather} />
+        </div>
+      </div>
       <div className="city-container grid-x">
         <YelpIndex yelpArray={city.yelp} />
-        <Weather weather={city.weather} />
-        <SkyScanner city={city.name} />
+
+        <div className="cell small-10 medium-6 large-6">
+          <SkyScannerFlight city={city.name} />
+
+          <SkyScannerHotel city={city.name} />
+        </div>
       </div>
     </Fragment>
   );
