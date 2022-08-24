@@ -23,7 +23,6 @@ const LandingPage = () => {
   return (
     <Fragment>
       <LandingHeader />
-      <SearchComponent />
       <div className="grid-x">
         <MapContainer />
         <div className="cell small-12 medium-6 large-7">
