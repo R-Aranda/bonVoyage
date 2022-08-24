@@ -41,6 +41,12 @@ export const CountryProvider = ({ children }) => {
     });
   };
 
+  const deleteLocalPost = (deletedPost) => {
+    setPosts((prevPosts) => {
+      return prevPosts.filter((post) => post.id !== deletedPost.postId);
+    });
+  };
+
   const createNewCity = (city) => {
     if (city.status === 401) {
       window.location.href = "/users/sign_in";
@@ -56,6 +62,7 @@ export const CountryProvider = ({ children }) => {
         country: { slug, ...country },
         posts: posts,
         createLocalPost,
+        deleteLocalPost,
         errors: errors,
         currentUser: currentUser,
         cities: cities,

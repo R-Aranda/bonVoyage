@@ -3,10 +3,23 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { makeRequest } from "../../services/makeRequest";
+import { deletePost } from "../../services/post";
+import { useAsyncFn } from "../../hooks/useAsync";
+import { useCountry } from "../../contexts/CountryContext";
 
 const PostItem = ({ post, currentUser }) => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState();
+  const { deleteLocalPost } = useCountry();
+  const onDeletePost = useAsyncFn(deletePost);
+
+  const handleDelete = () => {
+    onDeletePost.execute(post.id).then((post) => {
+      console.log(post);
+      deleteLocalPost(post);
+    });
+  };
+
   const handleLike = () => {
     if (currentUser == null) {
       return (window.location.href = "/users/sign_in");
@@ -73,6 +86,7 @@ const PostItem = ({ post, currentUser }) => {
               icon="fa-solid fa-pen-to-square"
             />
             <FontAwesomeIcon
+              onClick={handleDelete}
               className="comment-icon trash"
               icon="fa-solid fa-trash-can"
             />

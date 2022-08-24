@@ -3,18 +3,10 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { makeRequest } from "../../services/makeRequest";
-import { deletePost } from "../../services/post";
-import { useAsyncFn } from "../../hooks/useAsync";
 
 const LandingPagePost = ({ post, currentUser }) => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState();
-
-  const { execute: onDeletePost } = useAsyncFn(deletePost);
-
-  const handleDelete = () => {
-    onDeletePost(post.id);
-  };
 
   const handleLike = () => {
     if (post.current_user == null) {
@@ -90,12 +82,6 @@ const LandingPagePost = ({ post, currentUser }) => {
               className="comment-icon"
               icon="fa-solid fa-pen-to-square"
             />
-            <div onClick={handleDelete}>
-              <FontAwesomeIcon
-                className="comment-icon trash"
-                icon="fa-solid fa-trash-can"
-              />
-            </div>
           </Fragment>
         )}
       </div>
