@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2022_08_24_190129) do
   end
 
   create_table "trips", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "trip_name", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_trips_on_user_id"
   end

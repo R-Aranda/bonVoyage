@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :cities, only: [:show, :index, :create]
       resources :users, only: [:show]
       resources :trips, only: [:show, :create]
+      resources :destinations, only: [:create]
     end
   end
 

@@ -49,11 +49,7 @@ export const App = () => {
               </PostProvider>
             }
           />
-          <Route
-            exact
-            path="/test"
-            element={<TripForm currentUser={currentUser} />}
-          />
+          <Route exact path="/test" element={<TripForm />} />
           <Route
             exact
             path="/"

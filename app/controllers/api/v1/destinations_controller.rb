@@ -5,7 +5,7 @@ class Api::V1::DestinationsController < ApiController
   def create 
     destination = Destination.new()
     destination.user = current_user
-    destination.city = City.find(params[:city_id])
+    destination.city = City.find_by(name: params[:city_id])
     destination.trip = Trip.find(params[:trip_id])
     
     if destination.save 

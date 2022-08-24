@@ -11,7 +11,7 @@ class Api::V1::TripsController < ApiController
     trip.user = current_user
     
     if trip.save 
-      render json: trip
+      render json: {trip: trip, status: 201}
     else 
       render json: { error: trip.errors.full_messages, status: 400 }
     end
@@ -20,6 +20,6 @@ class Api::V1::TripsController < ApiController
   private
 
   def trip_params 
-    params.require(:trip).permit(:name)
+    params.require(:trip).permit(:trip_name)
   end
 end
