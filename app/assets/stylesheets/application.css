@@ -19,18 +19,27 @@
 body {
   font-family: "Roboto", sans-serif;
   background-color: #f7f8fb;
+  margin-bottom: 60px;
+  position: absolute;
+  width: 100%;
 }
 
+/* Nav Bar */
 .nav-logo {
   font-weight: 800;
   margin-left: 20%;
   margin-bottom: 10px;
   font-family: "Eczar", serif;
 }
-/* Nav Bar */
+
+.logged-out-links {
+  margin-left: 1em;
+}
 
 .top-bar {
   background-color: #7a85ff36;
+  width: 100%;
+  padding-top: 0.5rem;
 }
 
 .top-bar-section ul {
@@ -76,7 +85,7 @@ body {
 
 /* search */
 .search-bar-container {
-  width: 65%;
+  width: 100%;
   margin: 0 auto;
   padding-bottom: -50px;
   height: 50px;
@@ -84,8 +93,8 @@ body {
 }
 
 .search-bar {
-  background: transparent;
   border: 1px solid #f6f6f6;
+  border-radius: 0.5em;
   font-size: 15px;
   padding-left: 20px;
   color: #4e5860;
@@ -93,6 +102,7 @@ body {
   width: 100%;
   height: 100%;
   margin-bottom: -200px;
+  z-index: -1;
 }
 
 .search-bar:focus {
@@ -118,17 +128,19 @@ body {
   width: 100%;
   max-height: 350px;
   overflow-y: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
 }
 
 .list-group {
   display: grid;
+  margin-left: 0;
+  z-index: 1;
 }
 
 .list-group-item {
   cursor: pointer;
   list-style-type: none;
   background-color: #ffffff;
+  z-index: 1;
 }
 
 .list-group-item.active,
@@ -465,6 +477,7 @@ body {
   justify-content: center;
   text-align: center;
   position: relative;
+  z-index: -1;
 }
 
 .country-header-text {
@@ -490,6 +503,7 @@ body {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  width: 96.4%;
 }
 
 @media screen and (min-width: 40em) {
@@ -502,7 +516,7 @@ body {
   max-width: 82rem;
   margin: 0 auto;
   padding-left: 7%;
-  padding-right: 7%;
+  padding-right: 10%;
 }
 
 .landing-page-hero-content h1 {
@@ -561,7 +575,7 @@ body {
   background: none;
   border: none;
   font-size: 3rem;
-  top: 40%;
+  top: 18%;
   transform: translateY(-50%);
   color: rgba(255, 255, 255, 0.685);
   cursor: pointer;
@@ -707,9 +721,6 @@ body {
   font-size: 1.3vw;
 }
 
-.humidity {
-}
-
 /* Footer */
 
 .footer-container {
@@ -725,8 +736,4 @@ body {
   margin: 1rem;
 }
 
-.page-container {
-  margin-bottom: 60px;
-  position: absolute;
-  width: 100%;
-}
+/* messages */

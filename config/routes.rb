@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :post_likes, only: [:create]
       resources :comment_likes, only: [:create]
       resources :cities, only: [:show, :index, :create]
+      resources :users, only: [:show]
     end
   end
 

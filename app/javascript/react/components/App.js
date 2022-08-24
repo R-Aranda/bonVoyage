@@ -7,12 +7,18 @@ import { CountryProvider } from "../contexts/CountryContext";
 import { PostProvider } from "../contexts/PostContext";
 import CityShowPage from "./City/CityShowPage";
 import { CityProvider } from "../contexts/CityContext";
-import Footer from "./Footer/Footer";
+import Footer from "./Layout/Footer";
+import TopBar from "./Layout/TopBar";
+import { getUser } from "../services/user";
+import { useAsync } from "../hooks/useAsync";
 
 export const App = () => {
+  const { value: currentUser } = useAsync(() => getUser(), []);
+
   return (
-    <div className="page-container">
+    <Fragment>
       <Router>
+        <TopBar currentUser={currentUser} />
         <Routes>
           <Route exact path="/countries" element={<LandingPage />} />
           <Route
@@ -42,12 +48,12 @@ export const App = () => {
               </PostProvider>
             }
           />
-          <Route exact path="/test" element={<Footer />} />
+          <Route exact path="/test" element={<TopBar />} />
           <Route exact path="/" element={<LandingPage />} />
         </Routes>
       </Router>
       <Footer />
-    </div>
+    </Fragment>
   );
 };
 
