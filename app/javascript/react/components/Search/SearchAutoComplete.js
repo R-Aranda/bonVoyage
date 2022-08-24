@@ -3,7 +3,6 @@ import SearchListItem from "./SearchListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
 
 library.add(faMagnifyingGlass);
 
