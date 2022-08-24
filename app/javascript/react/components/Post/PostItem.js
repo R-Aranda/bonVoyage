@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
@@ -66,10 +66,18 @@ const PostItem = ({ post, currentUser }) => {
         <Link to={`posts/${post.id}`}>
           <FontAwesomeIcon className="comment-icon" icon="fa-solid fa-reply" />
         </Link>
-        <FontAwesomeIcon
-          className="comment-icon"
-          icon="fa-solid fa-pen-to-square"
-        />
+        {currentUser?.id === post.user_id && (
+          <Fragment>
+            <FontAwesomeIcon
+              className="comment-icon"
+              icon="fa-solid fa-pen-to-square"
+            />
+            <FontAwesomeIcon
+              className="comment-icon trash"
+              icon="fa-solid fa-trash-can"
+            />
+          </Fragment>
+        )}
       </div>
     </div>
   );

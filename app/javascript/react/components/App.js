@@ -49,7 +49,11 @@ export const App = () => {
             }
           />
           <Route exact path="/test" element={<TopBar />} />
-          <Route exact path="/" element={<LandingPage />} />
+          <Route
+            exact
+            path="/"
+            element={<LandingPage currentUser={currentUser} />}
+          />
         </Routes>
       </Router>
       <Footer />

@@ -1,7 +1,7 @@
 class Api::V1::PostsController < ApiController
   protect_from_forgery unless: -> { request.format.json? }
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user, except: [:show, :index]
+  before_action :authenticate_user, except: [:show, :index, :destroy]
 
   def index
     render json: Post.order('created_at DESC').last(10)
@@ -23,7 +23,7 @@ class Api::V1::PostsController < ApiController
   end
 
   def destroy
-    post = Post.find(id: params[:id])
+    post = Post.find(params[:id])
 
     if post.destroy
       render json: {status: 200}

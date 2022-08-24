@@ -6,7 +6,7 @@ import { useAsync } from "../../hooks/useAsync";
 import LandingHeader from "./LandingHeader";
 import LandingPagePost from "./LandingPagePost";
 
-const LandingPage = () => {
+const LandingPage = ({ currentUser }) => {
   const { loading, error, value: posts } = useAsync(getAllPosts);
 
   if (loading) return <h1>Loading</h1>;
@@ -15,7 +15,7 @@ const LandingPage = () => {
   const postList = posts.map((post) => {
     return (
       <div key={post.id}>
-        <LandingPagePost key={post.id} post={post} />
+        <LandingPagePost key={post.id} post={post} currentUser={currentUser} />
       </div>
     );
   });

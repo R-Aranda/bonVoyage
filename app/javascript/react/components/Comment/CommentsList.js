@@ -1,11 +1,16 @@
 import React from "react";
 import CommentForm from "./CommentForm";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEdit, faHeart, faReply } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faHeart,
+  faReply,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 import { usePost } from "../../contexts/PostContext";
 import CommentItem from "./CommentItem";
 
-library.add(faEdit, faHeart, faReply);
+library.add(faEdit, faHeart, faReply, faTrashCan);
 
 const CommentsList = () => {
   const { post, comments, currentUser } = usePost();

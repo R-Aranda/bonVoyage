@@ -64,6 +64,10 @@ const CommentItem = ({ comment, currentUser }) => {
           className="comment-icon"
           icon="fa-solid fa-pen-to-square"
         />
+        <FontAwesomeIcon
+          className="comment-icon trash"
+          icon="fa-solid fa-trash-can"
+        />
       </div>
     </div>
   );

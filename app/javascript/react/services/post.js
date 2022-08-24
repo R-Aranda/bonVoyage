@@ -14,3 +14,16 @@ export const createPost = ({ message, countryId }) => {
     data: message,
   });
 };
+
+export const deletePost = (id) => {
+  return makeRequest(`/posts/${id}`, {
+    method: "DELETE",
+  });
+};
+
+export const likePost = (message) => {
+  makeRequest("/post_likes", {
+    method: "POST",
+    data: message,
+  });
+};

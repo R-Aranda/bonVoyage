@@ -348,6 +348,10 @@ body {
   cursor: pointer;
 }
 
+.trash {
+  color: rgba(199, 25, 25, 0.84);
+}
+
 .heart-icon {
   background: none;
   color: #5765ff;
@@ -375,6 +379,10 @@ body {
 .comment-icon:hover,
 .comment-icon:focus-visible {
   color: #7a85ff;
+}
+
+.trash:hover {
+  color: red;
 }
 
 .comments-list {

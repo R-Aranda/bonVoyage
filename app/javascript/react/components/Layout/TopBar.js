@@ -11,7 +11,6 @@ const TopBar = ({ currentUser }) => {
   };
 
   const handleRerender = (res) => {
-    debugger;
     if (res.status === 204) {
       window.location.href = "/";
     }

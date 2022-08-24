@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { featuredCountries } from "./FeaturedCountries";
@@ -41,35 +41,23 @@ const LandingHeader = () => {
             key={index}
           >
             {index === current && (
-              <Fragment>
-                <div
-                  className="landing-page-hero"
-                  style={{
-                    background: "url(" + `${slide.photo}` + ")",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                >
-                  <div className="landing-page-hero-content">
-                    <h1>{slide.name}</h1>
-                    <p className="subheader">{slide.body}</p>
-                    <a href={slide.link} className="round button">
-                      learn more
-                    </a>
-                  </div>
-                </div>
-                <div className="country-header-credit">
-                  Photo by <a href={slide.artist_url}>{slide.artist_name}</a> on{" "}
-                  <a href="https://unsplash.com/?utm_source=ruperts_travel_app&utm_medium=referral">
-                    Unsplash
-                  </a>{" "}
-                  || Description by{" "}
-                  <a href="https://www.worldtravelguide.net/">
-                    World Travel Guide
+              <div
+                className="landing-page-hero"
+                style={{
+                  background: "url(" + `${slide.photo}` + ")",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                }}
+              >
+                <div className="landing-page-hero-content">
+                  <h1>{slide.name}</h1>
+                  <p className="subheader">{slide.body}</p>
+                  <a href={slide.link} className="round button">
+                    learn more
                   </a>
                 </div>
-              </Fragment>
+              </div>
             )}
           </div>
         );
