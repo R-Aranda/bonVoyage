@@ -30,8 +30,8 @@ class Api::V1::CountriesController < ApiController
     params.permit(:name)
   end
 
-  def unsplash(country)
-    search_results = Unsplash::Photo.search(country)
+  def unsplash(city)
+    search_results = Unsplash::Photo.search(city)
     
     img = search_results[0].urls.regular
     artist_name = search_results[0].user.name

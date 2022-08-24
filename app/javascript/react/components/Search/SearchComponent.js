@@ -26,23 +26,19 @@ const SearchComponent = () => {
   };
 
   return (
-    <>
-      <div className="row">
-        <div className="col text-center">
-          <h3>Search Country by Name</h3>
-
-          <div className="search-bar-container">
-            <SearchAutoComplete
-              data={countries}
-              onSelect={(country) => {
-                navigateCountry(country);
-              }}
-              navigateCountry={navigateCountry}
-            />
-          </div>
+    <div className="row search-container">
+      <div className="col text-center">
+        <div className="search-bar-container">
+          <SearchAutoComplete
+            data={countries}
+            onSelect={(country) => {
+              navigateCountry(country);
+            }}
+            navigateCountry={navigateCountry}
+          />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

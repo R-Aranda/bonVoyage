@@ -1,48 +1,59 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage/LandingPage";
 import CountryShowContainer from "./Country/CountryShowContainer";
 import PostShowContainer from "./Post/PostShowContainer";
 import { CountryProvider } from "../contexts/CountryContext";
 import { PostProvider } from "../contexts/PostContext";
-import CityShowPage from "./Cities/CityShowPage";
+import CityShowPage from "./City/CityShowPage";
 import { CityProvider } from "../contexts/CityContext";
+import Footer from "./Layout/Footer";
+import TopBar from "./Layout/TopBar";
+import { getUser } from "../services/user";
+import { useAsync } from "../hooks/useAsync";
 
-export const App = (props) => {
+export const App = () => {
+  const { value: currentUser } = useAsync(() => getUser(), []);
+
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/countries" element={<LandingPage />} />
-        <Route
-          exact
-          path="/countries/:slug"
-          element={
-            <CountryProvider>
-              <CountryShowContainer />
-            </CountryProvider>
-          }
-        />
-        <Route
-          exact
-          path="/countries/:slug/cities/:city"
-          element={
-            <CityProvider>
-              <CityShowPage />
-            </CityProvider>
-          }
-        />
-        <Route
-          exact
-          path="/countries/:slug/posts/:id"
-          element={
-            <PostProvider>
-              <PostShowContainer />
-            </PostProvider>
-          }
-        />
-        <Route exact path="/" element={<LandingPage />} />
-      </Routes>
-    </Router>
+    <Fragment>
+      <Router>
+        <TopBar currentUser={currentUser} />
+        <Routes>
+          <Route exact path="/countries" element={<LandingPage />} />
+          <Route
+            exact
+            path="/countries/:slug"
+            element={
+              <CountryProvider>
+                <CountryShowContainer />
+              </CountryProvider>
+            }
+          />
+          <Route
+            exact
+            path="/countries/:slug/cities/:city"
+            element={
+              <CityProvider>
+                <CityShowPage />
+              </CityProvider>
+            }
+          />
+          <Route
+            exact
+            path="/countries/:slug/posts/:id"
+            element={
+              <PostProvider>
+                <PostShowContainer />
+              </PostProvider>
+            }
+          />
+          <Route exact path="/test" element={<TopBar />} />
+          <Route exact path="/" element={<LandingPage />} />
+        </Routes>
+      </Router>
+      <Footer />
+    </Fragment>
   );
 };
 
