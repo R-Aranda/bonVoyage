@@ -52,7 +52,6 @@ const TripForm = () => {
   useEffect(() => {
     if (destCounter === data?.length && data?.length != 0) {
       submitTrip({ trip_name: trip }).then((res) => {
-        debugger;
         data.forEach((dest) => {
           submitDestination({
             city_id: dest.city,
@@ -64,7 +63,6 @@ const TripForm = () => {
   }, [destCounter]);
 
   const options = [{ value: 165, label: "United States" }];
-
   return (
     <Fragment>
       <Form
@@ -81,6 +79,7 @@ const TripForm = () => {
           form,
           submitting,
           values,
+          errors,
         }) => {
           return (
             <form onSubmit={handleSubmit}>
