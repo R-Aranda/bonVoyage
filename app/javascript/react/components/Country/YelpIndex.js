@@ -7,7 +7,7 @@ const YelpIndex = ({ yelpArray }) => {
     yelpArray?.length > 0 &&
       (yelpItems = yelpArray.map((item, i) => {
         return (
-          <div key={i} className="card align-right">
+          <div key={i} className="yelp-card card align-right">
             <h5 className="yelp-title">{item.categories[0].title}</h5>
             <img src={item.image} />
             <div className="card-section">

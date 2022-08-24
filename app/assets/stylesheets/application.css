@@ -606,12 +606,18 @@ body {
   margin-left: 6em;
 }
 
+.yelp-card {
+  border: #7a85ff71 solid 1px;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
 /* Skyscanner */
 .skyscanner-container {
   border: #7a85ff71 solid 1px;
   border-radius: 0.5rem;
   margin-left: 8em;
-  margin-bottom: 2em;
+  margin-top: 3.1em;
 }
 
 .skyscanner-header {

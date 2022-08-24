@@ -97,6 +97,7 @@ const SearchAutoComplete = ({ data, onSelect, navigateCountry }) => {
           name="search"
           className="search-bar"
           autoComplete="off"
+          placeholder="Search by country..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onKeyDown={(e) => keyboardNav(e)}
