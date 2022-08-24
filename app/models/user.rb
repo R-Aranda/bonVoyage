@@ -9,8 +9,10 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :comments
-  has_many :post_likes, dependent: :destroy
+  has_many :post_likes
   has_many :cities
+  has_many :trips
+  has_many :destinations
 
   def admin?
     role == "admin"

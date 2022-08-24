@@ -1,4 +1,3 @@
-
 countries = Country.create([
   {
     name: "Afghanistan"
@@ -610,52 +609,33 @@ countries = Country.create([
 ])
 
 User.create(email: "admin@admin123.com", password: "admin123", role: "admin", username: "Admin")
+User.create(email: "test@test123123.com", password: "3212321", username: "worldTraveler5")
+User.create(email: "aaaa@aaaa.com", password: "tanzania1", username: "paris123")
+User.create(email: "bbb@bbb.com", password: "user32123", username: "NicolasCage")
 
 posts = Post.create([
   {
-    title: "Post about this country",
-    body: "This is a body about that post",
+    title: "What are the best cities to visit?",
+    body: "I'll be travelling to the US soon and would like to know some of the best cities to visit. New York? Chicago? Boston?",
     country: Country.find_by(id: 165),
-    user: User.first
+    user: User.second
   },
   {
-    title: "Another post",
-    body: "The description about this other post",
-    country: Country.find_by(id: 27),
-    user: User.first
+    title: "Which cities to visit other than London?",
+    body: "I'll be visiting London soon but would like to check out a couple other cities. Any suggestions?",
+    country: Country.find_by(id: 57),
+    user: User.third
   },
   {
-    title: "Third Post",
-    body: "Another post about a country",
-    country: Country.find_by(id: 165),
-    user: User.first
+    title: "Booking a safari tour...",
+    body: "Anyone take a safari that they would recommend? How much will it typically cost?",
+    country: Country.find_by(id: 161),
+    user: User.fourth
   },
   {
-    title: "This is a country",
-    body: "asdfkajslbgfklj asdlkfjbsalkdjn asdflkjasndflkjnasdlfkjnalksdfnjas",
+    title: "Best time of year to visit Iceland?",
+    body: "When is the best time of year to visit Iceland to see the Northern Lights? ",
     country: Country.find_by(id: 76),
     user: User.first
   }
 ])
-
-comments = Comment.create([
-  {
-    body: "This is a comment.",
-    post: Post.first,
-    user: User.first
-  },
-  {
-    body: "Here's another comment",
-    post: Post.first,
-    user: User.first
-  },
-  {
-    body: "My comment...",
-    post: Post.third,
-    user: User.first
-  }
-])
-
-
-
-
