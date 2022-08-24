@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { useAsyncFn } from "../../hooks/useAsync";
 import { createCity } from "../../services/city";
 import { useCountry } from "../../contexts/CountryContext";
-import { useNavigate } from "react-router-dom";
 
 const CitySearch = () => {
   const [input, setInput] = useState({
     name: "",
   });
-  const navigate = useNavigate();
   const { loading, error, execute: createCityFn } = useAsyncFn(createCity);
   const { country, createNewCity, cityErrors } = useCountry();
   if (loading) return <h1>Loading</h1>;

@@ -2,6 +2,10 @@ class Api::V1::TripsController < ApiController
   protect_from_forgery unless: -> { request.format.json? }
   skip_before_action :verify_authenticity_token
 
+  def show
+    render json: Trip.find_by(id: params[:id])
+  end
+
   def create 
     trip = Trip.new(trip_params)
     trip.user = current_user
