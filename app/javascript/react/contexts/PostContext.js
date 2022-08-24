@@ -36,12 +36,21 @@ export const PostProvider = ({ children }) => {
     });
   };
 
+  const deleteLocalComment = (deletedComment) => {
+    setComments((prevComments) => {
+      return prevComments.filter(
+        (comment) => comment.id !== deletedComment.commentId
+      );
+    });
+  };
+
   return (
     <Context.Provider
       value={{
         post: { id, ...post },
         comments: comments,
         createLocalComment,
+        deleteLocalComment,
         errors: errors,
         currentUser: currentUser,
       }}

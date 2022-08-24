@@ -162,12 +162,6 @@ body {
   text-align: center;
 }
 
-.landing-page-post-header {
-  font-weight: 600;
-  border-bottom: #7a85ff solid 1px;
-  padding-bottom: 5px;
-}
-
 .post-form-row {
   display: flex;
   gap: 0.5rem;
@@ -247,21 +241,30 @@ body {
   padding-right: 1.5em;
 }
 
-.post-header {
+.post-item-header {
+  font-weight: 600;
+  border-bottom: #7a85ff solid 1px;
+  padding-bottom: 5px;
 }
 
 .post-body {
-  margin-bottom: 10px;
+  margin: 20px;
 }
 
 .post-date {
+  margin-left: auto;
 }
 
 .post-footer {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
-  margin-left: 0.5rem;
+  border-top: #7a85ff solid 1px;
+  padding-top: 0.5rem;
+}
+
+.footer-username {
+  color: #5765ff;
 }
 /* Comments */
 
@@ -316,20 +319,14 @@ body {
 
 .comment-date {
   color: #5765ff;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.25rem;
-  font-size: 0.75em;
+  text-align: center;
 }
 
 .comment-body {
   white-space: pre-wrap;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-}
-
-.comment-date {
-  margin-left: 0.5rem;
+  margin-bottom: 0.5em;
 }
 
 .comment-footer {
@@ -337,6 +334,8 @@ body {
   gap: 0.5rem;
   margin-top: 0.5rem;
   margin-left: 0.5rem;
+  border-top: #7a85ff solid 1px;
+  padding-top: 0.5rem;
 }
 
 .comment-icon {
@@ -346,6 +345,7 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .trash {
@@ -359,6 +359,7 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .heart-icon-liked {
@@ -368,12 +369,23 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .like-count {
   color: #5765ff;
   margin-left: -7px;
   font-weight: 500;
+  font-size: 18px;
+}
+
+.reply-count {
+  color: #5765ff;
+  font-weight: 500;
+  font-size: 17px;
+  margin-top: 0.5px;
+  margin-right: 2%;
+  margin-left: auto;
 }
 
 .comment-icon:hover,

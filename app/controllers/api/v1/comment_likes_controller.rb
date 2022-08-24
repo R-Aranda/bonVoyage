@@ -3,8 +3,7 @@ class Api::V1::CommentLikesController < ApiController
   before_action :authenticate_user
 
   def create
-    prev_like = CommentLike.find_by(user_id: current_user.id, comment_id: params[:comment_id])
-
+    prev_like = CommentLike.find_by(user_id: current_user.id, comment_id: params[:comment_id], liked: params[:liked])
     if prev_like
       prev_like.destroy
       liked = false
@@ -20,6 +19,8 @@ class Api::V1::CommentLikesController < ApiController
       end
     end
   end
+
+  
 
   private
 

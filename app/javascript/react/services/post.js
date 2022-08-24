@@ -20,10 +20,3 @@ export const deletePost = (id) => {
     method: "DELETE",
   });
 };
-
-export const likePost = (message) => {
-  makeRequest("/post_likes", {
-    method: "POST",
-    data: message,
-  });
-};

@@ -15,7 +15,6 @@ const PostItem = ({ post, currentUser }) => {
 
   const handleDelete = () => {
     onDeletePost.execute(post.id).then((post) => {
-      console.log(post);
       deleteLocalPost(post);
     });
   };
@@ -59,16 +58,9 @@ const PostItem = ({ post, currentUser }) => {
   return (
     <div className="post-item">
       <Link to={`posts/${post.id}`} className="post-header">
-        <h4>{post.title}</h4>
+        <h4 className="post-item-header">{post.title}</h4>
       </Link>
       <div className="post-body">{post.body}</div>
-      <div className="post-date">
-        Posted by: <strong>{post.user?.username}</strong>{" "}
-        {moment(post.created_at)
-          .local()
-          .startOf("seconds")
-          .fromNow()}
-      </div>
       <div className="post-footer">
         <FontAwesomeIcon
           onClick={handleLike}
@@ -91,6 +83,21 @@ const PostItem = ({ post, currentUser }) => {
               icon="fa-solid fa-trash-can"
             />
           </Fragment>
+        )}
+        <div className="post-date">
+          Posted by{" "}
+          <strong className="footer-username">{post.user?.username}</strong>{" "}
+          {moment(post.created_at)
+            .local()
+            .startOf("seconds")
+            .fromNow()}
+        </div>
+        {post.comments.length === 1 ? (
+          <span className="reply-count">{post.comments.length} reply</span>
+        ) : post.comments.length > 1 ? (
+          <span className="reply-count">{post.comments.length} replies </span>
+        ) : (
+          ""
         )}
       </div>
     </div>

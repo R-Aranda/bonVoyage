@@ -7,3 +7,9 @@ export const createComment = ({ message, postId }) => {
     data: message,
   });
 };
+
+export const deleteComment = (id) => {
+  return makeRequest(`/comments/${id}`, {
+    method: "DELETE",
+  });
+};

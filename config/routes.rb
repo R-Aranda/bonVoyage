@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :countries, only: [:index, :show, :create], param: :slug
       resources :posts, only: [:index, :show, :create, :destroy], param: :id
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :destroy]
       resources :post_likes, only: [:create]
       resources :comment_likes, only: [:create]
       resources :cities, only: [:show, :index, :create]

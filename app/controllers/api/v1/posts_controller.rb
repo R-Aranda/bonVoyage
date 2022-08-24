@@ -26,7 +26,7 @@ class Api::V1::PostsController < ApiController
     post = Post.find(params[:id])
 
     if post.destroy
-      render json: {postId: post.id, status: 200}
+      render json: {postId: post.id, status: 204}
     else
       render json: { error: "Unable to delete post", status: :not_implemented }
     end

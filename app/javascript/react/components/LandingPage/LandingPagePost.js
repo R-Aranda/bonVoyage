@@ -50,7 +50,7 @@ const LandingPagePost = ({ post, currentUser }) => {
         className="landing-page-post-link"
         to={`countries/${post.country.slug}`}
       >
-        <h4 className="landing-page-post-header">{post.country.name}</h4>
+        <h4 className="post-item-header">{post.country.name}</h4>
       </Link>
       <Link
         to={`countries/${post.country.slug}/posts/${post.id}`}
@@ -59,14 +59,8 @@ const LandingPagePost = ({ post, currentUser }) => {
         <h4>{post.title}</h4>
       </Link>
       <div className="post-body">{post.body}</div>
-      <div className="post-date">
-        Posted by: <strong>{post.user?.username}</strong>{" "}
-        {moment(post.created_at)
-          .local()
-          .startOf("seconds")
-          .fromNow()}
-      </div>
-      <div className="post-footer">
+
+      <div className="post-footer grid-x">
         <FontAwesomeIcon
           onClick={handleLike}
           className={heartColor}
@@ -83,6 +77,30 @@ const LandingPagePost = ({ post, currentUser }) => {
               icon="fa-solid fa-pen-to-square"
             />
           </Fragment>
+        )}
+        <span className="post-date cell small-6 align-middle">
+          Posted by{" "}
+          <strong className="footer-username">{post.user?.username}</strong>{" "}
+          {moment(post.created_at)
+            .local()
+            .startOf("seconds")
+            .fromNow()}
+        </span>
+
+        {post.comments.length === 1 ? (
+          <span className="reply-count">
+            <Link to={`countries/${post.country.slug}/posts/${post.id}`}>
+              {post.comments.length} reply
+            </Link>
+          </span>
+        ) : post.comments.length > 1 ? (
+          <span className="reply-count">
+            <Link to={`countries/${post.country.slug}/posts/${post.id}`}>
+              {post.comments.length} replies{" "}
+            </Link>
+          </span>
+        ) : (
+          ""
         )}
       </div>
     </div>
