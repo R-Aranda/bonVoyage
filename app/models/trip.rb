@@ -1,5 +1,5 @@
 class Trip < ApplicationRecord
  has_many :destinations, dependent: :destroy 
- 
-  belongs_to :user
+  accepts_nested_attributes_for :destinations
+belongs_to :user
 end

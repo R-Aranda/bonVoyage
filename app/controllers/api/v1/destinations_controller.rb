@@ -3,6 +3,7 @@ class Api::V1::DestinationsController < ApiController
   skip_before_action :verify_authenticity_token
 
   def create 
+    binding.pry
     destination = Destination.new()
     destination.user = current_user
     destination.city = City.find_by(name: params[:city_id])
@@ -17,7 +18,5 @@ class Api::V1::DestinationsController < ApiController
 
   private
 
-  def destination_params 
-    params.require(:destination).permit(:name)
-  end
+  
 end

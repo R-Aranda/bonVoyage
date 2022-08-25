@@ -4,63 +4,27 @@ import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 import Select from "react-select";
 import { makeRequest } from "../../services/makeRequest";
-import TripPlanner from "./TripPlanner";
 import { createCity } from "../../services/city";
 
 import { useAsyncFn } from "../../hooks/useAsync";
 
 const TripForm = () => {
   const [errors, setErrors] = useState([]);
-  const [data, setData] = useState();
-  const [destCounter, setDestCounter] = useState(0);
-  const [trip, setTrip] = useState();
-  const { execute: createCityFn } = useAsyncFn(createCity);
 
   const submitTrip = (values) => {
     return makeRequest("/trips", {
       method: "POST",
       data: values,
-    });
+    }).then((res) => console.log(res));
   };
 
   const ReactSelectAdapter = ({ input, ...rest }) => (
     <Select {...input} {...rest} />
   );
 
-  const submitDestination = (values) => {
-    return makeRequest("/destinations", {
-      method: "POST",
-      data: values,
-    }).then((res) => console.log("Trip created successfully", res));
-  };
-
   const onSubmit = (values) => {
-    setData(values.destinations);
-    setTrip(values.name);
-    values.destinations.forEach((dest) => {
-      let message = { name: dest.city };
-      createCityFn({ message, countryId: dest.country.value }).then((res) => {
-        if (res.id) {
-          setDestCounter(destCounter + 1);
-        } else if (res?.status === 400) {
-          setErrors(errors.concat(res.input));
-        }
-      });
-    });
+    submitTrip(values);
   };
-
-  useEffect(() => {
-    if (destCounter === data?.length && data?.length != 0) {
-      submitTrip({ trip_name: trip }).then((res) => {
-        data.forEach((dest) => {
-          submitDestination({
-            city_id: dest.city,
-            trip_id: res.trip.id,
-          });
-        });
-      });
-    }
-  }, [destCounter]);
 
   const options = [{ value: 165, label: "United States" }];
   return (
@@ -92,7 +56,7 @@ const TripForm = () => {
             <form onSubmit={handleSubmit}>
               <div>
                 <label>Trip Name</label>
-                <Field name="name" component="input" />
+                <Field name="trip_name" component="input" />
               </div>
               <div className="buttons">
                 <button
