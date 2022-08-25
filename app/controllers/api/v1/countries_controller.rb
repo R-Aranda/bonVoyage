@@ -3,7 +3,7 @@ class Api::V1::CountriesController < ApiController
   before_action :authorize_user, except: [:index, :show]
 
   def index
-    render json: Country.order('RANDOM()').limit(10)
+    render json: Country.all
   end
 
   def show
