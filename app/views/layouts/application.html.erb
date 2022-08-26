@@ -18,6 +18,9 @@
 
   <%= javascript_include_tag 'application' %>
   
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&libraries=places"%>
+  
+  
   <%- if Rails.env.development? || Rails.env.test? -%> 
     <%= javascript_tag do %>
       window.railsEnv = '<%= Rails.env %>'
