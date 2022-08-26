@@ -13,6 +13,7 @@ class CitiesClient
   end
 
   def self.get_data(data, country, name)
+
     if data.to_a[0].include?("No city found")
       return ["No City Found"]
     else 
@@ -23,6 +24,7 @@ class CitiesClient
       end
       return ["No City Found"]
     end
+    binding.pry
   end
 
   def self.verify_city(city, city_params, current_user, input)

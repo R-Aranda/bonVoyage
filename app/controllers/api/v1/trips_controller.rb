@@ -16,8 +16,8 @@ class Api::V1::TripsController < ApiController
     #   Destinations.insert_all(params[:destinations])
     #   binding.pry
     trip = TripValidator.trip(params, current_user)
-
-    render json: {trip: trip, status: "all good"}
+    binding.pry
+    render json: {response: trip, status: "all good"}
 
     # ActiveRecord::Base.transaction do
     #   trip = Trip.new(trip_params)
