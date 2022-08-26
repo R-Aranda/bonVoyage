@@ -1,15 +1,17 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 import Select from "react-select";
 import { makeRequest } from "../../services/makeRequest";
-import { createCity } from "../../services/city";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 import { useAsyncFn } from "../../hooks/useAsync";
 
 const TripForm = () => {
   const [errors, setErrors] = useState([]);
+  // const autoCompleteRef = useRef();
+  // const inputRef = useRef();
 
   const submitTrip = (values) => {
     return makeRequest("/trips", {
@@ -18,15 +20,19 @@ const TripForm = () => {
     }).then((res) => console.log(res));
   };
 
-  const ReactSelectAdapter = ({ input, ...rest }) => (
-    <Select {...input} {...rest} />
+  const ReactGoogleAdapter = ({ input, ...rest }) => (
+    <GooglePlacesAutocomplete {...input} {...rest} />
   );
 
   const onSubmit = (values) => {
-    submitTrip(values);
+    console.log(values);
   };
 
-  const options = [{ value: 165, label: "United States" }];
+  const autoCompleteOptions = {
+    types: ["locality"],
+    componentRestrictions: { country: "US" },
+  };
+
   return (
     <Fragment>
       {errors?.length > 0 && (
@@ -79,16 +85,32 @@ const TripForm = () => {
                   fields.map((name, index) => (
                     <div key={name}>
                       <label>Destination {index + 1}</label>
-                      <Field
-                        name={`${name}.country`}
-                        component={ReactSelectAdapter}
-                        options={options}
-                      />
-                      <Field
-                        name={`${name}.city`}
-                        component="input"
-                        placeholder="City"
-                      />
+                      <Field name={`${name}.city`} type="text">
+                        {({ input, meta }) => (
+                          <div style={{ width: "100%" }}>
+                            <GooglePlacesAutocomplete
+                              selectProps={{
+                                value: input.value,
+                                onChange: (e) => {
+                                  input.onChange(e.label);
+                                },
+                              }}
+                              autocompletionRequest={{
+                                componentRestrictions: {
+                                  // country: [values.group_country && values.group_country.value]
+                                  country: ["CA", "GB", "US"],
+                                },
+                                types: ["(cities)"],
+                              }}
+                            />
+                            {meta.error && meta.touched && (
+                              <span className="text-danger small block">
+                                {meta.error}
+                              </span>
+                            )}
+                          </div>
+                        )}
+                      </Field>
                       <span
                         onClick={() => fields.remove(index)}
                         style={{ cursor: "pointer" }}
