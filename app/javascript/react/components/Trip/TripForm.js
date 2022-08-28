@@ -10,6 +10,7 @@ import { useAsyncFn } from "../../hooks/useAsync";
 
 const TripForm = () => {
   const [errors, setErrors] = useState([]);
+  const [selectedValue, setSelectedValue] = useState([]);
   // const autoCompleteRef = useRef();
   // const inputRef = useRef();
 
@@ -20,8 +21,12 @@ const TripForm = () => {
     }).then((res) => console.log(res));
   };
 
-  const ReactGoogleAdapter = ({ input, ...rest }) => (
-    <GooglePlacesAutocomplete {...input} {...rest} />
+  const ReactGoogleAdapter = ({ input, meta, ...props }) => (
+    <GooglePlacesAutocomplete
+      autocompletionRequest={{
+        types: ["(cities)"],
+      }}
+    />
   );
 
   const onSubmit = (values) => {
@@ -33,6 +38,7 @@ const TripForm = () => {
     componentRestrictions: { country: "US" },
   };
 
+  console.log(selectedValue);
   return (
     <Fragment>
       {errors?.length > 0 && (
@@ -83,38 +89,14 @@ const TripForm = () => {
               <FieldArray name="destinations">
                 {({ fields }) =>
                   fields.map((name, index) => (
-                    <div key={name}>
+                    <div key={index}>
                       <label>Destination {index + 1}</label>
-                      <Field name={`${name}.city`} type="text">
-                        {({ input, meta }) => (
-                          <div style={{ width: "100%" }}>
-                            <GooglePlacesAutocomplete
-                              selectProps={{
-                                value: input.value,
-                                onChange: (e) => {
-                                  input.onChange(e.label);
-                                },
-                              }}
-                              autocompletionRequest={{
-                                componentRestrictions: {
-                                  // country: [values.group_country && values.group_country.value]
-                                  country: ["CA", "GB", "US"],
-                                },
-                                types: ["(cities)"],
-                              }}
-                            />
-                            {meta.error && meta.touched && (
-                              <span className="text-danger small block">
-                                {meta.error}
-                              </span>
-                            )}
-                          </div>
-                        )}
-                      </Field>
-                      <span
-                        onClick={() => fields.remove(index)}
-                        style={{ cursor: "pointer" }}
-                      ></span>
+
+                      <Field
+                        name={`${name}.city`}
+                        type="text"
+                        component={ReactGoogleAdapter}
+                      />
                     </div>
                   ))
                 }
