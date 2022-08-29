@@ -6,7 +6,7 @@ const NewForm = () => {
   const autoCompleteRef = useRef();
   const inputRef = useRef();
 
-  const handleAddFields = () => {
+  const handleAddFields = (props) => {
     const values = [...inputFields];
     values.push({ city: "" });
     setInputFields(values);
@@ -18,15 +18,15 @@ const NewForm = () => {
     setInputFields(values);
   };
 
-  const handleInputChange = (index, event) => {
-    // debugger;
-    const values = [...inputFields];
-    if (event.target.name === "city") {
-      values[index].city = event.target.value;
-    }
+  // const handleInputChange = (index, event) => {
+  //   // debugger;
+  //   const values = [...inputFields];
+  //   if (event.target.name === "city") {
+  //     values[index].city = event.target.value;
+  //   }
 
-    setInputFields(values);
-  };
+  //   setInputFields(values);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,21 +34,45 @@ const NewForm = () => {
     alert(JSON.stringify(inputFields, null, 2));
   };
 
+  // useEffect(() => {
+  //   autoCompleteRef.current = new window.google.maps.places.Autocomplete(
+  //     inputRef.current,
+  //     options
+  //   );
+  //   autoCompleteRef.current.addListener("place_changed", async function() {
+  //     const place = await autoCompleteRef.current.getPlace();
+  //     console.log({ place });
+  //   });
+  // }, []);
+
+  const inputs = document.getElementsByClassName("query");
+  console.log(inputs);
+
   const options = {
     types: ["locality"],
     componentRestrictions: { country: "US" },
   };
 
+  const autoCompleteArray = [];
+
   useEffect(() => {
-    autoCompleteRef.current = new window.google.maps.places.Autocomplete(
-      inputRef.current,
-      options
-    );
-    autoCompleteRef.current.addListener("place_changed", async function() {
-      const place = await autoCompleteRef.current.getPlace();
-      console.log({ place });
-    });
-  }, []);
+    for (let i = 0; i < inputs.length; i++) {
+      const autoComplete = new window.google.maps.places.Autocomplete(
+        inputs[i],
+        options
+      );
+
+      autoComplete.inputId = inputs[i].id;
+      autoComplete.addListener("place_changed", fillIn);
+      autoCompleteArray.push(autoComplete);
+    }
+  }, [handleAddFields]);
+
+  const fillIn = () => {
+    console.log(this.inputId);
+    const place = this.getPlace();
+    console.log(place.address_components[0].long_name);
+  };
 
   const resetForm = (e) => setInputFields([{ city: "" }]);
 
@@ -60,10 +84,11 @@ const NewForm = () => {
             <Fragment key={`${inputField}~${index}`}>
               <div className="form-group col-sm-6">
                 <label htmlFor="city">City</label>
-                <GooglePlacesAutocomplete
-                  autocompletionRequest={{
-                    types: ["(cities)"],
-                  }}
+                <input
+                  id={index}
+                  className="query"
+                  type="text"
+                  autoComplete="on"
                 />
               </div>
               <div className="form-group col-sm-2">
