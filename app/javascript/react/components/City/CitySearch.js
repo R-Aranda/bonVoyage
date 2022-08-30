@@ -8,7 +8,7 @@ const CitySearch = () => {
   const [input, setInput] = useState({
     name: "",
   });
-  const navigate = useNavigate();
+
   const { loading, error, execute: createCityFn } = useAsyncFn(createCity);
   const { country, createNewCity, cityErrors } = useCountry();
   if (loading) return <h1>Loading</h1>;
