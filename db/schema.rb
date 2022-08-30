@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_22_192846) do
+ActiveRecord::Schema.define(version: 2022_08_24_190129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2022_08_22_192846) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "destinations", force: :cascade do |t|
+    t.bigint "city_id", null: false
+    t.bigint "trip_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["city_id"], name: "index_destinations_on_city_id"
+    t.index ["trip_id"], name: "index_destinations_on_trip_id"
+    t.index ["user_id"], name: "index_destinations_on_user_id"
+  end
+
   create_table "post_likes", force: :cascade do |t|
     t.bigint "post_id"
     t.bigint "user_id"
@@ -76,6 +85,12 @@ ActiveRecord::Schema.define(version: 2022_08_22_192846) do
     t.bigint "user_id"
     t.index ["country_id"], name: "index_posts_on_country_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.string "trip_name", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,7 +114,11 @@ ActiveRecord::Schema.define(version: 2022_08_22_192846) do
   add_foreign_key "comment_likes", "comments"
   add_foreign_key "comment_likes", "users"
   add_foreign_key "comments", "posts"
+  add_foreign_key "destinations", "cities"
+  add_foreign_key "destinations", "trips"
+  add_foreign_key "destinations", "users"
   add_foreign_key "post_likes", "posts"
   add_foreign_key "post_likes", "users"
   add_foreign_key "posts", "countries"
+  add_foreign_key "trips", "users"
 end
