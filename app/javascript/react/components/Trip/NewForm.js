@@ -1,10 +1,10 @@
 import React, { useState, Fragment, useEffect, useRef } from "react";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import { makeRequest } from "../../services/makeRequest";
 
 const NewForm = () => {
   const [inputFields, setInputFields] = useState([{ city: "" }]);
   const autoCompleteRef = useRef();
-  const inputRef = useRef();
+  const [destinations, setDestinations] = useState([]);
 
   const handleAddFields = (props) => {
     const values = [...inputFields];
@@ -16,80 +16,60 @@ const NewForm = () => {
     const values = [...inputFields];
     values.splice(index, 1);
     setInputFields(values);
+    setDestinations(destinations.slice(0, -1));
   };
-
-  // const handleInputChange = (index, event) => {
-  //   // debugger;
-  //   const values = [...inputFields];
-  //   if (event.target.name === "city") {
-  //     values[index].city = event.target.value;
-  //   }
-
-  //   setInputFields(values);
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // handle form submission here
-    alert(JSON.stringify(inputFields, null, 2));
+    submitTrip(JSON.stringify(destinations));
   };
 
-  // useEffect(() => {
-  //   autoCompleteRef.current = new window.google.maps.places.Autocomplete(
-  //     inputRef.current,
-  //     options
-  //   );
-  //   autoCompleteRef.current.addListener("place_changed", async function() {
-  //     const place = await autoCompleteRef.current.getPlace();
-  //     console.log({ place });
-  //   });
-  // }, []);
+  const submitTrip = (values) => {
+    return makeRequest("/trips", {
+      method: "POST",
+      data: values,
+    }).then((res) => console.log(res));
+  };
 
   const inputs = document.getElementsByClassName("query");
-  console.log(inputs);
 
   const options = {
     types: ["locality"],
     componentRestrictions: { country: "US" },
   };
 
-  const autoCompleteArray = [];
-
   useEffect(() => {
     for (let i = 0; i < inputs.length; i++) {
-      const autoComplete = new window.google.maps.places.Autocomplete(
+      autoCompleteRef.current = new window.google.maps.places.Autocomplete(
         inputs[i],
         options
       );
-
-      autoComplete.inputId = inputs[i].id;
-      autoComplete.addListener("place_changed", fillIn);
-      autoCompleteArray.push(autoComplete);
+      autoCompleteRef.current.addListener("place_changed", async function() {
+        const place = await autoCompleteRef.current.getPlace();
+        setDestinations(destinations.concat({ place }));
+      });
     }
   }, [handleAddFields]);
 
-  const fillIn = () => {
-    console.log(this.inputId);
-    const place = this.getPlace();
-    console.log(place.address_components[0].long_name);
+  const resetForm = (e) => {
+    setInputFields([{ city: "" }]);
   };
 
-  const resetForm = (e) => setInputFields([{ city: "" }]);
-
   return (
-    <>
+    <Fragment>
       <form onSubmit={handleSubmit}>
-        <div className="form-row">
+        <div className="form">
+          <label>
+            Trip Name
+            <input type="text" className="trip_name" />
+          </label>
           {inputFields.map((inputField, index) => (
             <Fragment key={`${inputField}~${index}`}>
               <div className="form-group col-sm-6">
-                <label htmlFor="city">City</label>
-                <input
-                  id={index}
-                  className="query"
-                  type="text"
-                  autoComplete="on"
-                />
+                <label>
+                  City
+                  <input id={index} className="query" type="text" />
+                </label>
               </div>
               <div className="form-group col-sm-2">
                 <button
@@ -113,16 +93,14 @@ const NewForm = () => {
         </div>
         <div className="submit-button">
           <button className="button" type="submit" onSubmit={handleSubmit}>
-            Save
+            Submit
           </button>
           <button className="button" type="reset" onClick={resetForm}>
             Reset Form
           </button>
         </div>
-        <br />
-        <pre>{JSON.stringify(inputFields, null, 2)}</pre>
       </form>
-    </>
+    </Fragment>
   );
 };
 
