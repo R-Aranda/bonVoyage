@@ -91,7 +91,6 @@ const TripForm = () => {
                   fields.map((name, index) => (
                     <div key={index}>
                       <label>Destination {index + 1}</label>
-
                       <Field
                         name={`${name}.city`}
                         type="text"
