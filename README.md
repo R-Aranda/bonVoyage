@@ -2,6 +2,8 @@
 
 (This was completed as a capstone project while at Launch Academy)
 
+[Link to Heroku Site](https://travel-app123.herokuapp.com/)
+
 bonVoyage is a traveler’s social media platform where users can connect with one another and plan their next trip by discovering new destinations. On the landing page, a user is able to utilize an interactive world map which redirects them to the selected country's show page where they can post questions about a planned upcoming trip. Information about popular cities with suggested destinations and forms to search for flights and hotels can be found across the site. bonVoyage is a perfect resource for any individual looking for information on their next travel destination.
 
 ---
