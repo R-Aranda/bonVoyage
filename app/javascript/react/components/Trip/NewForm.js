@@ -5,6 +5,14 @@ const NewForm = () => {
   const [inputFields, setInputFields] = useState([{ city: "" }]);
   const autoCompleteRef = useRef();
   const [destinations, setDestinations] = useState([]);
+  const [tripName, setTripName] = useState({});
+
+  const handleTripInput = (e) => {
+    setTripName({
+      ...tripName,
+      trip: e.currentTarget.value,
+    });
+  };
 
   const handleAddFields = (props) => {
     const values = [...inputFields];
@@ -21,7 +29,7 @@ const NewForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitTrip(JSON.stringify(destinations));
+    submitTrip({ trip_name: tripName, destinations: destinations });
   };
 
   const submitTrip = (values) => {
@@ -35,7 +43,6 @@ const NewForm = () => {
 
   const options = {
     types: ["locality"],
-    componentRestrictions: { country: "US" },
   };
 
   useEffect(() => {
@@ -46,7 +53,18 @@ const NewForm = () => {
       );
       autoCompleteRef.current.addListener("place_changed", async function() {
         const place = await autoCompleteRef.current.getPlace();
-        setDestinations(destinations.concat({ place }));
+        let location = place.formatted_address;
+        let cityName = place.name;
+        let country =
+          place.address_components[place.address_components.length - 1];
+
+        setDestinations(
+          destinations.concat({
+            location: location,
+            city: cityName,
+            country: country,
+          })
+        );
       });
     }
   }, [handleAddFields]);
@@ -61,7 +79,11 @@ const NewForm = () => {
         <div className="form">
           <label>
             Trip Name
-            <input type="text" className="trip_name" />
+            <input
+              type="text"
+              className="trip_name"
+              onChange={handleTripInput}
+            />
           </label>
           {inputFields.map((inputField, index) => (
             <Fragment key={`${inputField}~${index}`}>
