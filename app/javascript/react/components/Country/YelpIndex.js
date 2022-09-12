@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import data from "./yelpdummydata";
 
 const YelpIndex = ({ yelpArray }) => {
   let yelpItems;

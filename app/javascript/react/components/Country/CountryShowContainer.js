@@ -7,11 +7,6 @@ import CitiesIndex from "../City/CitiesIndex";
 
 const CountryShowContainer = () => {
   const { country } = useCountry();
-  const testPhoto =
-    "https://images.unsplash.com/photo-1482192505345-5655af888cc4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2456&q=80";
-
-  const testPhoto2 =
-    "https://images.unsplash.com/photo-1517949908114-71669a64d885?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTYxODJ8MHwxfHNlYXJjaHwxfHxDYW5hZGF8ZW58MHx8fHwxNjYwOTQ1MDA4&ixlib=rb-1.2.1&q=80&w=1080&utm_source=ruperts_travel_app&utm_medium=referral&utm_campaign=api-credit";
 
   const headerPhoto = {
     background: "url(" + `${country.photo.photo}` + ")",
