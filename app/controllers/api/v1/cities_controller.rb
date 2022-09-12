@@ -28,7 +28,7 @@ class Api::V1::CitiesController < ApiController
     city_data = CitiesClient.request_cities(params[:name])
     country = Country.find_by(id: params[:country_id])
     city = CitiesClient.get_data(city_data, country.name, params[:name])
-    verified_city = CitiesClient.verify_city(city, city_params, current_user)
+    verified_city = CitiesClient.verify_city(city, city_params, current_user, [params[:name]])
   end
 
   def slugify(city)

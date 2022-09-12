@@ -6,6 +6,7 @@ class City < ApplicationRecord
   
   belongs_to :country
   belongs_to :user
+  has_many :destinations
   before_create :slugify
 
   def slugify

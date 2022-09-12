@@ -6,7 +6,6 @@ class CitiesClient
     headers = {
       "apikey": ENV['GEOGRAPHY_API_KEY']
     }
-    # city_url = city.parameterize(separator: '%20')
     url = Addressable::URI.parse("https://api.apilayer.com/geo/city/name/#{city}").display_uri.to_s
     @response = HTTParty.get(url, headers: headers)
     cities = JSON.parse(@response.body)
@@ -25,12 +24,12 @@ class CitiesClient
     end
   end
 
-  def self.verify_city(city, city_params, current_user)
+  def self.verify_city(city, city_params, current_user, input)
     if city[0] === "No City Found"
-      return {error: "That city was not found", status: 400}
+      return {error: "That city was not found", status: 400, input: input}
     elsif 
-      City.exists?(name: city_params["name"])
-      {error: "That city already exists", status: 400}
+      City.exists?(name: city_params[:name])
+      return City.find_by(name: city_params[:name])
     else
       new_city = City.new(city_params)
       new_city.user = current_user

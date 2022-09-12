@@ -11,6 +11,8 @@ import Footer from "./Layout/Footer";
 import TopBar from "./Layout/TopBar";
 import { getUser } from "../services/user";
 import { useAsync } from "../hooks/useAsync";
+import TripForm from "./Trip/TripForm";
+import NewForm from "./Trip/NewForm";
 
 export const App = () => {
   const { value: currentUser } = useAsync(() => getUser(), []);
@@ -48,7 +50,7 @@ export const App = () => {
               </PostProvider>
             }
           />
-          <Route exact path="/test" element={<TopBar />} />
+
           <Route
             exact
             path="/"
