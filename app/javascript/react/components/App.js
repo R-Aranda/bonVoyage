@@ -50,7 +50,7 @@ export const App = () => {
               </PostProvider>
             }
           />
-
+          <Route exact path="/test" element={<NewForm />} />
           <Route
             exact
             path="/"
