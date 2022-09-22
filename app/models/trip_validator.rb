@@ -19,7 +19,9 @@ class TripValidator
           else
             destination = Destination.new(trip_id: trip.id, city_id: city.id)
             destination.user = current_user
+            destination.name = city.name
             destination.save!
+            binding.pry
             dest_array << destination
           end
         end
