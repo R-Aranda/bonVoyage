@@ -1,9 +1,9 @@
 import React from "react";
 
-const TripShow = () => {
+const TripShow = ({ currentUser }) => {
   return (
     <div>
-      <div>Test</div>
+      <div>{currentUser?.trips[0].trip_name}</div>
     </div>
   );
 };

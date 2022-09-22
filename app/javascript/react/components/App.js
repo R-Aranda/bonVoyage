@@ -50,7 +50,11 @@ export const App = () => {
               </PostProvider>
             }
           />
-          <Route exact path=":user/trip" element={<TripShow />} />
+          <Route
+            exact
+            path=":user/trip"
+            element={<TripShow currentUser={currentUser} />}
+          />
           <Route
             exact
             path="/new-trip"
