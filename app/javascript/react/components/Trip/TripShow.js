@@ -11,7 +11,6 @@ const TripShow = ({ currentUser }) => {
       const response = await axios.get(
         `/api/v1/trips/${currentUser?.trips[currentUser?.trips.length - 1].id}`
       );
-
       const data = response.data;
       setTrip(data);
       setDestinations(data?.destinations);

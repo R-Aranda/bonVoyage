@@ -46,7 +46,10 @@ const NewTrip = ({ currentUser }) => {
       if (res.errors) {
         setErrors(res.errors);
       } else if (res.status === 200) {
-        navigate(`/${currentUser.id}/trip`);
+        // navigate(
+        //   `/users/${currentUser.username}/trips/${res.response.trip.id}`
+        // );
+        window.location.href = `/users/${currentUser.username}/trips/${res.response.trip.id}`;
       }
     });
   };

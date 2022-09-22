@@ -52,7 +52,7 @@ export const App = () => {
           />
           <Route
             exact
-            path=":user/trip"
+            path="/users/:username/trips/:id"
             element={<TripShow currentUser={currentUser} />}
           />
           <Route

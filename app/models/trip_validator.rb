@@ -21,7 +21,6 @@ class TripValidator
             destination.user = current_user
             destination.name = city.name
             destination.save!
-            binding.pry
             dest_array << destination
           end
         end
