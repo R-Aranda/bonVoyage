@@ -2,7 +2,7 @@ import React, { useState, Fragment, useEffect, useRef } from "react";
 import { makeRequest } from "../../services/makeRequest";
 import { useNavigate } from "react-router-dom";
 
-const NewForm = ({ currentUser }) => {
+const NewTrip = ({ currentUser }) => {
   const [inputFields, setInputFields] = useState([{ city: "" }]);
   const autoCompleteRef = useRef();
   const [destinations, setDestinations] = useState([]);
@@ -138,4 +138,4 @@ const NewForm = ({ currentUser }) => {
   );
 };
 
-export default NewForm;
+export default NewTrip;

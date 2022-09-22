@@ -12,7 +12,7 @@ import TopBar from "./Layout/TopBar";
 import { getUser } from "../services/user";
 import { useAsync } from "../hooks/useAsync";
 import TripShow from "./Trip/TripShow";
-import NewForm from "./Trip/NewForm";
+import NewTrip from "./Trip/NewTrip";
 
 export const App = () => {
   const { value: currentUser } = useAsync(() => getUser(), []);
@@ -53,8 +53,8 @@ export const App = () => {
           <Route exact path=":user/trip" element={<TripShow />} />
           <Route
             exact
-            path="/test"
-            element={<NewForm currentUser={currentUser} />}
+            path="/new-trip"
+            element={<NewTrip currentUser={currentUser} />}
           />
           <Route
             exact
