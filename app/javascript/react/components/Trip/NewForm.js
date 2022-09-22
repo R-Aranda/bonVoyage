@@ -1,11 +1,14 @@
 import React, { useState, Fragment, useEffect, useRef } from "react";
 import { makeRequest } from "../../services/makeRequest";
+import { useNavigate } from "react-router-dom";
 
-const NewForm = () => {
+const NewForm = ({ currentUser }) => {
   const [inputFields, setInputFields] = useState([{ city: "" }]);
   const autoCompleteRef = useRef();
   const [destinations, setDestinations] = useState([]);
   const [tripName, setTripName] = useState({});
+  const [errors, setErrors] = useState("");
+  const navigate = useNavigate();
 
   const handleTripInput = (e) => {
     setTripName({
@@ -29,14 +32,23 @@ const NewForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitTrip({ trip_name: tripName, destinations: destinations });
+    submitTrip({
+      trip_name: tripName,
+      destinations: destinations,
+    });
   };
 
   const submitTrip = (values) => {
     return makeRequest("/trips", {
       method: "POST",
       data: values,
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      if (res.errors) {
+        setErrors(res.errors);
+      } else if (res.status === 200) {
+        navigate(`/${currentUser.id}/trip`);
+      }
+    });
   };
 
   const inputs = document.getElementsByClassName("query");
@@ -75,6 +87,7 @@ const NewForm = () => {
 
   return (
     <Fragment>
+      {errors && <div>{errors}</div>}
       <form onSubmit={handleSubmit}>
         <div className="form">
           <label>
@@ -89,29 +102,28 @@ const NewForm = () => {
             <Fragment key={`${inputField}~${index}`}>
               <div className="form-group col-sm-6">
                 <label>
-                  City
+                  {index === 0 ? "Departing City" : `City #${index}`}
                   <input id={index} className="query" type="text" />
                 </label>
               </div>
-              <div className="form-group col-sm-2">
-                <button
-                  className="button"
-                  type="button"
-                  disabled={index === 0}
-                  onClick={() => handleRemoveFields(index)}
-                >
-                  -
-                </button>
-                <button
-                  className="button"
-                  type="button"
-                  onClick={() => handleAddFields()}
-                >
-                  +
-                </button>
-              </div>
             </Fragment>
           ))}
+          <div className="form-group col-sm-2">
+            <button
+              className="button"
+              type="button"
+              onClick={() => handleRemoveFields(inputs.length - 1)}
+            >
+              -
+            </button>
+            <button
+              className="button"
+              type="button"
+              onClick={() => handleAddFields()}
+            >
+              +
+            </button>
+          </div>
         </div>
         <div className="submit-button">
           <button className="button" type="submit" onSubmit={handleSubmit}>

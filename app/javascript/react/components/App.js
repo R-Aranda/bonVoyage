@@ -11,7 +11,7 @@ import Footer from "./Layout/Footer";
 import TopBar from "./Layout/TopBar";
 import { getUser } from "../services/user";
 import { useAsync } from "../hooks/useAsync";
-import TripForm from "./Trip/TripForm";
+import TripShow from "./Trip/TripShow";
 import NewForm from "./Trip/NewForm";
 
 export const App = () => {
@@ -50,7 +50,12 @@ export const App = () => {
               </PostProvider>
             }
           />
-          <Route exact path="/test" element={<NewForm />} />
+          <Route exact path=":user/trip" element={<TripShow />} />
+          <Route
+            exact
+            path="/test"
+            element={<NewForm currentUser={currentUser} />}
+          />
           <Route
             exact
             path="/"
