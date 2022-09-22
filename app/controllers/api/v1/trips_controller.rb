@@ -7,10 +7,14 @@ class Api::V1::TripsController < ApiController
   end
 
   def create 
-
+    if params[:trip_name] === {}
+      return render json: {errors: "Please add a Trip Name"}
+    end
     trip = TripValidator.trip(params, current_user)
-    binding.pry
-    # render json: {response: trip, status: "all good"}
+    if trip[:destination].length === 0
+      return render json: {errors: "Please add a valid Departing City"}
+    end
+    render json: { response: trip, status: 200 }
   end
 
   private
