@@ -17,6 +17,16 @@ class Api::V1::TripsController < ApiController
     render json: { response: trip, status: 200 }
   end
 
+  def update
+    trip = Trip.find(params[:id])
+
+    if trip.update(trip_params)
+      render json: ["Trip Name Updated"]
+    else
+      render json: trip.errors.full_messages
+    end
+  end
+
   private
 
   def trip_params 

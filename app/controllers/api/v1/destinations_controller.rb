@@ -15,6 +15,10 @@ class Api::V1::DestinationsController < ApiController
     end
   end
 
+  def update
+   
+  end
+
   private
 
   
