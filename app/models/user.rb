@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :username, presence: true, uniqueness: true, format: { without: /\s/ }
   validates :role, presence: true
 
@@ -15,6 +13,6 @@ class User < ApplicationRecord
   has_many :destinations
 
   def admin?
-    role == "admin"
+    role == 'admin'
   end
 end
