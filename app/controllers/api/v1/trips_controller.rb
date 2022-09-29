@@ -19,7 +19,6 @@ class Api::V1::TripsController < ApiController
 
   def trip_params
     params.require(:trip).permit(:trip_name)
-
     # update params to include nested destinatonis
   end
 
