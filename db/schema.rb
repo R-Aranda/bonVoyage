@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2022_08_24_190129) do
   end
 
   create_table "destinations", force: :cascade do |t|
+    t.string "name"
     t.bigint "city_id", null: false
     t.bigint "trip_id", null: false
     t.bigint "user_id", null: false

@@ -11,8 +11,8 @@ Rails.application.routes.draw do
       resources :post_likes, only: [:create]
       resources :comment_likes, only: [:create]
       resources :cities, only: [:show, :index, :create]
-      resources :users, only: [:show]
-      resources :trips, only: [:show, :create]
+      resources :users, only: [:show], param: :username
+      resources :trips, only: [:show, :create], param: :id
       resources :destinations, only: [:create]
     end
   end
