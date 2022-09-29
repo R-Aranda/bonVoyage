@@ -6,9 +6,9 @@ class Api::V1::CommentsController < ApiController
   def create
     comment = post.comments.new(comment_params)
     comment.user = current_user
-    if comment.save 
+    if comment.save
       render json: comment
-    else 
+    else
       render json: { error: comment.errors.full_messages, status: 400 }
     end
   end
@@ -17,9 +17,9 @@ class Api::V1::CommentsController < ApiController
     comment = Comment.find(params[:id])
 
     if comment.destroy
-      render json: {commentId: comment.id, status: 204}
+      render json: { commentId: comment.id, status: 204 }
     else
-      render json: { error: "Unable to delete comment", status: :not_implemented }
+      render json: { error: 'Unable to delete comment', status: :not_implemented }
     end
   end
 
@@ -34,8 +34,6 @@ class Api::V1::CommentsController < ApiController
   end
 
   def authenticate_user
-    if !user_signed_in?
-      render json: { error: "You must be signed in", status: 401 }
-    end
+    render json: { error: 'You must be signed in', status: 401 } unless user_signed_in?
   end
 end

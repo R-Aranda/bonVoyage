@@ -8,13 +8,13 @@ class Api::V1::PostLikesController < ApiController
     if prev_like
       prev_like.destroy
       liked = false
-      render json: {liked: liked, likeCount: post.post_likes.length}
+      render json: { liked: liked, likeCount: post.post_likes.length }
     else
       liked = post.post_likes.new(post_like_params)
       liked.user = current_user
-      
+
       if liked.save
-        render json: {liked: liked, likeCount: post.post_likes.length}
+        render json: { liked: liked, likeCount: post.post_likes.length }
       else
         render json: { error: post.errors.full_messages, status: 400 }
       end
@@ -32,8 +32,6 @@ class Api::V1::PostLikesController < ApiController
   end
 
   def authenticate_user
-    if !user_signed_in?
-      render json: { error: "You must be signed in to do that!", status: 401 }
-    end
+    render json: { error: 'You must be signed in to do that!', status: 401 } unless user_signed_in?
   end
 end

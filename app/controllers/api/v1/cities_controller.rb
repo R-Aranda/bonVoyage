@@ -5,7 +5,7 @@ class Api::V1::CitiesController < ApiController
 
   def show
     city = City.find_by(slug: params[:id])
-    
+
     yelp_data = YelpClient.find(city.name)
     city.yelp = yelp_data
     weather_data = WeatherClient.get_weather(city.name)
@@ -36,8 +36,6 @@ class Api::V1::CitiesController < ApiController
   end
 
   def authenticate_user
-    if !user_signed_in?
-      render json: { error: "You must be signed in to do that!", status: 401 }
-    end
+    render json: { error: 'You must be signed in to do that!', status: 401 } unless user_signed_in?
   end
 end
