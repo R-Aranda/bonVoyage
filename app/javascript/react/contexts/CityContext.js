@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAsync } from "../hooks/useAsync";
 import { getCity } from "../services/city";
